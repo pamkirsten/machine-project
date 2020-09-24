@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+
+
+<?import javafx.scene.control.PasswordField?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.User">
+   <children>
+      <Label layoutX="71.0" layoutY="31.0" text="First Name:" />
+      <Label layoutX="57.0" layoutY="70.0" text="Middle Name:" />
+      <Label layoutX="71.0" layoutY="112.0" text="Last Name:" />
+      <Label layoutX="48.0" layoutY="159.0" text="Home Address:" />
+      <Label layoutX="48.0" layoutY="194.0" text="Office Address:" />
+      <Label layoutX="47.0" layoutY="229.0" text="Phone Number:" />
+      <Label layoutX="49.0" layoutY="266.0" text="Email Address:" />
+      <Label layoutX="26.0" layoutY="348.0" text="Change Password:" />
+      <Label layoutX="26.0" layoutY="383.0" text="Confirm Password:" />
+      <TextField fx:id="first" layoutX="150.0" layoutY="26.0" />
+      <TextField fx:id="middle" layoutX="150.0" layoutY="65.0" />
+      <TextField fx:id="last" layoutX="150.0" layoutY="107.0" />
+      <TextField fx:id="home" layoutX="150.0" layoutY="154.0" />
+      <TextField fx:id="work" layoutX="150.0" layoutY="189.0" />
+      <TextField fx:id="email" layoutX="150.0" layoutY="224.0" />
+      <TextField fx:id="phone" layoutX="150.0" layoutY="261.0" />
+      <PasswordField fx:id="regpass1" layoutX="150.0" layoutY="343.0" />
+      <PasswordField fx:id="regpass2" layoutX="150.0" layoutY="378.0" />
+      <Label layoutX="50.0" layoutY="313.0" text="Old Password:" />
+      <PasswordField fx:id="oldpass" layoutX="150.0" layoutY="308.0" />
+      <Button onAction="#saveaction" layoutX="102.0" layoutY="445.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="96.0" text="Save" />
+      <Button onAction="#closewindow" layoutX="249.0" layoutY="445.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="103.0" text="Close" />
+   </children>
+</Pane>
