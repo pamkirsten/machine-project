@@ -1,5 +1,7 @@
 package model;
 
+import javafx.scene.control.DatePicker;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -14,10 +16,11 @@ public class Database {
     private static ArrayList<Visit> dbv = new ArrayList<>();
     private static ArrayList<Government> dgov = new ArrayList<>();
     private static ArrayList<Case> dcase = new ArrayList<>();
-    private static int casenum=0;
+    private static ArrayList<Citizen> dcitizen = new ArrayList<>();
+    private static int casenum = 0;
 
-    public void increment(){
-        casenum+=1;
+    public void increment() {
+        casenum += 1;
     }
 
     public void bootup() {
@@ -184,7 +187,7 @@ public class Database {
 
         String temp = "", temp1 = "";
 
-        for (int i = 0; i < dcase.size(); i++){
+        for (int i = 0; i < dcase.size(); i++) {
             try {
                 FileWriter text = new FileWriter("positivecases.txt", true);
 
@@ -528,7 +531,7 @@ public class Database {
 
     public int getCaseNum(String user) {
 
-        int cNum=0;
+        int cNum = 0;
         for (int i = 0; i < dcase.size(); i++) {
             if (dcase.get(i).getUsername().equals(user)) {
                 cNum = dcase.get(i).getCasenum();
@@ -571,5 +574,22 @@ public class Database {
         //updatevisitfile(); //put update casefile function here
     }
 
+    //public int CityCases(String City, DatePicker StartDate, DatePicker EndDate) {
+    public int CityCases(String City) {
+        int numCases = 0;
+        for (int i = 0; i < dcitizen.size(); i++) {
+            if (dcitizen.get(i).getHomeadress().equalsIgnoreCase(City)) {
+                for (int j = 0; j < dcase.size(); j++) {
+
+                    if (dcitizen.get(i).getUsername().equalsIgnoreCase(dcase.get(j).getUsername())) {
+                        numCases++;
+
+                    }
+                }
+            }
+
+        }
+        return numCases;
+    }
 
 }

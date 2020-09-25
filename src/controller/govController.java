@@ -19,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -27,7 +28,7 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class govController implements Initializable{
+public class govController implements Initializable {
 
 
     private Database db = new Database();
@@ -65,10 +66,11 @@ public class govController implements Initializable{
     private DatePicker dateStart;
     @FXML
     private DatePicker dateEnd;
+    @FXML
+    private Label labelNumofCases;
 
 
-
-   // private String username = txtfieldUsername.getText();
+    // private String username = txtfieldUsername.getText();
     private int check;
 
 
@@ -102,10 +104,7 @@ public class govController implements Initializable{
         }
 
 
-
-
     }
-
 
 
     public boolean checkuserinfo() {
@@ -219,7 +218,7 @@ public class govController implements Initializable{
     }
 
     public void closewindow(ActionEvent event) {
-        ((Node)(event.getSource())).getScene().getWindow().hide();
+        ((Node) (event.getSource())).getScene().getWindow().hide();
     }
 
     public void openAnalytics(ActionEvent event) {
@@ -240,13 +239,20 @@ public class govController implements Initializable{
         }
     }
 
-    public void opendurandCity(){
-
-
+    public void durandCity() {
+        int numofCases = 0;
+        //numofCases = db.durAndCity(fieldCity.getText(), dateStart, dateEnd);
 
 
     }
 
+    public void cityCases(){
+        int numofCases = 0;
+        numofCases = db.CityCases(fieldCity.getText());
+        String str1 = Integer.toString(numofCases);
+        labelNumofCases.setText(str1);
+
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
