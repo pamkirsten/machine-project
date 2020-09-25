@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.Analytics"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.govController">
+   <children>
+      <TextField fx:id="fieldCity" layoutX="274.0" layoutY="186.0" prefHeight="27.0" prefWidth="187.0" />
+      <Label layoutX="167.0" layoutY="186.0" prefHeight="27.0" prefWidth="95.0" text="Enter City" />
+      <Label layoutX="161.0" layoutY="244.0" prefHeight="27.0" prefWidth="95.0" text="Start of Duration" />
+      <DatePicker fx:id="dateStart" layoutX="276.0" layoutY="244.0" />
+      <Label layoutX="161.0" layoutY="300.0" prefHeight="27.0" prefWidth="95.0" text="End of Duration" />
+      <DatePicker fx:id="dateEnd" layoutX="276.0" layoutY="300.0" />
+      <Button layoutX="209.0" layoutY="350.0" mnemonicParsing="false" onAction="#opendurandCity" text="Analyze based on Duration &amp; Given City" />
+      <Button layoutX="239.0" layoutY="389.0" mnemonicParsing="false" text="Analyze based on Given City" />
+      <Button layoutX="244.0" layoutY="426.0" mnemonicParsing="false" text="Analyze based on Duration" />
+   </children>
+</Pane>

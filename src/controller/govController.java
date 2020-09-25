@@ -8,16 +8,26 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.Database;
 import model.Government;
-
+import javafx.fxml.Initializable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import java.io.IOException;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class govController {
+public class govController implements Initializable{
 
 
     private Database db = new Database();
@@ -49,6 +59,13 @@ public class govController {
     private TextField phone;
     @FXML
     private TextField email;
+    @FXML
+    private TextField fieldCity;
+    @FXML
+    private DatePicker dateStart;
+    @FXML
+    private DatePicker dateEnd;
+
 
 
     private String username = txtfieldUsername.getText();
@@ -85,7 +102,11 @@ public class govController {
         }
 
 
+
+
     }
+
+
 
     public boolean checkuserinfo() {
         if (first.getText().contains(":") || first.getText().contains(",") ||
@@ -197,11 +218,40 @@ public class govController {
 
     }
 
-    public void openAnalytics() {
+    public void closewindow(ActionEvent event) {
+        ((Node)(event.getSource())).getScene().getWindow().hide();
+    }
+
+    public void openAnalytics(ActionEvent event) {
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/analytics.fxml"));
+            javafx.stage.Stage stage = new Stage();
+            stage.setTitle("Register User");
+            stage.setScene(new Scene(root, 600, 600));
+            stage.setResizable(false);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.show();
+
+            closewindow(event);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void opendurandCity(){
+
+
+
 
     }
 
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        
+    }
 }
 
 
