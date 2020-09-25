@@ -31,6 +31,7 @@ public class Login {
 
         if(db.checkusername(inputuser.getText())){
             if(db.confirmpass(inputuser.getText(),inputpass.getText())){
+
                 closewindow(event);
 
                 check = db.checkRole(inputuser.getText());
@@ -41,7 +42,7 @@ public class Login {
                 }
                 if(check==1){
                     user.setusername(inputuser.getText());
-                  //  citizen(event);
+                  citizen(event);
                     gov(event);
                 }
                 if(check==2){

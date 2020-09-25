@@ -19,6 +19,7 @@ public class Database {
     private static ArrayList<Government> dgov = new ArrayList<>();
     private static ArrayList<Case> dcase = new ArrayList<>();
     private static ArrayList<Citizen> dcitizen = new ArrayList<>();
+
     private static int casenum = 0;
 
     public void increment() {
@@ -455,6 +456,7 @@ public class Database {
         return true;
     }
 
+
     public boolean regpassword(String userinput, String userinput1) {
         if (userinput.equals(userinput1)) {
             return true;
@@ -463,12 +465,16 @@ public class Database {
     }
 
     public int checkRole(String username) {
+
         int role = 0;
+
         for (int i = 0; i < db.size(); i++) {
             if (username.equals(db.get(i).getUsername())) {
+
                 if (db.get(i) instanceof Government) {
                     role = 1;
                     return role;
+
                 } else if (db.get(i) instanceof Tracer) {
                     role = 2;
                     return role;
@@ -576,7 +582,26 @@ public class Database {
         //updatevisitfile(); //put update casefile function here
     }
 
-    //public int CityCases(String City, DatePicker StartDate, DatePicker EndDate) {
+    public int durAndCity(String City, DatePicker StartDate, DatePicker EndDate) {
+        int numCases = 0;
+        String startdate = StartDate.getValue().format(DateTimeFormatter.ofPattern("MM,dd,YYYY"));
+        String enddate = EndDate.getValue().format(DateTimeFormatter.ofPattern("MM,dd,YYYY"));
+
+        for (int i = 0; i < db.size(); i++) {
+            if (db.get(i).getHomeadress().equalsIgnoreCase(City)) {
+                for (int j = 0; j < dcase.size(); j++) {
+                    if (db.get(i).getUsername().equalsIgnoreCase(dcase.get(j).getUsername())) {
+                        if ((dcase.get(j).getDateReported().compareTo(startdate) >= 0) && (dcase.get(j).getDateReported().compareTo(enddate) <= 0)) {
+                            numCases++;
+                        }
+                    }
+                }
+            }
+        }
+
+        return numCases;
+    }
+
 
     public int givenDuration(DatePicker StartDate, DatePicker EndDate) {
         int numCases = 0;
@@ -591,20 +616,19 @@ public class Database {
         return numCases;
 
     }
-    
 
 
     public int CityCases(String City) {
-        int numCases = 1;
+        int numCases = 0;
 
-        for (int i = 0; i < dcitizen.size(); i++) {
+        for (int i = 0; i < db.size(); i++) {
 
-            if (dcitizen.get(i).getHomeadress().equalsIgnoreCase("makati")) {
-                numCases++;
+            System.out.println(db.get(i).getHomeadress());
 
+            if (db.get(i).getHomeadress().equalsIgnoreCase(City)) {
                 for (int j = 0; j < dcase.size(); j++) {
 
-                    if (dcitizen.get(i).getUsername().equalsIgnoreCase(dcase.get(j).getUsername())) {
+                    if (db.get(i).getUsername().equalsIgnoreCase(dcase.get(j).getUsername())) {
                         numCases += 1;
 
                     }
