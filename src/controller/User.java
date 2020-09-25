@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.Case;
 import model.Citizen;
 import model.Database;
 import model.Visit;
@@ -39,6 +40,9 @@ public class User {
 
     private Database db = new Database();
     private Visit dbv = new Visit();
+    private Case dcase = new Case();
+
+
     private static String username;
 
     public void setusername(String user){
@@ -108,6 +112,7 @@ public class User {
     }
 
     public void checkin(ActionEvent event){
+
         String temp = date.getValue().toString();
         String[] fdate = temp.split("-");
         temp = fdate[1] + "," + fdate[2] + "," + fdate[0];
@@ -159,19 +164,24 @@ public class User {
     }
 
     public void reportPositive(ActionEvent event){
-        db.setPositive(username);
+
 
         String temp = dateReported.getValue().toString();
         String[] fdate = temp.split("-");
         temp = fdate[1] + "," + fdate[2] + "," + fdate[0];
 
-        db.setDateReported(username,temp);
+        dcase.setUsername(username);
+        dcase.setDateReported(temp);
+        db.newcase(dcase);
+        db.setPositive(username);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
         alert.setTitle("Positive Confirmation");
-        alert.setContentText("\nYour Assigned Case Number is: " + db.getCaseNum(username)+"\n Date Reported: "+ db.getDateReported(username) );
+        alert.setContentText("\nYour Assigned Case Number is: " + db.getCaseNum(username) +"\n Date Reported: "+ db.getDateReported(username));
         alert.showAndWait();
+
+
     }
 
 

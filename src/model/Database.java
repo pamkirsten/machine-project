@@ -12,32 +12,37 @@ public class Database {
 
     private static ArrayList<Profile> db = new ArrayList<>();
     private static ArrayList<Visit> dbv = new ArrayList<>();
+    private static ArrayList<Case> dcase = new ArrayList<>();
     private static int casenum=0;
 
 
     public void increment(){
-        casenum++;
+        casenum+=1;
     }
 
     public void bootup() {
         System.out.println("@@@---BOOTING UP---@@@");
         opentextfile();
         openvisitfile();
+        //opencasefile();
         infoprint();
         visitprint();
+        caseprint();
         System.out.println("@@@---END---@@@");
     }
 
-    public void shutdown(){
+    public void shutdown() {
         System.out.println("@@@---SHUTTING DOWN---@@@");
         updatetext();
         updatevisitfile();
+        //updatecasefile();
         infoprint();
         visitprint();
+        caseprint();
         System.out.println("@@@---END---@@@");
     }
 
-    public void openvisitfile(){
+    public void openvisitfile() {
         try {
             FileWriter text = new FileWriter("estvisitrec.txt", true);
         } catch (IOException e) {
@@ -47,13 +52,13 @@ public class Database {
         String tmpstring, user = "";
         String[] temp;
 
-        try{
+        try {
             Scanner readtxt = new Scanner(new File("estvisitrec.txt"));
 
-            while(readtxt.hasNextLine()){
+            while (readtxt.hasNextLine()) {
                 tmpstring = readtxt.nextLine();
 
-                if(tmpstring.equals("")){
+                if (tmpstring.equals("")) {
                     tmpstring = readtxt.nextLine();
                 }
 
@@ -61,9 +66,9 @@ public class Database {
 
                 Visit visit = new Visit();
 
-                if(temp.length == 1){
+                if (temp.length == 1) {
                     user = temp[0];
-                }else{
+                } else {
                     visit.setUser(user);
                     visit.setCode(temp[0]);
                     visit.setDate(temp[1]);
@@ -72,33 +77,33 @@ public class Database {
                 }
             }
 
-        }catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println("Error occurred in reading visit");
         }
 
     }
 
-    public void sortvisitdb(){
+    public void sortvisitdb() {
         ArrayList<String> users = new ArrayList<>();
         ArrayList<Visit> dbvtemp = new ArrayList<>();
 
-        for(int i=0; i<dbv.size(); i++){
-            if(i == 0){
+        for (int i = 0; i < dbv.size(); i++) {
+            if (i == 0) {
                 users.add(dbv.get(i).getUser());
             }
-            for(int x=0; x<users.size(); x++){
-                if(dbv.get(i).getUser().equals(users.get(x))){
+            for (int x = 0; x < users.size(); x++) {
+                if (dbv.get(i).getUser().equals(users.get(x))) {
                     break;
                 }
-                if(users.size() == x+1){
+                if (users.size() == x + 1) {
                     users.add(dbv.get(i).getUser());
                 }
             }
         }
 
-        for(int z=0; z<users.size(); z++){
-            for(int y=0; y<dbv.size(); y++) {
-                if(users.get(z).equals(dbv.get(y).getUser())){
+        for (int z = 0; z < users.size(); z++) {
+            for (int y = 0; y < dbv.size(); y++) {
+                if (users.get(z).equals(dbv.get(y).getUser())) {
                     dbvtemp.add(dbv.get(y));
                 }
             }
@@ -109,7 +114,7 @@ public class Database {
         System.out.println(Arrays.toString(users.toArray()));
     }
 
-    public void updatevisitfile(){
+    public void updatevisitfile() {
         sortvisitdb();
 
         try {
@@ -118,10 +123,10 @@ public class Database {
             System.out.println("Error occurred in opening VISIT");
         }
 
-        String temp="", temp1="";
+        String temp = "", temp1 = "";
 
         for (int i = 0; i < dbv.size(); i++) {
-            if(i == 0){
+            if (i == 0) {
                 try {
                     FileWriter text = new FileWriter("estvisitrec.txt", true);
 
@@ -134,11 +139,11 @@ public class Database {
                 }
             }
 
-            if(i > 0) {
+            if (i > 0) {
                 temp = dbv.get(i).getUser();
                 temp1 = dbv.get(i - 1).getUser();
 
-                if(!(temp.equals(temp1))){
+                if (!(temp.equals(temp1))) {
                     try {
                         FileWriter text = new FileWriter("estvisitrec.txt", true);
 
@@ -221,8 +226,7 @@ public class Database {
                     temp.setEmail(account[1]);
 
                     db.add(temp);
-                }
-                else if (account[1].equals("official")) {
+                } else if (account[1].equals("official")) {
                     Government temp1 = new Government();
 
                     temp1.setUsername(account[0]);
@@ -256,8 +260,7 @@ public class Database {
                     temp1.setEmail(account[1]);
 
                     db.add(temp1);
-                }
-                else if (account[1].equals("tracer")) {
+                } else if (account[1].equals("tracer")) {
                     Tracer temp2 = new Tracer();
 
                     temp2.setUsername(account[0]);
@@ -316,11 +319,10 @@ public class Database {
                 if (db.get(i) instanceof Government) {
                     text.write("official");
                     text.write("\n");
-                }
-                else if (db.get(i) instanceof Tracer) {
+                } else if (db.get(i) instanceof Tracer) {
                     text.write("tracer");
                     text.write("\n");
-                }else if (db.get(i) instanceof Citizen) {
+                } else if (db.get(i) instanceof Citizen) {
                     text.write("citizen");
                     text.write("\n");
                 }
@@ -364,10 +366,9 @@ public class Database {
 
             if (db.get(i) instanceof Government) {
                 System.out.println("Official");
-            }
-            else if (db.get(i) instanceof Tracer) {
+            } else if (db.get(i) instanceof Tracer) {
                 System.out.println("Tracer");
-            }else if (db.get(i) instanceof Citizen) {
+            } else if (db.get(i) instanceof Citizen) {
                 System.out.println("Citizen");
             }
             System.out.println("-------------------ACCT--------------------------");
@@ -394,12 +395,12 @@ public class Database {
         return false;
     }
 
-    public boolean confirmpass(String user, String pass){
-        for(int i=0; i<db.size(); i++){
-            if(db.get(i).getUsername().equals(user)){
-                if(db.get(i).getPassword().equals(pass)){
+    public boolean confirmpass(String user, String pass) {
+        for (int i = 0; i < db.size(); i++) {
+            if (db.get(i).getUsername().equals(user)) {
+                if (db.get(i).getPassword().equals(pass)) {
                     return true;
-                }else{
+                } else {
                     return false;
                 }
             }
@@ -408,8 +409,8 @@ public class Database {
     }
 
     public boolean regusername(String userinput) {
-        for(int i=0; i<db.size(); i++){
-            if(userinput.equals(db.get(i).getUsername())){
+        for (int i = 0; i < db.size(); i++) {
+            if (userinput.equals(db.get(i).getUsername())) {
                 return false;
             }
         }
@@ -418,29 +419,32 @@ public class Database {
     }
 
     public boolean regpassword(String userinput, String userinput1) {
-        if(userinput.equals(userinput1)){
+        if (userinput.equals(userinput1)) {
             return true;
         }
         return false;
     }
 
-    public String credcheck(String username){
-        for(int i=0; i<db.size(); i++){
-            if(username.equals(db.get(i).getUsername())){
+    public int checkRole(String username) {
+        int role = 0;
+        for (int i = 0; i < db.size(); i++) {
+            if (username.equals(db.get(i).getUsername())) {
                 if (db.get(i) instanceof Government) {
-                    return "official";
-                }
-                else if (db.get(i) instanceof Tracer) {
-                    return "tracer";
-                }else if (db.get(i) instanceof Citizen) {
-                    return "citizen";
+                    role = 1;
+                    return role;
+                } else if (db.get(i) instanceof Tracer) {
+                    role = 2;
+                    return role;
+                } else if (db.get(i) instanceof Citizen) {
+                    role = 0;
+                    return role;
                 }
             }
         }
-        return "citizen";
+        return role;
     }
 
-    public void newvisit(Visit temp){
+    public void newvisit(Visit temp) {
         dbv.add(temp);
         updatevisitfile();
     }
@@ -453,9 +457,10 @@ public class Database {
     }
 
 
-    public void updateacct(String user, String pass, String first, String middle, String last, String home, String work, String phone, String email){
-        for(int i=0; i<db.size(); i++){
-            if(db.get(i).getUsername().equals(user)){
+
+    public void updateacct(String user, String pass, String first, String middle, String last, String home, String work, String phone, String email) {
+        for (int i = 0; i < db.size(); i++) {
+            if (db.get(i).getUsername().equals(user)) {
                 db.get(i).setPassword(pass);
                 db.get(i).setFirstname(first);
                 db.get(i).setMiddlename(middle);
@@ -471,51 +476,69 @@ public class Database {
         }
     }
 
-    public void setPositive(String user){
+    public void setPositive(String user) {
         increment();
-        for(int i=0; i<db.size(); i++){
-            if(db.get(i).getUsername().equals(user)){
-                db.get(i).setPositive(true);
-                db.get(i).setCaseNum(casenum);
 
-                break;
+        for (int i = 0; i < dcase.size(); i++) {
+            if (dcase.get(i).getUsername().equals(user)) {
+                dcase.get(i).setCasenum(casenum);
             }
         }
     }
 
-    public void setDateReported(String user, String date){
 
-        for(int i=0; i<db.size(); i++) {
-            if (db.get(i).getUsername().equals(user)) {
-                db.get(i).setDateReported(date);
-            }
-        }
 
-    }
-
-    public String getDateReported(String user){
+    public String getDateReported(String user) {
         String datereported = "empty";
-        for(int i=0; i<db.size(); i++) {
-            if (db.get(i).getUsername().equals(user)) {
-
-                datereported = db.get(i).getDateReported();
+        for (int i = 0; i < dcase.size(); i++) {
+            if (dcase.get(i).getUsername().equals(user)) {
+                datereported = dcase.get(i).getDateReported();
                 return datereported;
             }
         }
         return datereported;
     }
-    // db.getCaseNum(username)
-    public int getCaseNum(String user){
+
+
+    public int getCaseNum(String user) {
+
         int cNum=0;
-
-        for(int i=0; i<db.size(); i++) {
-            if (db.get(i).getUsername().equals(user)) {
-
-                cNum= db.get(i).getCaseNum();
+        for (int i = 0; i < dcase.size(); i++) {
+            if (dcase.get(i).getUsername().equals(user)) {
+                cNum = dcase.get(i).getCasenum();
                 return cNum;
             }
         }
         return cNum;
     }
+
+    /*public void opencasefile() {
+
+
+    }
+
+    public void updatecasefile() {
+
+    }
+    public void sortcasefile() {
+
+    }*/
+
+
+    public void caseprint() {
+        for (int i = 0; i < dcase.size(); i++) {
+            System.out.println("Username: " + dcase.get(i).getUsername());
+            System.out.println("Visit: " + dcase.get(i).getCasenum());
+            System.out.println("Date: " + dcase.get(i).getDateReported());
+            System.out.println("-------------------CASE-------------------------");
+        }
+
+    }
+
+    public void newcase(Case temp) {
+        dcase.add(temp);
+        //updatevisitfile(); //put update casefile function here
+    }
+
 
 }

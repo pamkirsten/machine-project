@@ -27,24 +27,24 @@ public class Login {
     User user = new User();
 
     public void loginuser(ActionEvent event) {
-        String creds;
+        int check = -999;
 
         if(db.checkusername(inputuser.getText())){
             if(db.confirmpass(inputuser.getText(),inputpass.getText())){
                 closewindow(event);
 
-                creds = db.credcheck(inputuser.getText());
+                check = db.checkRole(inputuser.getText());
 
-                if(creds.equals("citizen")){
+                if(check==0){
                     user.setusername(inputuser.getText());
                     citizen(event);
                 }
-                if(creds.equals("official")){
+                if(check==1){
                     user.setusername(inputuser.getText());
                     citizen(event);
                     gov(event);
                 }
-                if(creds.equals("tracer")){
+                if(check==2){
                     user.setusername(inputuser.getText());
                     citizen(event);
                     tracer(event);
