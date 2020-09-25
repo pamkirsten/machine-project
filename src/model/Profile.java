@@ -20,8 +20,8 @@ public class Profile {
         return isPositive;
     }
 
-    public void setPositive(boolean positive) {
-        isPositive = positive;
+    public void setPositive() {
+        isPositive = true;
     }
 
     private int CaseNum;

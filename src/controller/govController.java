@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,88 +8,58 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import model.Case;
 import model.Database;
 import model.Government;
-import javafx.fxml.Initializable;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import java.io.IOException;
-import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
 
 public class govController {
-
 
     private Database db = new Database();
     private Government dgov = new Government();
 
+    @FXML private TextField txtfieldUsername;
+    @FXML private Button btnCheckUser;
+    @FXML private Button btnCreate;
+    @FXML private Label labelPass;
+    @FXML private Label labelcheckUser;
 
-    @FXML
-    private TextField txtfieldUsername;
-    @FXML
-    private Button btnCheckUser;
-    @FXML
-    private Button btnCreate;
-    @FXML
-    private Label labelPass;
-    @FXML
-    private Label labelcheckUser;
+    @FXML private TextField first;
+    @FXML private TextField middle;
+    @FXML private TextField last;
+    @FXML private TextField home;
+    @FXML private TextField work;
+    @FXML private TextField phone;
+    @FXML private TextField email;
+    @FXML private TextField fieldCity;
+    @FXML private DatePicker dateStart;
+    @FXML private DatePicker dateEnd;
+    @FXML private DatePicker tuStart;
+    @FXML private DatePicker tuEnd;
+    @FXML private Label labelNumofCases;
 
-    @FXML
-    private TextField first;
-    @FXML
-    private TextField middle;
-    @FXML
-    private TextField last;
-    @FXML
-    private TextField home;
-    @FXML
-    private TextField work;
-    @FXML
-    private TextField phone;
-    @FXML
-    private TextField email;
-    @FXML
-    private TextField fieldCity;
-    @FXML
-    private DatePicker dateStart;
-    @FXML
-    private DatePicker dateEnd;
-    @FXML
-    private Label labelNumofCases;
-
+    @FXML private TableView<Case> tuTable = new TableView<>();
+    @FXML private TableColumn<Case, String> tuCaseNum = new TableColumn<>("Case Number");
+    @FXML private TableColumn<Case, String> tuTracer = new TableColumn<>("Contact Tracer");
+    @FXML private TableColumn<Case, String> tuStatus = new TableColumn<>("Status");
 
     // private String username = txtfieldUsername.getText();
     private int check;
 
-
     public void checkUser() {
-
         if (db.regusername(txtfieldUsername.getText())) {
             labelcheckUser.setText("Username unique!");
             check = 1;
         } else {
             labelcheckUser.setText("Username not unique!");
-
         }
-
     }
 
     public String randompass() {
         return "passwordtest";
-
     }
 
     public void creategovAcc(ActionEvent event) {
@@ -102,12 +73,8 @@ public class govController {
             } else if (db.checkRole(txtfieldUsername.getText()) == 0) {
                 registerGov(event);
             }
-
         }
-
-
     }
-
 
     public void goback(ActionEvent event) {
         Parent root;
@@ -124,7 +91,6 @@ public class govController {
             e.printStackTrace();
         }
     }
-
 
     public void registerGov(ActionEvent event) {
         Parent root;
@@ -176,15 +142,14 @@ public class govController {
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
 
-    public void openAnalytics(ActionEvent event) {
+    public void openTracingUpdates(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/analytics.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/tracingupdates.fxml"));
             javafx.stage.Stage stage = new Stage();
-            stage.setTitle("Register User");
+            stage.setTitle("Contact Tracing Updates");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
-            stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
             closewindow(event);
@@ -192,6 +157,45 @@ public class govController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void openAnalytics(ActionEvent event) {
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/analytics.fxml"));
+            javafx.stage.Stage stage = new Stage();
+            stage.setTitle("Analytics");
+            stage.setScene(new Scene(root, 600, 600));
+            stage.setResizable(false);
+            stage.show();
+
+            closewindow(event);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void tracingUpdates() {
+        ArrayList<Case> cases = new ArrayList<>();
+
+        cases = db.positivefromdaterange(tuStart, tuEnd);
+
+
+        for (int i = 0; i < cases.size(); i++) {
+            System.out.println("Case Num: " + cases.get(i).getCasenum());
+            System.out.println("Contact Tracer: " + cases.get(i).getTracerUsername());
+            System.out.println("Status: " + cases.get(i).getStatus());
+            System.out.println("-------------------POSITIVE-------------------------");
+        }
+
+        //tuCaseNum.setCellValueFactory(new PropertyValueFactory<>("casenum"));
+        //tuTracer.setCellValueFactory(new PropertyValueFactory<>("tracerUsername"));
+        //tuStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        //ObservableList<Case> list = cases;
+
+        //put it to the table
     }
 
     public void durandCity() {
@@ -218,7 +222,6 @@ public class govController {
         alert.setTitle("Number of Positive Cases");
         alert.setContentText("Number of positive cases in the given city: " + str1);
         alert.showAndWait();
-
 
     }
 

@@ -39,11 +39,9 @@ public class User {
     @FXML private TextField code;
     private static int casenum;
 
-
     private Database db = new Database();
     private Visit dbv = new Visit();
     private Case dcase = new Case();
-
 
     private static String username;
 
@@ -215,6 +213,7 @@ public class User {
             e.printStackTrace();
         }
     }
+
     public void openReport(ActionEvent event){
         Parent root;
         try {
@@ -233,24 +232,24 @@ public class User {
     }
 
     public void reportPositive(ActionEvent event){
-        String temp = dateReported.getValue().toString();
-        String[] fdate = temp.split("-");
-        temp = fdate[1] + "," + fdate[2] + "," + fdate[0];
+        if (db.getPositive(username)) {
+            String temp = dateReported.getValue().toString();
+            String[] fdate = temp.split("-");
+            temp = fdate[1] + "," + fdate[2] + "," + fdate[0];
 
-        dcase.setUsername(username);
-        dcase.setDateReported(temp);
-        db.newcase(dcase);
-        db.setPositive(username);
+            dcase.setUsername(username);
+            dcase.setDateReported(temp);
+            dcase.setTracerUsername("000");
+            db.newcase(dcase);
+            db.setPositive(username, temp);
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText(null);
-        alert.setTitle("Positive Confirmation");
-        alert.setContentText("\nYour Assigned Case Number is: " + db.getCaseNum(username) +"\n Date Reported: "+ db.getDateReported(username));
-        alert.showAndWait();
-
-        db.savecases();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Positive Confirmation");
+            alert.setContentText("\nYour Assigned Case Number is: " + db.getCaseNum(username) + "\n Date Reported: " + db.getDateReported(username));
+            alert.showAndWait();
+        }
     }
-
 
     public void testing(){
         System.out.println(username);

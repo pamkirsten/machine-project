@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.govController">
+   <children>
+      <DatePicker fx:id="tuStart" layoutX="38.0" layoutY="68.0" />
+      <Label layoutX="38.0" layoutY="45.0" text="Start Date" />
+      <DatePicker fx:id="tuEnd" layoutX="38.0" layoutY="131.0" />
+      <Label layoutX="38.0" layoutY="108.0" text="End Date" />
+      <Button layoutX="39.0" layoutY="171.0" mnemonicParsing="false" onAction="#tracingUpdates" text="Display" />
+      <TableView fx:id="tuTable" layoutX="38.0" layoutY="227.0" prefHeight="342.0" prefWidth="526.0">
+        <columns>
+          <TableColumn fx:id="tuCaseNum" prefWidth="57.0" text="Case #" />
+          <TableColumn fx:id="tuTracer" prefWidth="310.0" text="Contact Tracer" />
+            <TableColumn fx:id="tuStatus" prefWidth="158.0" text="Status" />
+        </columns>
+      </TableView>
+      <Button layoutX="99.0" layoutY="171.0" mnemonicParsing="false" onAction="#goback" prefHeight="25.0" prefWidth="54.0" text="Close" />
+   </children>
+</Pane>

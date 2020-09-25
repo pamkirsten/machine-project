@@ -30,7 +30,7 @@ public class Database {
         System.out.println("@@@---BOOTING UP---@@@");
         opentextfile();
         openvisitfile();
-        //opencasefile();
+        opencases();
         infoprint();
         visitprint();
         caseprint();
@@ -181,6 +181,46 @@ public class Database {
         }
     }
 
+    public void opencases() {
+        try {
+            FileWriter text = new FileWriter("positivecases.txt", true);
+        } catch (IOException e) {
+            System.out.println("Error occurred in opening positivecases");
+        }
+
+        String tempstring;
+        String[] temparray;
+
+        try {
+            Scanner sc = new Scanner(new File("positivecases.txt"));
+
+            while (sc.hasNextLine()){
+                tempstring = sc.nextLine();
+                temparray = tempstring.split(" ");
+
+                Case cases = new Case();
+
+                cases.setCasenum(Integer.parseInt(temparray[0]));
+                cases.setUsername(temparray[1]);
+                cases.setDateReported(temparray[2]);
+                cases.setTracerUsername(temparray[3]);
+                cases.setStatus(temparray[4]);
+
+                for (int i = 0; i < db.size(); i++){
+                    if (db.get(i).getUsername().equals(cases.getUsername())){
+                        db.get(i).setPositive();
+                        db.get(i).setDateReported(temparray[2]);
+                    }
+                }
+
+                dcase.add(cases);
+                casenum++;
+            }
+        } catch (IOException e){
+            System.out.println("Error occurred in writing positivecases");
+        }
+    }
+
     public void savecases() {
         try {
             FileWriter text = new FileWriter("positivecases.txt");
@@ -209,7 +249,6 @@ public class Database {
             } catch (IOException e) {
                 System.out.println("Error occurred in writing positivecases.txt");
             }
-
         }
     }
 
@@ -400,6 +439,7 @@ public class Database {
             System.out.println("Last name: " + db.get(i).getLastname());
             System.out.println("Username: " + db.get(i).getUsername());
             System.out.println("Password: " + db.get(i).getPassword());
+            System.out.println("STATUS: " + db.get(i).isPositive());
             System.out.print("Role: ");
 
             if (db.get(i) instanceof Government) {
@@ -455,7 +495,6 @@ public class Database {
 
         return true;
     }
-
 
     public boolean regpassword(String userinput, String userinput1) {
         if (userinput.equals(userinput1)) {
@@ -517,8 +556,25 @@ public class Database {
         }
     }
 
-    public void setPositive(String user) {
+    public boolean getPositive(String user) {
+        for (int i = 0; i < db.size(); i++){
+            if (db.get(i).getUsername().equals(user)){
+                return db.get(i).isPositive();
+            }
+        }
+        return false;
+    }
+
+    public void setPositive(String user, String date) {
         increment();
+
+        for (int i = 0; i < db.size(); i++) {
+            if (db.get(i).getUsername().equals(user)) {
+                db.get(i).setPositive();
+                db.get(i).setDateReported(date);
+            }
+        }
+
         for (int i = 0; i < dcase.size(); i++) {
             if (dcase.get(i).getUsername().equals(user)) {
                 dcase.get(i).setCasenum(casenum);
@@ -549,26 +605,54 @@ public class Database {
         return cNum;
     }
 
-
-
     public void caseprint() {
         for (int i = 0; i < dcase.size(); i++) {
             System.out.println("Username: " + dcase.get(i).getUsername());
-            System.out.println("Visit: " + dcase.get(i).getCasenum());
+            System.out.println("Case Num: " + dcase.get(i).getCasenum());
             System.out.println("Date: " + dcase.get(i).getDateReported());
             System.out.println("-------------------CASE-------------------------");
         }
-
     }
 
     public void newcase(Case temp) {
         dcase.add(temp);
-        //updatevisitfile(); //put update casefile function here
+        savecases();
+    }
+
+    public ArrayList<Case> positivefromdaterange(DatePicker start, DatePicker end) {
+        ArrayList<Case> cases = new ArrayList<>();
+        infoprint();
+        for (int i = 0; i < db.size(); i++){
+            if (db.get(i).isPositive()){
+                if (checkDuration(start, end, db.get(i).getDateReported())){
+                    for (int j = 0; j < dcase.size(); j++) {
+                        if (db.get(i).getUsername().equals(dcase.get(j).getUsername())) {
+                            System.out.println("\n\nREACHED HERE\n\n");
+                            cases.add(dcase.get(j));
+                        }
+                    }
+                }
+            }
+        }
+
+        return cases;
     }
 
     public void newgov(Government temp) {
         dgov.add(temp);
         //updatevisitfile(); //put update casefile function here
+    }
+
+    public boolean checkDuration(DatePicker StartDate, DatePicker EndDate, String date) {
+        String startdate = StartDate.getValue().format(DateTimeFormatter.ofPattern("MM,dd,YYYY"));
+        String enddate = EndDate.getValue().format(DateTimeFormatter.ofPattern("MM,dd,YYYY"));
+
+        for (int i = 0; i < dcase.size(); i++) {
+            if ((date.compareTo(startdate) >= 0) && (date.compareTo(enddate) <= 0)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public int durAndCity(String City, DatePicker StartDate, DatePicker EndDate) {
@@ -591,7 +675,6 @@ public class Database {
         return numCases;
     }
 
-
     public int givenDuration(DatePicker StartDate, DatePicker EndDate) {
         int numCases = 0;
         String startdate = StartDate.getValue().format(DateTimeFormatter.ofPattern("MM,dd,YYYY"));
@@ -603,9 +686,7 @@ public class Database {
             }
         }
         return numCases;
-
     }
-
 
     public int CityCases(String City) {
         int numCases = 0;
