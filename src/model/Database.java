@@ -16,7 +16,6 @@ public class Database {
     private static ArrayList<Case> dcase = new ArrayList<>();
     private static int casenum=0;
 
-
     public void increment(){
         casenum+=1;
     }
@@ -176,7 +175,37 @@ public class Database {
         }
     }
 
+    public void savecases() {
+        try {
+            FileWriter text = new FileWriter("positivecases.txt");
+        } catch (IOException e) {
+            System.out.println("Error occurred in opening positivecases");
+        }
 
+        String temp = "", temp1 = "";
+
+        for (int i = 0; i < dcase.size(); i++){
+            try {
+                FileWriter text = new FileWriter("positivecases.txt", true);
+
+                text.write(String.valueOf(dcase.get(i).getCasenum()));
+                text.write(" ");
+                text.write(dcase.get(i).getUsername());
+                text.write(" ");
+                text.write(dcase.get(i).getDateReported());
+                text.write(" ");
+                text.write(dcase.get(i).getTracerUsername());
+                text.write(" ");
+                text.write(dcase.get(i).getStatus());
+                text.write("\n");
+
+                text.close();
+            } catch (IOException e) {
+                System.out.println("Error occurred in writing positivecases.txt");
+            }
+
+        }
+    }
 
     public void opentextfile() {
         try {
@@ -459,8 +488,6 @@ public class Database {
 
     }
 
-
-
     public void updateacct(String user, String pass, String first, String middle, String last, String home, String work, String phone, String email) {
         for (int i = 0; i < db.size(); i++) {
             if (db.get(i).getUsername().equals(user)) {
@@ -488,8 +515,6 @@ public class Database {
         }
     }
 
-
-
     public String getDateReported(String user) {
         String datereported = "empty";
         for (int i = 0; i < dcase.size(); i++) {
@@ -500,7 +525,6 @@ public class Database {
         }
         return datereported;
     }
-
 
     public int getCaseNum(String user) {
 

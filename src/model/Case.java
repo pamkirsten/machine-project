@@ -4,21 +4,18 @@ public class Case {
     private String user = "Empty";
     private int casenum;
     private String dateReported = "Empty";
+    private String tracerUsername = "Empty";
+    private String status = "Empty";
 
-
-    public Case(){
+    public Case() {
 
     }
-
 
     public int getCasenum() {
         return casenum;
     }
 
-    public void setCasenum(int casenum) {
-        this.casenum = casenum;
-
-    }
+    public void setCasenum(int casenum) { this.casenum = casenum; }
 
     public String getDateReported() {
         return dateReported;
@@ -36,5 +33,12 @@ public class Case {
         this.user = user;
     }
 
+    public String getTracerUsername() { return tracerUsername; }
+
+    public void setTracerUsername(String tracerUsername) { this.tracerUsername = tracerUsername; }
+
+    public String getStatus() { return status; }
+
+    public void setStatus(String status) { this.status = status; }
 }
 
