@@ -90,8 +90,25 @@ public class Register {
         }
     }
 
+    public boolean checkpassvalid() {
+        Pattern pass = Pattern.compile("[$&+;=\\\\?@#|/'<>^*()%!-]");
+        Matcher m = pass.matcher(regpass1.getText());
+        boolean result = m.find();
+
+        if (result){
+            return true;
+        } else if (regpass1.getText().matches(".*\\d.*")) {
+            return true;
+        }
+        return false;
+    }
+
     public void checkpassword() {
-        if (findspace(regpass1.getText()) || regpass1.getText().contains(":") || regpass1.getText().contains(",")){
+        if (regpass1.getText().length() < 6){
+            labelcheckpass.setText("Password must be at least 6 characters!");
+        } else if (!checkpassvalid()){
+            labelcheckpass.setText("Password must contain a digit or a spchar!");
+        } else if (findspace(regpass1.getText()) || regpass1.getText().contains(":") || regpass1.getText().contains(",")){
             labelcheckpass.setText("Password contains invalid char!");
         } else if (db.regpassword(regpass1.getText(), regpass2.getText())) {
             labelcheckpass.setText("Password matched!");

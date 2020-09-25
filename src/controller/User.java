@@ -46,8 +46,16 @@ public class User {
     public void stringerror() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(null);
-        alert.setTitle("Register Error");
+        alert.setTitle("User Input Error");
         alert.setContentText("Input cannot contain a space, colon, or comma!");
+        alert.showAndWait();
+    }
+
+    public void passworderror(String s) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(null);
+        alert.setTitle("Password Error");
+        alert.setContentText(s);
         alert.showAndWait();
     }
 
@@ -58,6 +66,33 @@ public class User {
         return found;
     }
 
+    public boolean checkpassword() {
+        if (regpass1.getText().length() < 6){
+            passworderror("Password must be at least 6 characters!");
+            return false;
+        } else if (!checkpassvalid()) {
+            passworderror("Password must contain a digit or a spchar!");
+            return false;
+        } else if (findspace(regpass1.getText()) || regpass1.getText().contains(":") || regpass1.getText().contains(",")){
+            passworderror("Password contains invalid char!");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean checkpassvalid() {
+        Pattern pass = Pattern.compile("[$&+;=\\\\?@#|/'<>^*()%!-]");
+        Matcher m = pass.matcher(regpass1.getText());
+        boolean result = m.find();
+
+        if (result){
+            return true;
+        } else if (regpass1.getText().matches(".*\\d.*")) {
+            return true;
+        }
+        return false;
+    }
+
     public boolean checkuserinfo() {
         if (first.getText().contains(":") || first.getText().contains(",") ||
                 middle.getText().contains(":") || middle.getText().contains(",") ||
@@ -66,7 +101,7 @@ public class User {
                 work.getText().contains(":") ||
                 findspace(phone.getText()) || phone.getText().contains(":") || phone.getText().contains(",") ||
                 findspace(email.getText()) || email.getText().contains(":") || email.getText().contains(",") ||
-                findspace(regpass1.getText()) || regpass1.getText().contains(":") || regpass1.getText().contains(",")){
+                findspace(regpass1.getText()) || regpass1.getText().contains(":") || regpass1.getText().contains(",") || checkpassword()){
             stringerror();
             return false;
         }
