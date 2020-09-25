@@ -508,7 +508,6 @@ public class Database {
 
     public void setPositive(String user) {
         increment();
-
         for (int i = 0; i < dcase.size(); i++) {
             if (dcase.get(i).getUsername().equals(user)) {
                 dcase.get(i).setCasenum(casenum);
