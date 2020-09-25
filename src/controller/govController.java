@@ -68,7 +68,7 @@ public class govController implements Initializable{
 
 
 
-    private String username = txtfieldUsername.getText();
+   // private String username = txtfieldUsername.getText();
     private int check;
 
 
@@ -93,7 +93,7 @@ public class govController implements Initializable{
         String newpass = "empty";
         if (check == 1) {
 
-            dgov.setUsername(username);
+            dgov.setUsername(txtfieldUsername.getText());
             dgov.setPassword(randompass());
             //dcase.setDateReported(temp);
             db.newgov(dgov);

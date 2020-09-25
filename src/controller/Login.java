@@ -41,7 +41,7 @@ public class Login {
                 }
                 if(check==1){
                     user.setusername(inputuser.getText());
-                    citizen(event);
+                  //  citizen(event);
                     gov(event);
                 }
                 if(check==2){
@@ -85,6 +85,7 @@ public class Login {
     }
 
     public void gov(ActionEvent event) {
+
         Parent root;
         try {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("view/govview.fxml"));
@@ -97,6 +98,9 @@ public class Login {
             e.printStackTrace();
         }
     }
+
+
+
 
     public void tracer(ActionEvent event) {
     }
