@@ -233,8 +233,6 @@ public class User {
     }
 
     public void reportPositive(ActionEvent event){
-
-
         String temp = dateReported.getValue().toString();
         String[] fdate = temp.split("-");
         temp = fdate[1] + "," + fdate[2] + "," + fdate[0];
@@ -250,7 +248,7 @@ public class User {
         alert.setContentText("\nYour Assigned Case Number is: " + db.getCaseNum(username) +"\n Date Reported: "+ db.getDateReported(username));
         alert.showAndWait();
 
-
+        db.savecases();
     }
 
 
