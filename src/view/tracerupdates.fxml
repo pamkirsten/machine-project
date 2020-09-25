@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <DatePicker layoutX="38.0" layoutY="68.0" />
+      <Label layoutX="38.0" layoutY="45.0" text="Start Date" />
+      <DatePicker layoutX="38.0" layoutY="131.0" />
+      <Label layoutX="38.0" layoutY="108.0" text="End Date" />
+      <Button layoutX="39.0" layoutY="171.0" mnemonicParsing="false" text="Display" />
+      <TableView layoutX="38.0" layoutY="227.0" prefHeight="342.0" prefWidth="526.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Case #" />
+          <TableColumn prefWidth="322.0" text="Contact Tracer" />
+            <TableColumn prefWidth="128.0" text="Status" />
+        </columns>
+      </TableView>
+   </children>
+</Pane>
