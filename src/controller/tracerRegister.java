@@ -8,16 +8,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import model.Citizen;
+
 import model.Database;
-import model.Government;
+
 import model.Tracer;
 
 import java.io.IOException;
 import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 public class tracerRegister {
 
@@ -72,7 +70,13 @@ public class tracerRegister {
     public void createtracerAcc(ActionEvent event) {
         newuser.setUsername(txtfieldUsername.getText());
         newuser.setPassword(randompass());
-        registerTracer(event);
+        if(db.checkRole(txtfieldUsername.getText())!= 0){
+        registerTracer(event);}
+        else{
+            db.newacct(newuser);
+            closewindow(event);
+        }
+
     }
 
 
@@ -87,35 +91,6 @@ public class tracerRegister {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-    }
-
-    public void inputinfo(ActionEvent event) {
-
-        if (labelcheckUser.getText().equals("Username unique!")) {
-            Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
-            alert1.setHeaderText(null);
-            alert1.setTitle("Confirmation Dialog");
-            alert1.setContentText("Are you ok with this?");
-
-            Optional<ButtonType> result = alert1.showAndWait();
-            if (result.get() == ButtonType.OK) {
-                // ... user chose OK
-                newuser.setUsername(txtfieldUsername.getText());
-                newuser.setPassword(randompass());
-                closewindow(event);
-                //shownextwindow();
-            } else {
-                // ... user chose CANCEL or closed the dialog
-            }
-
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("Register Error");
-            alert.setContentText("Use unique username!");
-
-            alert.showAndWait();
         }
     }
 

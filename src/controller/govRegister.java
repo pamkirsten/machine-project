@@ -75,6 +75,7 @@ public class govRegister {
 
         else{
             db.newacct(newuser);
+            closewindow(event);
         }
 
 

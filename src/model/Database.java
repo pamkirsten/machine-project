@@ -466,7 +466,7 @@ public class Database {
 
     public int checkRole(String username) {
 
-        int role = 0;
+        int role = -99;
 
         for (int i = 0; i < db.size(); i++) {
             if (username.equals(db.get(i).getUsername())) {
@@ -549,17 +549,6 @@ public class Database {
         return cNum;
     }
 
-    /*public void opencasefile() {
-
-
-    }
-
-    public void updatecasefile() {
-
-    }
-    public void sortcasefile() {
-
-    }*/
 
 
     public void caseprint() {
