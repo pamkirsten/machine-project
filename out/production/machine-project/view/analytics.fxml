@@ -16,7 +16,7 @@
       <DatePicker fx:id="dateEnd" layoutX="276.0" layoutY="300.0" />
       <Button layoutX="209.0" layoutY="350.0" mnemonicParsing="false" onAction="#durandCity" text="Analyze based on Duration &amp; Given City" />
       <Button layoutX="239.0" layoutY="389.0" mnemonicParsing="false" onAction="#cityCases" text="Analyze based on Given City" />
-      <Button layoutX="244.0" layoutY="426.0" mnemonicParsing="false" text="Analyze based on Duration" />
+      <Button layoutX="244.0" layoutY="426.0" mnemonicParsing="false" onAction="#durationCases" text="Analyze based on Duration" />
       <Label layoutX="185.0" layoutY="474.0" text="Number Of Cases:" />
       <Label fx:id="labelNumofCases" layoutX="306.0" layoutY="474.0" text="000" />
    </children>

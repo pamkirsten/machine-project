@@ -253,6 +253,14 @@ public class govController implements Initializable {
         labelNumofCases.setText(str1);
 
     }
+    public void durationCases(){
+
+        int numofCases = 0;
+        numofCases = db.givenDuration(dateStart,dateEnd);
+        String str1 = Integer.toString(numofCases);
+        labelNumofCases.setText(str1);
+
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

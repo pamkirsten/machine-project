@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -575,14 +577,35 @@ public class Database {
     }
 
     //public int CityCases(String City, DatePicker StartDate, DatePicker EndDate) {
-    public int CityCases(String City) {
+
+    public int givenDuration(DatePicker StartDate, DatePicker EndDate) {
         int numCases = 0;
+        String startdate = StartDate.getValue().format(DateTimeFormatter.ofPattern("MM,dd,YYYY"));
+        String enddate = EndDate.getValue().format(DateTimeFormatter.ofPattern("MM,dd,YYYY"));
+
+        for (int i = 0; i < dcase.size(); i++) {
+            if ((dcase.get(i).getDateReported().compareTo(startdate) >= 0) && (dcase.get(i).getDateReported().compareTo(enddate) <= 0)) {
+                numCases++;
+            }
+        }
+        return numCases;
+
+    }
+    
+
+
+    public int CityCases(String City) {
+        int numCases = 1;
+
         for (int i = 0; i < dcitizen.size(); i++) {
-            if (dcitizen.get(i).getHomeadress().equalsIgnoreCase(City)) {
+
+            if (dcitizen.get(i).getHomeadress().equalsIgnoreCase("makati")) {
+                numCases++;
+
                 for (int j = 0; j < dcase.size(); j++) {
 
                     if (dcitizen.get(i).getUsername().equalsIgnoreCase(dcase.get(j).getUsername())) {
-                        numCases++;
+                        numCases += 1;
 
                     }
                 }
