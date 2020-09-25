@@ -17,6 +17,8 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class User {
 
@@ -41,41 +43,73 @@ public class User {
     private Visit dbv = new Visit();
     private static String username;
 
+    public void stringerror() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(null);
+        alert.setTitle("Register Error");
+        alert.setContentText("Input cannot contain a space, colon, or comma!");
+        alert.showAndWait();
+    }
+
+    public boolean findspace(String s) {
+        Pattern pattern = Pattern.compile("\\s");
+        Matcher matcher = pattern.matcher(s);
+        boolean found = matcher.find();
+        return found;
+    }
+
+    public boolean checkuserinfo() {
+        if (first.getText().contains(":") || first.getText().contains(",") ||
+                middle.getText().contains(":") || middle.getText().contains(",") ||
+                last.getText().contains(":") || last.getText().contains(",") ||
+                home.getText().contains(":") ||
+                work.getText().contains(":") ||
+                findspace(phone.getText()) || phone.getText().contains(":") || phone.getText().contains(",") ||
+                findspace(email.getText()) || email.getText().contains(":") || email.getText().contains(",") ||
+                findspace(regpass1.getText()) || regpass1.getText().contains(":") || regpass1.getText().contains(",")){
+            stringerror();
+            return false;
+        }
+        return true;
+    }
+
     public void setusername(String user){
         this.username = user;
     }
 
     public void saveaction(ActionEvent event){
-        if(db.confirmpass(username,oldpass.getText())){
-            if(db.regpassword(regpass1.getText(),regpass2.getText())){
-                Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
-                alert1.setHeaderText(null);
-                alert1.setTitle("Confirmation Dialog");
-                alert1.setContentText("Are you ok with this?");
+        if (checkuserinfo()) {
+            if (db.confirmpass(username, oldpass.getText())) {
+                if (db.regpassword(regpass1.getText(), regpass2.getText())) {
+                    Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert1.setHeaderText(null);
+                    alert1.setTitle("Confirmation Dialog");
+                    alert1.setContentText("Are you ok with this?");
 
-                Optional<ButtonType> result = alert1.showAndWait();
-                if (result.get() == ButtonType.OK){
-                    // ... user chose OK
-                    db.updateacct(username, regpass1.getText(), first.getText(), middle.getText(), last.getText(), home.getText(), work.getText(), phone.getText(), email.getText());
-                    closewindow(event);
+                    Optional<ButtonType> result = alert1.showAndWait();
+                    if (result.get() == ButtonType.OK) {
+                        // ... user chose OK
+                        db.updateacct(username, regpass1.getText(), first.getText(), middle.getText(), last.getText(), home.getText(), work.getText(), phone.getText(), email.getText());
+                        closewindow(event);
+                    } else {
+                        // ... user chose CANCEL or closed the dialog
+                    }
                 } else {
-                    // ... user chose CANCEL or closed the dialog
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText(null);
+                    alert.setTitle("Update Error");
+                    alert.setContentText("Password not matched!");
+
+                    alert.showAndWait();
                 }
-            }else{
+            } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
                 alert.setTitle("Update Error");
-                alert.setContentText("Password not matched!");
+                alert.setContentText("Incorrect Password!");
 
                 alert.showAndWait();
             }
-        }else{
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("Update Error");
-            alert.setContentText("Incorrect Password!");
-
-            alert.showAndWait();
         }
     }
 
