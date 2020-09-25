@@ -12,6 +12,7 @@ public class Database {
 
     private static ArrayList<Profile> db = new ArrayList<>();
     private static ArrayList<Visit> dbv = new ArrayList<>();
+    private static ArrayList<Government> dgov = new ArrayList<>();
     private static ArrayList<Case> dcase = new ArrayList<>();
     private static int casenum=0;
 
@@ -174,6 +175,8 @@ public class Database {
             }
         }
     }
+
+
 
     public void opentextfile() {
         try {
@@ -537,6 +540,11 @@ public class Database {
 
     public void newcase(Case temp) {
         dcase.add(temp);
+        //updatevisitfile(); //put update casefile function here
+    }
+
+    public void newgov(Government temp) {
+        dgov.add(temp);
         //updatevisitfile(); //put update casefile function here
     }
 
