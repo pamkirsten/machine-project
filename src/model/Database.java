@@ -607,7 +607,6 @@ public class Database {
         return cNum;
     }
 
-
     public void caseprint() {
         for (int i = 0; i < dcase.size(); i++) {
             System.out.println("Username: " + dcase.get(i).getUsername());
@@ -757,24 +756,41 @@ public class Database {
 
     }
 
-    public void showCases(String tracerUN) {
-
-        /**shows a list of case numbers assigned to this
-         *  contact tracer that have not undergone contact tracing yet
-         **/
-        // test
-        tracerUN = "000";
-
-        System.out.println("Case Numbers assigned to: "+ tracerUN+" who haven't done contact tracing yet");
-
-        for(int i = 0; i<dcase.size(); i++ ){
-            if((dcase.get(i).getTracerUsername().equalsIgnoreCase(tracerUN)) && dcase.get(i).getStatus().equalsIgnoreCase("NotTraced")){
-                System.out.println("/nCase #" + dcase.get(i).getCasenum());
+    public void setTraced(String casenum){
+        for (int i = 0; i < dcase.size(); i++){
+            if (casenum.equals(Integer.toString(dcase.get(i).getCasenum()))){
+                dcase.get(i).setStatus("Traced");
             }
-
         }
-
     }
 
+    public ArrayList<Case> getCasesAssignedToTracer(String tracerUN) {
+        ArrayList<Case> cases = new ArrayList<>();
 
+        for (int i = 0; i < dcase.size(); i++){
+            if (dcase.get(i).getTracerUsername().equals(tracerUN)){
+                if (dcase.get(i).getStatus().equals("NotTraced")){
+                    cases.add(dcase.get(i));
+                }
+            }
+        }
+
+        return cases;
+    }
+
+    public ArrayList<Visit> traceUsers (String caseNum, int xNum) {
+
+        // Subtract xNum to Days
+
+        // Get Reported Case Date
+        
+
+
+        ArrayList<Visit> possiblyexposed = new ArrayList<>();
+
+
+
+
+        return possiblyexposed;
+    }
 }

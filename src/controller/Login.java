@@ -104,15 +104,12 @@ public class Login {
         }
     }
 
-
-
-
     public void tracer(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/logintracer.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/tracerview.fxml"));
             javafx.stage.Stage stage = new Stage();
-            stage.setTitle("Government Menu");
+            stage.setTitle("Contact Tracer Menu");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
             stage.show();

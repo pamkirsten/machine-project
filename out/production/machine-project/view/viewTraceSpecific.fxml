@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.tracerController">
+   <children>
+      <TableView fx:id="tsTable" layoutX="32.0" layoutY="215.0" prefHeight="355.0" prefWidth="540.0">
+        <columns>
+          <TableColumn fx:id="tsDate" prefWidth="166.0" text="Date Traced" />
+          <TableColumn fx:id="tsUsername" prefWidth="373.0" text="Username" />
+        </columns>
+      </TableView>
+      <TextField fx:id="tsNum" layoutX="32.0" layoutY="65.0" />
+      <TextField fx:id="tsX" layoutX="32.0" layoutY="128.0" />
+      <Label layoutX="32.0" layoutY="105.0" text="Days before Report Date" />
+      <Label layoutX="32.0" layoutY="42.0" text="Case #" />
+      <Button layoutX="34.0" layoutY="169.0" mnemonicParsing="false" onAction="#traceSpecific" prefHeight="25.0" prefWidth="57.0" text="Trace" />
+   </children>
+</Pane>
