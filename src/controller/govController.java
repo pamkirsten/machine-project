@@ -257,17 +257,35 @@ public class govController {
             if (caseNum == unassigned.get(i).getCasenum()) {
                 if (db.checkRole(txtTracerUN.getText()) == 2) {
                     unassigned.get(i).setTracerUsername(txtTracerUN.getText());
-                    System.out.println("SUCCESSFULLY ASSIGNED!");
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setHeaderText(null);
+                    alert.setTitle("Confirmation");
+                    alert.setContentText("TRACER HAS BEEN SUCCESSFULLY ASSIGNED!");
+                    alert.showAndWait();
+
+                    //System.out.println("SUCCESSFULLY ASSIGNED!");
                     check = 1;
                     db.savecases();
                 } else {
-                    System.out.println("USER IS NOT A TRACER!");
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setHeaderText(null);
+                    alert.setTitle("Confirmation");
+                    alert.setContentText("USER IS NOT A TRACER!");
+                    alert.showAndWait();
+
+                    //System.out.println("USER IS NOT A TRACER!");
                     check = 2;
                 }
             }
         }
         if (check == 0) {
-            System.out.println("USER ALREADY HAS A TRACER ASSIGNED!");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Confirmation");
+            alert.setContentText("USER ALREADY HAS A TRACER ASSIGNED!");
+            alert.showAndWait();
+
+            //System.out.println("USER ALREADY HAS A TRACER ASSIGNED!");
         }
     }
 
@@ -308,7 +326,7 @@ public class govController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
         alert.setTitle("Number of Positive Cases");
-        alert.setContentText("Number of postivie cases in the duration: " + str1);
+        alert.setContentText("Number of positive cases in the duration: " + str1);
         alert.showAndWait();
 
 
@@ -322,11 +340,7 @@ public class govController {
         //updatefiles
 
         if (check == 1) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(null);
-            alert.setTitle("Confirmation");
-            alert.setContentText("Account has been Sucessfully Terminated");
-            alert.showAndWait();
+
         } else {
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

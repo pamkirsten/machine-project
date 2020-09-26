@@ -43,7 +43,7 @@ public class tracerController {
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
             stage.show();
-            showCases();
+            //showCases();
 
             closewindow(event);
         } catch (IOException e) {
@@ -51,8 +51,9 @@ public class tracerController {
         }
     }
 
+
     public void showCases() {
-        //listCases.getItems().clear();
+        listCases.getItems().clear();
         ArrayList<Case> cases;
         cases = dbg.getCases(username);
 
@@ -61,6 +62,7 @@ public class tracerController {
             System.out.println("CASE NUM: " + cases.get(i).getCasenum());
         }
     }
+
 
 
     public void traceSpecific() {
