@@ -103,7 +103,7 @@ public class tracerController {
         }
 
         // Sets the status of case to Traced
-        //dbg.setTraced(tsNum.getText());
+        // dbg.setTraced(tsNum.getText());
 
         // Print Possibly Exposed here
         for (int j = 0; j < possiblyexposed.size(); j++){

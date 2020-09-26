@@ -192,7 +192,7 @@ public class govController {
         tuNum.getItems().clear();
         tuUser.getItems().clear();
         tuStatus.getItems().clear();
-        ArrayList<Case> cases = new ArrayList<>();
+        ArrayList<Case> cases;
 
         cases = db.positivefromdaterange(tuStart, tuEnd);
 
