@@ -16,6 +16,7 @@ import model.Tracer;
 
 import java.io.IOException;
 import java.util.Optional;
+import java.util.Random;
 
 
 public class tracerRegister {
@@ -54,14 +55,38 @@ public class tracerRegister {
 
         } else {
             labelcheckUser.setText("Username not unique!");
-
         }
-
     }
 
     public String randompass() {
-        return "passwordtest";
+        String alphaUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String alphaLower = "abcdefghijklmnopqrstuvwxyz";
+        String spChar =     "%*^~!@#$%^&*(){}[];<>/?=-+";
 
+        String password = "", temp = "";
+
+        Random rand = new Random();
+        int n, m;
+
+        for (int i = 0; i < 5; i++){
+            m = rand.nextInt(2);
+            n = rand.nextInt(26);
+            switch (m){
+                case 0:
+                    temp = String.valueOf(alphaUpper.charAt(n));
+                    break;
+                case 1:
+                    temp = String.valueOf(alphaLower.charAt(n));
+                    break;
+            }
+            password = password.concat(temp);
+        }
+
+        n = rand.nextInt(26);
+        temp = String.valueOf(spChar.charAt(n));
+        password = password.concat(temp);
+
+        return password;
     }
 
     public void createtracerAcc(ActionEvent event) {
