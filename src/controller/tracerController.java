@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -22,6 +23,8 @@ public class tracerController {
 
     @FXML private TextField tsNum;
     @FXML private TextField tsX;
+
+    @FXML private ListView listCases;
 
     private Database db = new Database();
     private Government dbg = new Government();
@@ -49,10 +52,12 @@ public class tracerController {
     }
 
     public void showCases() {
+        //listCases.getItems().clear();
         ArrayList<Case> cases;
         cases = dbg.getCases(username);
 
         for (int i = 0; i < cases.size(); i++){
+            listCases.getItems().add(cases.get(i).getCasenum());
             System.out.println("CASE NUM: " + cases.get(i).getCasenum());
         }
     }

@@ -1,6 +1,5 @@
 package controller;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,11 +7,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import model.Case;
 import javafx.stage.StageStyle;
-import model.Citizen;
+import model.Case;
 import model.Database;
 import model.Government;
 import java.io.IOException;
@@ -20,8 +17,8 @@ import java.util.ArrayList;
 
 public class govController {
 
-    private Database db = new Database();
-    private Government dgov = new Government();
+    private final Database db = new Database();
+    private final Government dgov = new Government();
 
     @FXML private TextField txtfieldUsername;
     @FXML private Label labelcheckUser;
@@ -35,12 +32,11 @@ public class govController {
     @FXML private TextField txtCase;
     @FXML private TextField txtTracerUN;
 
+    @FXML private ListView listUnassigned;
 
-
-    @FXML private TableView<Case> tuTable = new TableView<>();
-    @FXML private TableColumn<Case, String> tuCaseNum = new TableColumn<>("Case Number");
-    @FXML private TableColumn<Case, String> tuTracer = new TableColumn<>("Contact Tracer");
-    @FXML private TableColumn<Case, String> tuStatus = new TableColumn<>("Status");
+    @FXML private ListView tuNum;
+    @FXML private ListView tuUser;
+    @FXML private ListView tuStatus;
 
     // private String username = txtfieldUsername.getText();
     private int check;
@@ -193,28 +189,28 @@ public class govController {
     }
 
     public void tracingUpdates() {
+        tuNum.getItems().clear();
+        tuUser.getItems().clear();
+        tuStatus.getItems().clear();
         ArrayList<Case> cases = new ArrayList<>();
 
         cases = db.positivefromdaterange(tuStart, tuEnd);
 
-
         for (int i = 0; i < cases.size(); i++) {
+
+            tuNum.getItems().add(cases.get(i).getCasenum());
+            tuUser.getItems().add(cases.get(i).getTracerUsername());
+            tuStatus.getItems().add(cases.get(i).getStatus());
+
             System.out.println("Case Num: " + cases.get(i).getCasenum());
             System.out.println("Contact Tracer: " + cases.get(i).getTracerUsername());
             System.out.println("Status: " + cases.get(i).getStatus());
             System.out.println("-------------------POSITIVE-------------------------");
         }
 
-        //tuCaseNum.setCellValueFactory(new PropertyValueFactory<>("casenum"));
-        //tuTracer.setCellValueFactory(new PropertyValueFactory<>("tracerUsername"));
-        //tuStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-
-        //ObservableList<Case> list = cases;
-
-        //put it to the table
     }
 
-    public void openUnassigned(ActionEvent event){
+    public void openUnassigned(ActionEvent event) {
 
         Parent root;
         try {
@@ -231,14 +227,12 @@ public class govController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
 
-    public void showUnassigned(){
+    public void showUnassigned() {
+        listUnassigned.getItems().clear();
 
-       // db.showUnassignedCases();
         ArrayList<Case> unassigned = new ArrayList<>();
 
         unassigned = db.unassignedCases();
@@ -246,11 +240,11 @@ public class govController {
         System.out.println("-------------------UNASSIGNED CASES-------------------------");
         for (int i = 0; i < unassigned.size(); i++) {
             System.out.println("Case Num: " + unassigned.get(i).getCasenum());
-
+            listUnassigned.getItems().add(unassigned.get(i).getCasenum());
         }
     }
 
-    public void assignCase(){
+    public void assignCase() {
 
         ArrayList<Case> unassigned = new ArrayList<>();
 
@@ -260,18 +254,19 @@ public class govController {
         int caseNum = Integer.parseInt(txtCase.getText());
 
         for (int i = 0; i < unassigned.size(); i++) {
-            if(caseNum == unassigned.get(i).getCasenum()) {
-                if(db.checkRole(txtTracerUN.getText()) == 2){
-                unassigned.get(i).setTracerUsername(txtTracerUN.getText());
-                System.out.println("SUCCESSFULLY ASSIGNED!");
-                check=1;}
-                else{
+            if (caseNum == unassigned.get(i).getCasenum()) {
+                if (db.checkRole(txtTracerUN.getText()) == 2) {
+                    unassigned.get(i).setTracerUsername(txtTracerUN.getText());
+                    System.out.println("SUCCESSFULLY ASSIGNED!");
+                    check = 1;
+                    db.savecases();
+                } else {
                     System.out.println("USER IS NOT A TRACER!");
                     check = 2;
                 }
             }
         }
-        if(check == 0 ){
+        if (check == 0) {
             System.out.println("USER ALREADY HAS A TRACER ASSIGNED!");
         }
     }

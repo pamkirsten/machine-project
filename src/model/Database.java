@@ -227,6 +227,9 @@ public class Database {
     }
 
     public void savecases() {
+
+        System.out.println("\n\n\nENTERED HERE\n\n\n");
+
         try {
             FileWriter text = new FileWriter("positivecases.txt");
         } catch (IOException e) {
