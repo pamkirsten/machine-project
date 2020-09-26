@@ -3,3 +3,6 @@ Empty official
 bryan citizen
 tryacc citizen
 trypam citizen
+makatiacc citizen
+makatiacc citizen
+newtracer tracer

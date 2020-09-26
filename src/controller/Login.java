@@ -7,12 +7,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.Database;
+import model.Tracer;
 
 import java.io.IOException;
 
@@ -25,6 +25,8 @@ public class Login {
 
     Database db = new Database();
     User user = new User();
+    tracerController tracer = new tracerController();
+
 
     public void loginuser(ActionEvent event) {
         int check = -999;
@@ -38,6 +40,7 @@ public class Login {
 
                 if(check==0){
                     user.setusername(inputuser.getText());
+
                     citizen(event);
                 }
                 if(check==1){
@@ -47,6 +50,7 @@ public class Login {
                 }
                 if(check==2){
                     user.setusername(inputuser.getText());
+                    tracerController.setusername(inputuser.getText());
                     citizen(event);
                     tracer(event);
                 }
@@ -104,6 +108,17 @@ public class Login {
 
 
     public void tracer(ActionEvent event) {
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/logintracer.fxml"));
+            javafx.stage.Stage stage = new Stage();
+            stage.setTitle("Government Menu");
+            stage.setScene(new Scene(root, 600, 600));
+            stage.setResizable(false);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void goback(ActionEvent event){

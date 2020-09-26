@@ -9,13 +9,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Case;
-import model.Citizen;
 import model.Database;
 import model.Visit;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Optional;
 import java.util.regex.Matcher;

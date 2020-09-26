@@ -4,7 +4,7 @@ public class Case {
     private String user = "Empty";
     private int casenum;
     private String dateReported = "Empty";
-    private String tracerUsername = "Empty";
+    private String tracerUsername = "000";
     private String status = "NotTraced";
 
     public Case() {

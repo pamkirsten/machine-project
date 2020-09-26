@@ -196,7 +196,7 @@ public class Database {
         try {
             Scanner sc = new Scanner(new File("positivecases.txt"));
 
-            while (sc.hasNextLine()){
+            while (sc.hasNextLine()) {
                 tempstring = sc.nextLine();
                 temparray = tempstring.split(" ");
 
@@ -208,8 +208,8 @@ public class Database {
                 cases.setTracerUsername(temparray[3]);
                 cases.setStatus(temparray[4]);
 
-                for (int i = 0; i < db.size(); i++){
-                    if (db.get(i).getUsername().equals(cases.getUsername())){
+                for (int i = 0; i < db.size(); i++) {
+                    if (db.get(i).getUsername().equals(cases.getUsername())) {
                         db.get(i).setPositive();
                         db.get(i).setDateReported(temparray[2]);
                     }
@@ -218,7 +218,7 @@ public class Database {
                 dcase.add(cases);
                 casenum++;
             }
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Error occurred in writing positivecases");
         }
     }
@@ -559,8 +559,8 @@ public class Database {
     }
 
     public boolean getPositive(String user) {
-        for (int i = 0; i < db.size(); i++){
-            if (db.get(i).getUsername().equals(user)){
+        for (int i = 0; i < db.size(); i++) {
+            if (db.get(i).getUsername().equals(user)) {
                 return db.get(i).isPositive();
             }
         }
@@ -625,9 +625,9 @@ public class Database {
     public ArrayList<Case> positivefromdaterange(DatePicker start, DatePicker end) {
         ArrayList<Case> cases = new ArrayList<>();
         infoprint();
-        for (int i = 0; i < db.size(); i++){
-            if (db.get(i).isPositive()){
-                if (checkDuration(start, end, db.get(i).getDateReported())){
+        for (int i = 0; i < db.size(); i++) {
+            if (db.get(i).isPositive()) {
+                if (checkDuration(start, end, db.get(i).getDateReported())) {
                     for (int j = 0; j < dcase.size(); j++) {
                         if (db.get(i).getUsername().equals(dcase.get(j).getUsername())) {
                             System.out.println("\n\nREACHED HERE\n\n");
@@ -754,6 +754,25 @@ public class Database {
         //turns into citizen first
 
         //update file
+
+    }
+
+    public void showCases(String tracerUN) {
+
+        /**shows a list of case numbers assigned to this
+         *  contact tracer that have not undergone contact tracing yet
+         **/
+        // test
+        tracerUN = "000";
+
+        System.out.println("Case Numbers assigned to: "+ tracerUN+" who haven't done contact tracing yet");
+
+        for(int i = 0; i<dcase.size(); i++ ){
+            if((dcase.get(i).getTracerUsername().equalsIgnoreCase(tracerUN)) && dcase.get(i).getStatus().equalsIgnoreCase("NotTraced")){
+                System.out.println("/nCase #" + dcase.get(i).getCasenum());
+            }
+
+        }
 
     }
 

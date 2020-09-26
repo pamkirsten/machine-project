@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" />
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.tracerController">
+   <children>
+      <Button layoutX="174.0" layoutY="164.0" mnemonicParsing="false" onAction="#showCases" prefHeight="45.0" prefWidth="253.0" text="Show Cases" />
+      <Button layoutX="174.0" layoutY="233.0" mnemonicParsing="false" onAction="#traceSpecific" prefHeight="45.0" prefWidth="253.0" text="Trace Specific Case" />
+      <Button layoutX="174.0" layoutY="300.0" mnemonicParsing="false" onAction="#informCitizens" prefHeight="45.0" prefWidth="253.0" text="Inform Citizens Possibly Exposed" />
+      <Button layoutX="174.0" layoutY="361.0" mnemonicParsing="false" onAction="#goback" prefHeight="45.0" prefWidth="253.0" text="Logout" />
+   </children>
+</Pane>
