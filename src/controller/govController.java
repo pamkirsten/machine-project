@@ -247,7 +247,7 @@ public class govController {
 
         check = db.removeAccount(usernameTerminate.getText());
 
-        //updatefile
+        //updatefiles
 
         if (check == 1) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
