@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -780,17 +781,46 @@ public class Database {
 
     public ArrayList<Visit> traceUsers (String caseNum, int xNum) {
 
-        // Subtract xNum to Days
+        Case positiveUser = new Case();
 
-        // Get Reported Case Date
-        
+        // Get Reported Case of Positive Person
+        for (int i = 0; i < dcase.size(); i++){
+            if (dcase.get(i).getCasenum() == Integer.getInteger(caseNum.trim())){
+                positiveUser = dcase.get(i);
+            }
+        }
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM,dd,yyyy");
+        LocalDate reportdate = LocalDate.parse(positiveUser.getDateReported(), formatter);
 
-        ArrayList<Visit> possiblyexposed = new ArrayList<>();
+        ArrayList<Visit> positiveRecords = new ArrayList<>();
 
+        // Store CheckIns of Positive Person that is within xNum Days
+        for (int j = 0; j < dbv.size(); j++){
+            LocalDate tempdate = LocalDate.parse(dbv.get(j).getDate(), formatter);
 
+            if (reportdate.compareTo(tempdate) >= 0){
+                positiveRecords.add(dbv.get(j));
+            }
+        }
 
+        ArrayList<Visit> records = new ArrayList<>();
 
-        return possiblyexposed;
+        // Compare All Visit Records to the Visit Records of the Positive
+        for (int k = 0; k < dbv.size(); k++){
+            if (!dbv.get(k).getUser().equals(positiveUser.getUsername())){ // Check if Record is not Equal to the Positive User's Record
+                LocalDate citizenDate = LocalDate.parse(dbv.get(k).getDate() ,formatter);
+                for (int l = 0; l < positiveRecords.size(); l++){
+                    LocalDate positiveDate = LocalDate.parse(positiveRecords.get(l).getDate(), formatter);
+                    if (positiveDate.compareTo(citizenDate) == 0){ // Check if Two Record Dates Match
+                        if (Integer.parseInt(dbv.get(k).getTime()) >= Integer.parseInt(positiveRecords.get(l).getTime())){ // Check if Two Times Overlap
+                            records.add(dbv.get(k));
+                        }
+                    }
+                }
+            }
+        }
+
+        return records;
     }
 }
