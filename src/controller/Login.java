@@ -12,7 +12,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.Database;
-import model.Tracer;
 
 import java.io.IOException;
 
@@ -28,34 +27,59 @@ public class Login {
     tracerController tracer = new tracerController();
 
 
+    public void showAlert(int check) {
+        if (check == 1) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText(null);
+            alert.setTitle("Positive Case Detected");
+            alert.setContentText("\n"+ "WARNING: You may have been possibly exposed of COVID-19! Please take a COVID-19 test as soon as possible." );
+
+            alert.showAndWait();
+        }
+        if (check == 2) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText(null);
+            alert.setTitle("WARNING");
+            alert.setContentText("You have not took a COVID 19 test for the past 14 days. Please take one immediately. ");
+
+            alert.showAndWait();
+        }
+
+    }
+
     public void loginuser(ActionEvent event) {
         int check = -999;
+        int notify = 0;
 
-        if(db.checkusername(inputuser.getText())){
-            if(db.confirmpass(inputuser.getText(),inputpass.getText())){
+
+        if (db.checkusername(inputuser.getText())) {
+            if (db.confirmpass(inputuser.getText(), inputpass.getText())) {
 
                 closewindow(event);
 
                 check = db.checkRole(inputuser.getText());
+                notify = db.checkNotify(inputuser.getText());
 
-                if(check==0){
+                if (check == 0) {
                     user.setusername(inputuser.getText());
+                    showAlert(notify);
+                    citizenMenu(event);
 
-                    citizen(event);
                 }
-                if(check==1){
+                if (check == 1) {
                     user.setusername(inputuser.getText());
-                  citizen(event);
-                    gov(event);
+                    showAlert(notify);
+                    citizenMenu(event);
+                    governmentMenu(event);
                 }
-                if(check==2){
+                if (check == 2) {
                     user.setusername(inputuser.getText());
                     tracerController.setusername(inputuser.getText());
-                    citizen(event);
-                    tracer(event);
+                    showAlert(notify);
+                    citizenMenu(event);
+                    tracerMenu(event);
                 }
-            }
-            else{
+            } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
                 alert.setTitle("Login Error");
@@ -63,8 +87,7 @@ public class Login {
 
                 alert.showAndWait();
             }
-        }
-        else{
+        } else {
             Alert alert1 = new Alert(Alert.AlertType.ERROR);
             alert1.setHeaderText(null);
             alert1.setTitle("Login Error");
@@ -74,12 +97,27 @@ public class Login {
         }
     }
 
-    public void citizen(ActionEvent event){
+    public void citizenMenu(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/userview.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/userMenu.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("User Menu");
+            stage.setScene(new Scene(root, 600, 600));
+            stage.setResizable(false);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void governmentMenu(ActionEvent event) {
+
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/govMenu.fxml"));
+            javafx.stage.Stage stage = new Stage();
+            stage.setTitle("Government Menu");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
             stage.initStyle(StageStyle.UNDECORATED);
@@ -89,22 +127,7 @@ public class Login {
         }
     }
 
-    public void gov(ActionEvent event) {
-
-        Parent root;
-        try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/govview.fxml"));
-            javafx.stage.Stage stage = new Stage();
-            stage.setTitle("Government Menu");
-            stage.setScene(new Scene(root, 600, 600));
-            stage.setResizable(false);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void tracer(ActionEvent event) {
+    public void tracerMenu(ActionEvent event) {
         Parent root;
         try {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("view/tracerview.fxml"));
@@ -112,20 +135,22 @@ public class Login {
             stage.setTitle("Contact Tracer Menu");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void goback(ActionEvent event){
+    public void goback(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/sample.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/mainmenu.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("COVID Tracker");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
             closewindow(event);
@@ -135,6 +160,6 @@ public class Login {
     }
 
     public void closewindow(ActionEvent event) {
-        ((Node)(event.getSource())).getScene().getWindow().hide();
+        ((Node) (event.getSource())).getScene().getWindow().hide();
     }
 }

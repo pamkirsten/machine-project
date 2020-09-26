@@ -2,18 +2,43 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.govController">
    <children>
-      <TextField fx:id="fieldCity" layoutX="274.0" layoutY="186.0" prefHeight="27.0" prefWidth="187.0" />
-      <Label layoutX="167.0" layoutY="186.0" prefHeight="27.0" prefWidth="95.0" text="Enter City" />
-      <Label layoutX="161.0" layoutY="244.0" prefHeight="27.0" prefWidth="95.0" text="Start of Duration" />
+      <TextField fx:id="fieldCity" layoutX="275.0" layoutY="186.0" prefHeight="27.0" prefWidth="188.0">
+         <font>
+            <Font name="Arial Italic" size="13.0" />
+         </font></TextField>
+      <Label layoutX="161.0" layoutY="186.0" prefHeight="27.0" prefWidth="80.0" text="Enter City:">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font></Label>
+      <Label layoutX="147.0" layoutY="245.0" prefHeight="27.0" prefWidth="109.0" text="Start of Duration:">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font></Label>
       <DatePicker fx:id="dateStart" layoutX="276.0" layoutY="244.0" />
-      <Label layoutX="161.0" layoutY="300.0" prefHeight="27.0" prefWidth="95.0" text="End of Duration" />
-      <DatePicker fx:id="dateEnd" layoutX="276.0" layoutY="300.0" />
-      <Button layoutX="209.0" layoutY="350.0" mnemonicParsing="false" onAction="#durandCity" text="Analyze based on Duration &amp; Given City" />
-      <Button layoutX="239.0" layoutY="389.0" mnemonicParsing="false" onAction="#cityCases" text="Analyze based on Given City" />
-      <Button layoutX="244.0" layoutY="426.0" mnemonicParsing="false" onAction="#durationCases" text="Analyze based on Duration" />
-      <Button layoutX="268.0" layoutY="514.0" mnemonicParsing="false" onAction="#goback" text="Back to Main Menu" />
+      <Label layoutX="149.0" layoutY="300.0" prefHeight="27.0" prefWidth="109.0" text="End of Duration:">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font></Label>
+      <DatePicker fx:id="dateEnd" layoutX="275.0" layoutY="300.0" />
+      <Button layoutX="197.0" layoutY="358.0" mnemonicParsing="false" onAction="#durandCity" prefHeight="26.0" prefWidth="273.0" text="Analyze based on Duration &amp; Given City" textFill="#ad00a3">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font></Button>
+      <Button layoutX="197.0" layoutY="392.0" mnemonicParsing="false" onAction="#cityCases" prefHeight="26.0" prefWidth="273.0" text="Analyze based on Given City" textFill="#0003bf">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font></Button>
+      <Button layoutX="197.0" layoutY="427.0" mnemonicParsing="false" onAction="#durationCases" prefHeight="26.0" prefWidth="273.0" text="Analyze based on Duration" textFill="#03465b">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font></Button>
+      <Button layoutX="197.0" layoutY="461.0" mnemonicParsing="false" onAction="#mainmenu" prefHeight="26.0" prefWidth="273.0" text="Back to Main Menu" textFill="#eb0000">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font></Button>
    </children>
 </Pane>

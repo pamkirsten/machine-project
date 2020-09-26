@@ -7,7 +7,9 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -779,13 +781,35 @@ public class Database {
         return cases;
     }
 
+    public int checkNotify(String username) {
+        int notify = 0;
+        for (int i = 0; i < db.size(); i++) {
+            if (db.get(i).getUsername().equalsIgnoreCase(username)) {
+
+                if (db.get(i).getDateReported() != "Empty") {
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM,dd,yyyy");
+                    String ndate = db.get(i).getDateReported();
+
+                    LocalDate localDate = LocalDate.parse(ndate, formatter);
+
+                    if (ChronoUnit.DAYS.between(localDate, LocalDateTime.now()) >= 14) {
+                        db.get(i).setNotifyUser(2);
+                    }
+                }
+
+                notify = db.get(i).getNotifyUser();
+            }
+        }
+        return notify;
+    }
+
     public ArrayList<Visit> traceUsers (String caseNum, int xNum) {
 
         Case positiveUser = new Case();
 
         // Get Reported Case of Positive Person
         for (int i = 0; i < dcase.size(); i++){
-            if (dcase.get(i).getCasenum() == Integer.getInteger(caseNum.trim())){
+            if (Integer.toString(dcase.get(i).getCasenum()).equals(caseNum)){
                 positiveUser = dcase.get(i);
             }
         }
@@ -799,8 +823,10 @@ public class Database {
         for (int j = 0; j < dbv.size(); j++){
             LocalDate tempdate = LocalDate.parse(dbv.get(j).getDate(), formatter);
 
-            if (reportdate.compareTo(tempdate) >= 0){
-                positiveRecords.add(dbv.get(j));
+            if (dbv.get(j).getUser().equals(positiveUser.getUsername())){
+                if (reportdate.compareTo(tempdate) <= 0){
+                    positiveRecords.add(dbv.get(j));
+                }
             }
         }
 
@@ -808,13 +834,16 @@ public class Database {
 
         // Compare All Visit Records to the Visit Records of the Positive
         for (int k = 0; k < dbv.size(); k++){
-            if (!dbv.get(k).getUser().equals(positiveUser.getUsername())){ // Check if Record is not Equal to the Positive User's Record
+            if (!dbv.get(k).getUser().equals(positiveUser.getUsername())){ // Check if Record Username is not Equal to the Positive User's Record Username
                 LocalDate citizenDate = LocalDate.parse(dbv.get(k).getDate() ,formatter);
                 for (int l = 0; l < positiveRecords.size(); l++){
                     LocalDate positiveDate = LocalDate.parse(positiveRecords.get(l).getDate(), formatter);
                     if (positiveDate.compareTo(citizenDate) == 0){ // Check if Two Record Dates Match
                         if (Integer.parseInt(dbv.get(k).getTime()) >= Integer.parseInt(positiveRecords.get(l).getTime())){ // Check if Two Times Overlap
-                            records.add(dbv.get(k));
+                            if (positiveRecords.get(l).getCode().equals(dbv.get(k).getCode())){ // Check if Two Establishment Codes Match
+                                records.add(dbv.get(k));
+                                System.out.println("Added to Records!");
+                            }
                         }
                     }
                 }

@@ -4,13 +4,22 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"  fx:controller="controller.govController" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.govController">
    <children>
-      <TextField fx:id="usernameTerminate" layoutX="268.0" layoutY="183.0" prefHeight="36.0" prefWidth="228.0" />
-      <Label layoutX="96.0" layoutY="193.0" text="Enter username of account" />
-      <Label layoutX="205.0" layoutY="124.0" text="Termination of Account" />
-      <Button fx:id="btnConfirmTermination" layoutX="203.0" layoutY="247.0" mnemonicParsing="false" onAction="#confirmTermination" text="Confirm Termination" />
+      <TextField fx:id="usernameTerminate" layoutX="286.0" layoutY="229.0" prefHeight="39.0" prefWidth="221.0" />
+      <Label layoutX="92.0" layoutY="242.0" text="Enter username of account:">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font></Label>
+      <Label layoutX="182.0" layoutY="174.0" text="Termination of Account">
+         <font>
+            <Font name="Arial Bold" size="21.0" />
+         </font></Label>
+      <Button fx:id="btnConfirmTermination" layoutX="204.0" layoutY="298.0" mnemonicParsing="false" onAction="#confirmTermination" text="Confirm Termination">
+         <font>
+            <Font name="Arial Bold" size="17.0" />
+         </font></Button>
    </children>
 </Pane>

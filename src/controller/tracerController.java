@@ -60,13 +60,13 @@ public class tracerController {
         int xNum = Integer.parseInt(tsX.getText().trim());
 
         // Check if X is at least 0, if false, using 8 as default.
-        if (tsX.getText().equals("") || xNum < 0){
+        if (tsX.getText().isEmpty() || xNum < 0){
             xNum = 8;
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
-            alert.setTitle("X Days Error");
-            alert.setContentText("Input must be at least 0. Using 8 as default.");
+            alert.setTitle("Input Error");
+            alert.setContentText("Error. Using 8 as default!");
             alert.showAndWait();
         }
 

@@ -72,14 +72,15 @@ public class govController {
         }
     }
 
-    public void goback(ActionEvent event) {
+    public void mainmenu(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/sample.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/mainmenu.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("COVID Tracker");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
             closewindow(event);
@@ -96,6 +97,7 @@ public class govController {
             stage.setTitle("User Menu");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -110,6 +112,7 @@ public class govController {
             stage.setTitle("User Menu");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -124,6 +127,7 @@ public class govController {
             stage.setTitle("User Menu");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -160,6 +164,7 @@ public class govController {
             stage.setTitle("Contact Tracing Updates");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
             closewindow(event);
@@ -177,6 +182,7 @@ public class govController {
             stage.setTitle("Analytics");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
             closewindow(event);
@@ -217,6 +223,7 @@ public class govController {
             stage.setTitle("Show Unassigned Cases");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
             closewindow(event);
@@ -254,13 +261,18 @@ public class govController {
 
         for (int i = 0; i < unassigned.size(); i++) {
             if(caseNum == unassigned.get(i).getCasenum()) {
+                if(db.checkRole(txtTracerUN.getText()) == 2){
                 unassigned.get(i).setTracerUsername(txtTracerUN.getText());
                 System.out.println("SUCCESSFULLY ASSIGNED!");
-                check=1;
+                check=1;}
+                else{
+                    System.out.println("USER IS NOT A TRACER!");
+                    check = 2;
+                }
+
             }
 
         }
-
         if(check == 0 ){
             System.out.println("USER ALREADY HAS A TRACER ASSIGNED!");
         }

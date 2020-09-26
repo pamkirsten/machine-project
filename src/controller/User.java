@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.Case;
 import model.Database;
 import model.Visit;
@@ -155,7 +156,7 @@ public class User {
     public void updatewindow(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/userupdateview.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/userUpdateInfo.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("Update User Information");
             stage.setScene(new Scene(root, 600, 600));
@@ -203,11 +204,12 @@ public class User {
     public void goback(ActionEvent event){
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/sample.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/mainmenu.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("COVID Tracker");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
             closewindow(event);
@@ -224,6 +226,7 @@ public class User {
             stage.setTitle("COVID Tracker");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
             closewindow(event);
