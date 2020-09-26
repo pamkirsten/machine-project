@@ -38,6 +38,8 @@ public class govRegister {
     @FXML
     private TextField phone;
     @FXML
+    private TextField txtCity;
+    @FXML
     private TextField email;
 
     private Database db = new Database();
@@ -135,6 +137,7 @@ public class govRegister {
             newuser.setMiddlename(middle.getText());
             newuser.setLastname(last.getText());
             newuser.setHomeadress(home.getText());
+            newuser.sethCity(txtCity.getText());
             newuser.setWorkadress(work.getText());
             newuser.setPhonenum(phone.getText());
             newuser.setEmail(email.getText());

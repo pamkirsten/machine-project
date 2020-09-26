@@ -31,6 +31,8 @@ public class tracerRegister {
     @FXML
     private TextField last;
     @FXML
+    private TextField txtCity;
+    @FXML
     private TextField home;
     @FXML
     private TextField work;
@@ -113,6 +115,7 @@ public class tracerRegister {
             newuser.setMiddlename(middle.getText());
             newuser.setLastname(last.getText());
             newuser.setHomeadress(home.getText());
+            newuser.sethCity(txtCity.getText());
             newuser.setWorkadress(work.getText());
             newuser.setPhonenum(phone.getText());
             newuser.setEmail(email.getText());

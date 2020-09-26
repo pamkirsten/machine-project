@@ -35,6 +35,8 @@ public class Register {
     @FXML
     private TextField first;
     @FXML
+    private TextField txtCity;
+    @FXML
     private TextField middle;
     @FXML
     private TextField last;
@@ -184,6 +186,7 @@ public class Register {
             newuser.setMiddlename(middle.getText());
             newuser.setLastname(last.getText());
             newuser.setHomeadress(home.getText());
+            newuser.sethCity(txtCity.getText());
             newuser.setWorkadress(work.getText());
             newuser.setPhonenum(phone.getText());
             newuser.setEmail(email.getText());

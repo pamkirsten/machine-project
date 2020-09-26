@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -665,7 +664,7 @@ public class Database {
         String enddate = EndDate.getValue().format(DateTimeFormatter.ofPattern("MM,dd,YYYY"));
 
         for (int i = 0; i < db.size(); i++) {
-            if (db.get(i).getHomeadress().equalsIgnoreCase(City)) {
+            if (db.get(i).gethCity().equalsIgnoreCase(City)) {
                 for (int j = 0; j < dcase.size(); j++) {
                     if (db.get(i).getUsername().equalsIgnoreCase(dcase.get(j).getUsername())) {
                         if ((dcase.get(j).getDateReported().compareTo(startdate) >= 0) && (dcase.get(j).getDateReported().compareTo(enddate) <= 0)) {
@@ -697,9 +696,9 @@ public class Database {
 
         for (int i = 0; i < db.size(); i++) {
 
-            System.out.println(db.get(i).getHomeadress());
+            System.out.println(db.get(i).gethCity());
 
-            if (db.get(i).getHomeadress().equalsIgnoreCase(City)) {
+            if (db.get(i).gethCity().equalsIgnoreCase(City)) {
                 for (int j = 0; j < dcase.size(); j++) {
 
                     if (db.get(i).getUsername().equalsIgnoreCase(dcase.get(j).getUsername())) {
@@ -752,7 +751,7 @@ public class Database {
 
         return check;
 
-        //turn into citizen first
+        //turns into citizen first
 
         //update file
 

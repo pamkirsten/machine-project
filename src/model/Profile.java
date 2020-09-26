@@ -14,7 +14,20 @@ public class Profile {
     private String username = "Empty";
     private String password = "Empty";
     private String dateReported = "Empty";
+    private String hCity = "Empty";
+
     private boolean isPositive = false;
+
+    public String gethCity() {
+        return hCity;
+    }
+
+    public void sethCity(String hCity) {
+        this.hCity = hCity;
+    }
+
+
+
 
     public boolean isPositive() {
         return isPositive;
