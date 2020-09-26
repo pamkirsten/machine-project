@@ -25,10 +25,10 @@ public class tracerController {
     @FXML private TextField tsX;
 
     @FXML private ListView listCases;
-    //@FXML private ListView tsUser;
-    //@FXML private ListView tsCode;
-    //@FXML private ListView tsDate;
-    //@FXML private ListView tsTime;
+    @FXML private ListView tsUser;
+    @FXML private ListView tsCode;
+    @FXML private ListView tsDate;
+    @FXML private ListView tsTime;
 
     private Database db = new Database();
     private Government dbg = new Government();
@@ -67,10 +67,11 @@ public class tracerController {
     }
 
     public void traceSpecific() {
-        //tsUser.getItems().clear();
-        //tsCode.getItems().clear();
-        //tsDate.getItems().clear();
-        //tsTime.getItems().clear();
+
+        tsUser.getItems().clear();
+        tsCode.getItems().clear();
+        tsDate.getItems().clear();
+        tsTime.getItems().clear();
 
         int xNum = Integer.parseInt(tsX.getText().trim());
 
@@ -107,10 +108,11 @@ public class tracerController {
 
         // Print Possibly Exposed here
         for (int j = 0; j < possiblyexposed.size(); j++){
-            //tsUser.getItems().add(possiblyexposed.get(j).getUser());
-            //tsCode.getItems().add(possiblyexposed.get(j).getCode());
-            //tsDate.getItems().add(possiblyexposed.get(j).getDate());
-            //tsTime.getItems().add(possiblyexposed.get(j).getTime());
+            String code = possiblyexposed.get(j).getCode();
+            tsUser.getItems().add(possiblyexposed.get(j).getUser());
+            tsCode.getItems().add(code);
+            tsDate.getItems().add(possiblyexposed.get(j).getDate());
+            tsTime.getItems().add(possiblyexposed.get(j).getTime());
 
             System.out.println("USERNAME: " + possiblyexposed.get(j).getUser());
             System.out.println("CODE: " + possiblyexposed.get(j).getCode());
