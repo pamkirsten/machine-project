@@ -21,6 +21,9 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javafx.scene.control.Button;
+
+
 public class User {
 
     @FXML private PasswordField regpass1;
@@ -33,6 +36,8 @@ public class User {
     @FXML private TextField work;
     @FXML private TextField phone;
     @FXML private TextField email;
+    @FXML private Button reportPositive;
+
 
     @FXML private DatePicker date;
     @FXML private DatePicker dateReported;
@@ -232,23 +237,25 @@ public class User {
     }
 
     public void reportPositive(ActionEvent event){
-        if (db.getPositive(username)) {
-            String temp = dateReported.getValue().toString();
-            String[] fdate = temp.split("-");
-            temp = fdate[1] + "," + fdate[2] + "," + fdate[0];
+        String temp = dateReported.getValue().toString();
+        String[] fdate = temp.split("-");
+        temp = fdate[1] + "," + fdate[2] + "," + fdate[0];
 
-            dcase.setUsername(username);
-            dcase.setDateReported(temp);
-            dcase.setTracerUsername("000");
-            db.newcase(dcase);
-            db.setPositive(username, temp);
+        dcase.setUsername(username);
+        dcase.setDateReported(temp);
+        db.newcase(dcase);
+        db.setPositive(username);
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(null);
-            alert.setTitle("Positive Confirmation");
-            alert.setContentText("\nYour Assigned Case Number is: " + db.getCaseNum(username) + "\n Date Reported: " + db.getDateReported(username));
-            alert.showAndWait();
-        }
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("Positive Confirmation");
+        alert.setContentText("\nYour Assigned Case Number is: " + db.getCaseNum(username) +"\n Date Reported: "+ db.getDateReported(username));
+        alert.showAndWait();
+
+        db.savecases();
+
+        reportPositive.setDisable(true);
+
     }
 
     public void testing(){

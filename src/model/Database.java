@@ -19,8 +19,11 @@ public class Database {
     private static ArrayList<Government> dgov = new ArrayList<>();
     private static ArrayList<Case> dcase = new ArrayList<>();
     private static ArrayList<Citizen> dcitizen = new ArrayList<>();
+    private static ArrayList<Tracer> dtracer = new ArrayList<>();
 
-    private static int casenum = 0;
+    private Citizen newuser = new Citizen();
+
+    private static int casenum = dcase.size();
 
     public void increment() {
         casenum += 1;
@@ -517,7 +520,7 @@ public class Database {
                 } else if (db.get(i) instanceof Tracer) {
                     role = 2;
                     return role;
-                } else if (db.get(i) instanceof Citizen) {
+                } else if (db.get(i) instanceof Citizen || db.get(i) instanceof Profile) {
                     role = 0;
                     return role;
                 }
@@ -578,6 +581,7 @@ public class Database {
         for (int i = 0; i < dcase.size(); i++) {
             if (dcase.get(i).getUsername().equals(user)) {
                 dcase.get(i).setCasenum(casenum);
+
             }
         }
     }
@@ -604,6 +608,7 @@ public class Database {
         }
         return cNum;
     }
+
 
     public void caseprint() {
         for (int i = 0; i < dcase.size(); i++) {
@@ -708,5 +713,51 @@ public class Database {
         }
         return numCases;
     }
+
+    public int removeAccount(String name) {
+        int check = 0;
+
+        for (int i = 0; i < db.size(); i++) {
+            if (checkRole(name) == 1) {
+
+                newuser.setFirstname(db.get(i).getFirstname());
+                newuser.setUsername(db.get(i).getUsername());
+                newuser.setPassword(db.get(i).getPassword());
+                newuser.setMiddlename(db.get(i).getMiddlename());
+                newuser.setLastname(db.get(i).getLastname());
+                newuser.setHomeadress(db.get(i).getHomeadress());
+                newuser.setWorkadress(db.get(i).getWorkadress());
+                newuser.setPhonenum(db.get(i).getPhonenum());
+                newuser.setEmail(db.get(i).getEmail());
+                newacct(newuser);
+                db.remove(i);
+                check = 1;
+            }
+        }
+        for (int i = 0; i < db.size(); i++) {
+            if (checkRole(name) == 2) {
+                newuser.setFirstname(db.get(i).getFirstname());
+                newuser.setUsername(db.get(i).getUsername());
+                newuser.setPassword(db.get(i).getPassword());
+                newuser.setMiddlename(db.get(i).getMiddlename());
+                newuser.setLastname(db.get(i).getLastname());
+                newuser.setHomeadress(db.get(i).getHomeadress());
+                newuser.setWorkadress(db.get(i).getWorkadress());
+                newuser.setPhonenum(db.get(i).getPhonenum());
+                newuser.setEmail(db.get(i).getEmail());
+                newacct(newuser);
+                db.remove(i);
+                check = 1;
+            }
+        }
+
+        return check;
+
+        //turn into citizen first
+
+        //update file
+
+    }
+
 
 }

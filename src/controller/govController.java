@@ -11,6 +11,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Case;
+import javafx.stage.StageStyle;
+import model.Citizen;
 import model.Database;
 import model.Government;
 import java.io.IOException;
@@ -134,8 +136,22 @@ public class govController {
         }
     }
 
-    public void openTerminate() {
+    public void openTerminate(ActionEvent event) {
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/terminate.fxml"));
+            javafx.stage.Stage stage = new Stage();
+            stage.setTitle("Register User");
+            stage.setScene(new Scene(root, 600, 600));
+            stage.setResizable(false);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.show();
 
+            closewindow(event);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void closewindow(ActionEvent event) {
@@ -238,6 +254,33 @@ public class govController {
         alert.setContentText("Number of postivie cases in the duration: " + str1);
         alert.showAndWait();
 
+
+    }
+
+    public void confirmTermination(ActionEvent event) {
+
+        int check;
+
+        check = db.removeAccount(usernameTerminate.getText());
+
+        //updatefiles
+
+        if (check == 1) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Confirmation");
+            alert.setContentText("Account has been Sucessfully Terminated");
+            alert.showAndWait();
+        } else {
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Confirmation");
+            alert.setContentText("Account has not been Sucessfully Terminated");
+            alert.showAndWait();
+        }
+
+        closewindow(event);
 
     }
 

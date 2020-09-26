@@ -22,12 +22,6 @@ public class tracerRegister {
     @FXML
     private TextField txtfieldUsername;
     @FXML
-    private Button btnCheckUser;
-    @FXML
-    private Button btnCreate;
-    @FXML
-    private Label labelPass;
-    @FXML
     private Label labelcheckUser;
 
     @FXML
@@ -68,8 +62,19 @@ public class tracerRegister {
     }
 
     public void createtracerAcc(ActionEvent event) {
+
+        String newPass = randompass();
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("Password Confirmation");
+        alert.setContentText("User : "+txtfieldUsername.getText()+"'s new password is: " + newPass);
+        alert.showAndWait();
+
+
+
         newuser.setUsername(txtfieldUsername.getText());
-        newuser.setPassword(randompass());
+        newuser.setPassword(newPass);
         if(db.checkRole(txtfieldUsername.getText())!= 0){
         registerTracer(event);}
         else{
