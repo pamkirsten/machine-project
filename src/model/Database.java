@@ -842,7 +842,6 @@ public class Database {
                         if (Integer.parseInt(dbv.get(k).getTime()) >= Integer.parseInt(positiveRecords.get(l).getTime())){ // Check if Two Times Overlap
                             if (positiveRecords.get(l).getCode().equals(dbv.get(k).getCode())){ // Check if Two Establishment Codes Match
                                 records.add(dbv.get(k));
-                                System.out.println("Added to Records!");
                             }
                         }
                     }
