@@ -781,6 +781,18 @@ public class Database {
         return cases;
     }
 
+    public ArrayList<Case> unassignedCases() {
+        ArrayList<Case> cases = new ArrayList<>();
+
+        for (int i = 0; i < dcase.size(); i++){
+            if (dcase.get(i).getTracerUsername().equals("000")){
+                    cases.add(dcase.get(i));
+            }
+        }
+
+        return cases;
+    }
+
     public int checkNotify(String username) {
         int notify = 0;
         for (int i = 0; i < db.size(); i++) {

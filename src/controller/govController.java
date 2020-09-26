@@ -235,7 +235,7 @@ public class govController {
 
     }
 
-    /*
+
     public void showUnassigned(){
 
        // db.showUnassignedCases();
@@ -278,7 +278,8 @@ public class govController {
         }
 
 
-    }*/
+    }
+
 
 
     public void durandCity() {
