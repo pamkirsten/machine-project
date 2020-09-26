@@ -86,7 +86,7 @@ public class tracerController {
         ArrayList<Visit> possiblyexposed = new ArrayList<>();
 
         if (casenumChk == 1){ // Trace Users
-            db.traceUsers(tsNum.getText() , xNum);
+            possiblyexposed = dbg.getRecords(tsNum.getText(), xNum);
         }
 
         // Sets the status of case to Traced

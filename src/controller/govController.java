@@ -235,6 +235,7 @@ public class govController {
 
     }
 
+    /*
     public void showUnassigned(){
 
        // db.showUnassignedCases();
@@ -247,9 +248,6 @@ public class govController {
             System.out.println("Case Num: " + unassigned.get(i).getCasenum());
 
         }
-
-
-
     }
 
     public void assignCase(){
@@ -280,11 +278,7 @@ public class govController {
         }
 
 
-    }
-
-
-
-
+    }*/
 
 
     public void durandCity() {
