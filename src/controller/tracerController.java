@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 import javafx.stage.StageStyle;
 import model.Case;
-import model.Database;
 import model.Government;
 import model.Visit;
 
@@ -24,14 +23,14 @@ public class tracerController {
     @FXML private TextField tsNum;
     @FXML private TextField tsX;
 
-    @FXML private ListView listCases;
-    @FXML private ListView tsUser;
-    @FXML private ListView tsCode;
-    @FXML private ListView tsDate;
-    @FXML private ListView tsTime;
+    @FXML private ListView<Integer> listCases;
+    @FXML private ListView<String> tsUser;
+    @FXML private ListView<String> tsCode;
+    @FXML private ListView<String> tsDate;
+    @FXML private ListView<String> tsTime;
 
-    private Database db = new Database();
-    private Government dbg = new Government();
+    private final Government dbg = new Government();
+    private static ArrayList<Visit> exposed = new ArrayList<>();
     private static String username;
 
     public static void setusername(String user){
@@ -119,6 +118,8 @@ public class tracerController {
             System.out.println("DATE " + possiblyexposed.get(j).getDate());
             System.out.println("TIME " + possiblyexposed.get(j).getTime());
         }
+
+        exposed = possiblyexposed;
     }
 
     public void viewTraceSpecific(ActionEvent event) {
@@ -138,7 +139,10 @@ public class tracerController {
     }
 
     public void informCitizens() {
-
+        for (int i = 0; i < exposed.size(); i++){
+            dbg.notifyUsers(exposed.get(i).getUser(), exposed.get(i).getDate(), exposed.get(i).getTime());
+        }
+        exposed.clear();
     }
 
     public void goback(ActionEvent event) {

@@ -15,7 +15,18 @@ public class Profile {
     private String password = "Empty";
     private String dateReported = "Empty";
     private String hCity = "Empty";
+
     private int notifyUser = 0;
+    private String warningCode = "Empty";
+    private String warningDate = "Empty";
+
+    public String getWarningCode() { return warningCode; }
+
+    public void setWarningCode(String warningCode) { this.warningCode = warningCode; }
+
+    public String getWarningDate() { return warningDate; }
+
+    public void setWarningDate(String warningDate) { this.warningDate = warningDate; }
 
     public int getNotifyUser() {
         return notifyUser;
@@ -34,9 +45,6 @@ public class Profile {
     public void sethCity(String hCity) {
         this.hCity = hCity;
     }
-
-
-
 
     public boolean isPositive() {
         return isPositive;

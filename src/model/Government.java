@@ -25,6 +25,10 @@ public class Government extends Citizen {
         db.setTraced(casenum);
     }
 
+    public void notifyUsers(String exposedUsername, String date, String time){
+        db.setNotify(exposedUsername, date, time);
+    }
+
     public ArrayList<Visit> getRecords(String casenum, int xNum){
         return db.traceUsers(casenum, xNum);
     }

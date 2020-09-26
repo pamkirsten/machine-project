@@ -824,7 +824,7 @@ public class Database {
         return notify;
     }
 
-    public ArrayList<Visit> traceUsers (String caseNum, int xNum) {
+    public ArrayList<Visit> traceUsers(String caseNum, int xNum) {
 
         Case positiveUser = new Case();
 
@@ -871,5 +871,15 @@ public class Database {
         }
 
         return records;
+    }
+
+    public void setNotify(String exposedName, String date, String time){
+        for (int i = 0; i < db.size(); i++) {
+            if (exposedName.equals(db.get(i).getUsername())) {
+                db.get(i).setNotifyUser(1);
+                db.get(i).setWarningCode(date);
+                db.get(i).setWarningDate(time);
+            }
+        }
     }
 }
