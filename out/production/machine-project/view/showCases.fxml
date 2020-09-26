@@ -24,5 +24,10 @@
             <Font name="Arial Bold" size="13.0" />
          </font>
       </Button>
+      <Button layoutX="223.0" layoutY="547.0" mnemonicParsing="false" onAction="#goback" prefHeight="26.0" prefWidth="163.0" text="Back to Tracer Menu">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

@@ -768,9 +768,9 @@ public class Database {
 
     }
 
-    public void setTraced(String casenum){
-        for (int i = 0; i < dcase.size(); i++){
-            if (casenum.equals(Integer.toString(dcase.get(i).getCasenum()))){
+    public void setTraced(String casenum) {
+        for (int i = 0; i < dcase.size(); i++) {
+            if (casenum.equals(Integer.toString(dcase.get(i).getCasenum()))) {
                 dcase.get(i).setStatus("Traced");
             }
         }
@@ -779,9 +779,9 @@ public class Database {
     public ArrayList<Case> getCasesAssignedToTracer(String tracerUN) {
         ArrayList<Case> cases = new ArrayList<>();
 
-        for (int i = 0; i < dcase.size(); i++){
-            if (dcase.get(i).getTracerUsername().equals(tracerUN)){
-                if (dcase.get(i).getStatus().equals("NotTraced")){
+        for (int i = 0; i < dcase.size(); i++) {
+            if (dcase.get(i).getTracerUsername().equals(tracerUN)) {
+                if (dcase.get(i).getStatus().equals("NotTraced")) {
                     cases.add(dcase.get(i));
                 }
             }
@@ -793,9 +793,9 @@ public class Database {
     public ArrayList<Case> unassignedCases() {
         ArrayList<Case> cases = new ArrayList<>();
 
-        for (int i = 0; i < dcase.size(); i++){
-            if (dcase.get(i).getTracerUsername().equals("000")){
-                    cases.add(dcase.get(i));
+        for (int i = 0; i < dcase.size(); i++) {
+            if (dcase.get(i).getTracerUsername().equals("000")) {
+                cases.add(dcase.get(i));
             }
         }
 
@@ -829,8 +829,8 @@ public class Database {
         Case positiveUser = new Case();
 
         // Get Reported Case of Positive Person
-        for (int i = 0; i < dcase.size(); i++){
-            if (Integer.toString(dcase.get(i).getCasenum()).equals(caseNum)){
+        for (int i = 0; i < dcase.size(); i++) {
+            if (Integer.toString(dcase.get(i).getCasenum()).equals(caseNum)) {
                 positiveUser = dcase.get(i);
             }
         }
@@ -841,11 +841,11 @@ public class Database {
         ArrayList<Visit> positiveRecords = new ArrayList<>();
 
         // Store CheckIns of Positive Person that is within xNum Days
-        for (int j = 0; j < dbv.size(); j++){
+        for (int j = 0; j < dbv.size(); j++) {
             LocalDate tempdate = LocalDate.parse(dbv.get(j).getDate(), formatter);
 
-            if (dbv.get(j).getUser().equals(positiveUser.getUsername())){
-                if (reportdate.compareTo(tempdate) <= 0){
+            if (dbv.get(j).getUser().equals(positiveUser.getUsername())) {
+                if (reportdate.compareTo(tempdate) <= 0) {
                     positiveRecords.add(dbv.get(j));
                 }
             }
@@ -854,14 +854,14 @@ public class Database {
         ArrayList<Visit> records = new ArrayList<>();
 
         // Compare All Visit Records to the Visit Records of the Positive
-        for (int k = 0; k < dbv.size(); k++){
-            if (!dbv.get(k).getUser().equals(positiveUser.getUsername())){ // Check if Record Username is not Equal to the Positive User's Record Username
-                LocalDate citizenDate = LocalDate.parse(dbv.get(k).getDate() ,formatter);
-                for (int l = 0; l < positiveRecords.size(); l++){
+        for (int k = 0; k < dbv.size(); k++) {
+            if (!dbv.get(k).getUser().equals(positiveUser.getUsername())) { // Check if Record Username is not Equal to the Positive User's Record Username
+                LocalDate citizenDate = LocalDate.parse(dbv.get(k).getDate(), formatter);
+                for (int l = 0; l < positiveRecords.size(); l++) {
                     LocalDate positiveDate = LocalDate.parse(positiveRecords.get(l).getDate(), formatter);
-                    if (positiveDate.compareTo(citizenDate) == 0){ // Check if Two Record Dates Match
-                        if (Integer.parseInt(dbv.get(k).getTime()) >= Integer.parseInt(positiveRecords.get(l).getTime())){ // Check if Two Times Overlap
-                            if (positiveRecords.get(l).getCode().equals(dbv.get(k).getCode())){ // Check if Two Establishment Codes Match
+                    if (positiveDate.compareTo(citizenDate) == 0) { // Check if Two Record Dates Match
+                        if (Integer.parseInt(dbv.get(k).getTime()) >= Integer.parseInt(positiveRecords.get(l).getTime())) { // Check if Two Times Overlap
+                            if (positiveRecords.get(l).getCode().equals(dbv.get(k).getCode())) { // Check if Two Establishment Codes Match
                                 records.add(dbv.get(k));
                             }
                         }
@@ -873,13 +873,43 @@ public class Database {
         return records;
     }
 
-    public void setNotify(String exposedName, String date, String time){
+    public void setNotify(String exposedName, String code, String date) {
         for (int i = 0; i < db.size(); i++) {
             if (exposedName.equals(db.get(i).getUsername())) {
                 db.get(i).setNotifyUser(1);
-                db.get(i).setWarningCode(date);
-                db.get(i).setWarningDate(time);
+                db.get(i).setWarningCode(code);
+                db.get(i).setWarningDate(date);
             }
         }
     }
+
+
+    public String getwarningDate(String username) {
+        String date = "00/00/0000";
+        for (int i = 0; i < db.size(); i++) {
+            if (db.get(i).getUsername().equalsIgnoreCase(username)) {
+                if (db.get(i).getWarningDate() != "Empty") {
+                    date = db.get(i).getWarningDate();
+                }
+
+            }
+        }
+        return date;
+    }
+
+    public String getwarningEst(String username) {
+        String est = "Empty";
+        for (int i = 0; i < db.size(); i++) {
+            if (db.get(i).getUsername().equalsIgnoreCase(username)) {
+                if (db.get(i).getWarningCode() != "Empty") {
+                    est = db.get(i).getWarningCode();
+                }
+
+            }
+        }
+        return est;
+    }
+
+    //String wEst = db.getwarningEst(inputuser.getText());
+
 }

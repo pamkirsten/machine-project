@@ -32,7 +32,11 @@ public class Login {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setHeaderText(null);
             alert.setTitle("Positive Case Detected");
-            alert.setContentText("\n"+ "WARNING: You may have been possibly exposed of COVID-19! Please take a COVID-19 test as soon as possible." );
+            String wDate = db.getwarningDate(inputuser.getText());
+            String wEst = db.getwarningEst(inputuser.getText());
+            alert.setContentText("\n" + "Positive case detected on " + wDate + " in " + wEst + ". " +
+                    "We are advising you to go through testing as soon as possible " +
+                    "and report through this app should you test positive.");
 
             alert.showAndWait();
         }
@@ -130,7 +134,7 @@ public class Login {
     public void tracerMenu(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/tracerview.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/tracerMenu.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("Contact Tracer Menu");
             stage.setScene(new Scene(root, 600, 600));
