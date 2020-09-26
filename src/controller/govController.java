@@ -269,18 +269,12 @@ public class govController {
                     System.out.println("USER IS NOT A TRACER!");
                     check = 2;
                 }
-
             }
-
         }
         if(check == 0 ){
             System.out.println("USER ALREADY HAS A TRACER ASSIGNED!");
         }
-
-
     }
-
-
 
     public void durandCity() {
         int numofCases = 0;
@@ -326,7 +320,6 @@ public class govController {
     }
 
     public void confirmTermination(ActionEvent event) {
-
         int check;
 
         check = db.removeAccount(usernameTerminate.getText());

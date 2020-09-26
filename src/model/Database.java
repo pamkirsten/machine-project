@@ -297,6 +297,10 @@ public class Database {
 
                     tmpstring = readuser.nextLine();
                     account = tmpstring.split(":");
+                    temp.sethCity(account[1]);
+
+                    tmpstring = readuser.nextLine();
+                    account = tmpstring.split(":");
                     temp.setWorkadress(account[1]);
 
                     tmpstring = readuser.nextLine();
@@ -418,6 +422,8 @@ public class Database {
                     text1.write(db.get(i).getFirstname() + "," + db.get(i).getMiddlename() + "," + db.get(i).getLastname());
                     text1.write("\n");
                     text1.write("HOME:" + db.get(i).getHomeadress());
+                    text1.write("\n");
+                    text1.write("CITY:" + db.get(i).gethCity());
                     text1.write("\n");
                     text1.write("OFFICE:" + db.get(i).getWorkadress());
                     text1.write("\n");
