@@ -140,12 +140,19 @@ public class tracerController {
 
     public void informCitizens() {
         for (int i = 0; i < exposed.size(); i++){
-            dbg.notifyUsers(exposed.get(i).getUser(), exposed.get(i).getDate(), exposed.get(i).getTime());
+            dbg.notifyUsers(exposed.get(i).getUser(), exposed.get(i).getCode(), exposed.get(i).getDate());
         }
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("INFORM CITIZENS");
+        alert.setContentText("Citizens have been informed.");
+        alert.showAndWait();
+
         exposed.clear();
     }
 
-    public void goback(ActionEvent event) {
+    public void mainmenu(ActionEvent event) {
         Parent root;
         try {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("view/mainmenu.fxml"));
@@ -161,6 +168,24 @@ public class tracerController {
             e.printStackTrace();
         }
     }
+
+    public void goback(ActionEvent event) {
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/tracerMenu.fxml"));
+            javafx.stage.Stage stage = new Stage();
+            stage.setTitle("COVID Tracker");
+            stage.setScene(new Scene(root, 600, 600));
+            stage.setResizable(false);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.show();
+
+            closewindow(event);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public void closewindow(ActionEvent event) {
         ((Node) (event.getSource())).getScene().getWindow().hide();
