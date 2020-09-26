@@ -36,6 +36,7 @@ public class govController {
     @FXML private TextField work;
     @FXML private TextField phone;
     @FXML private TextField email;
+    @FXML private TextField usernameTerminate;
     @FXML private TextField fieldCity;
     @FXML private DatePicker dateStart;
     @FXML private DatePicker dateEnd;

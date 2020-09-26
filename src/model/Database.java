@@ -568,13 +568,12 @@ public class Database {
         return false;
     }
 
-    public void setPositive(String user, String date) {
+    public void setPositive(String user) {
         increment();
 
         for (int i = 0; i < db.size(); i++) {
             if (db.get(i).getUsername().equals(user)) {
                 db.get(i).setPositive();
-                db.get(i).setDateReported(date);
             }
         }
 
