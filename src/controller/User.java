@@ -21,6 +21,9 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javafx.scene.control.Button;
+
+
 public class User {
 
     @FXML private PasswordField regpass1;
@@ -33,6 +36,8 @@ public class User {
     @FXML private TextField work;
     @FXML private TextField phone;
     @FXML private TextField email;
+    @FXML private Button reportPositive;
+
 
     @FXML private DatePicker date;
     @FXML private DatePicker dateReported;
@@ -249,6 +254,9 @@ public class User {
         alert.showAndWait();
 
         db.savecases();
+
+        reportPositive.setDisable(true);
+
     }
 
 

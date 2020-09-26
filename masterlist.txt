@@ -9,3 +9,5 @@ Empty official
 govtry official
 newtry official
 newtracer tracer
+bryan1 citizen
+newbry citizen

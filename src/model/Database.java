@@ -23,7 +23,7 @@ public class Database {
 
     private Citizen newuser = new Citizen();
 
-    private static int casenum = 0;
+    private static int casenum = dcase.size();
 
     public void increment() {
         casenum += 1;
