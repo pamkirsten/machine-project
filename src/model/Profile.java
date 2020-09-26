@@ -15,6 +15,15 @@ public class Profile {
     private String password = "Empty";
     private String dateReported = "Empty";
     private String hCity = "Empty";
+    private int notifyUser = 0;
+
+    public int getNotifyUser() {
+        return notifyUser;
+    }
+
+    public void setNotifyUser(int notifyUser) {
+        this.notifyUser = notifyUser;
+    }
 
     private boolean isPositive = false;
 

@@ -45,7 +45,7 @@ public class Controller {
     public void loginuser(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/loginview.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/loginMenu.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("Login User");
             stage.setScene(new Scene(root, 600, 600));

@@ -6,9 +6,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Database {
@@ -569,10 +575,12 @@ public class Database {
 
     public void setPositive(String user) {
         increment();
-
         for (int i = 0; i < db.size(); i++) {
             if (db.get(i).getUsername().equals(user)) {
                 db.get(i).setPositive();
+                if (db.get(i).getNotifyUser() != 0) {
+                    db.get(i).setNotifyUser(0);
+                }
             }
         }
 
@@ -731,6 +739,7 @@ public class Database {
                 check = 1;
             }
         }
+
         for (int i = 0; i < db.size(); i++) {
             if (checkRole(name) == 2) {
                 newuser.setFirstname(db.get(i).getFirstname());
@@ -756,9 +765,9 @@ public class Database {
 
     }
 
-    public void setTraced(String casenum){
-        for (int i = 0; i < dcase.size(); i++){
-            if (casenum.equals(Integer.toString(dcase.get(i).getCasenum()))){
+    public void setTraced(String casenum) {
+        for (int i = 0; i < dcase.size(); i++) {
+            if (casenum.equals(Integer.toString(dcase.get(i).getCasenum()))) {
                 dcase.get(i).setStatus("Traced");
             }
         }
@@ -767,9 +776,9 @@ public class Database {
     public ArrayList<Case> getCasesAssignedToTracer(String tracerUN) {
         ArrayList<Case> cases = new ArrayList<>();
 
-        for (int i = 0; i < dcase.size(); i++){
-            if (dcase.get(i).getTracerUsername().equals(tracerUN)){
-                if (dcase.get(i).getStatus().equals("NotTraced")){
+        for (int i = 0; i < dcase.size(); i++) {
+            if (dcase.get(i).getTracerUsername().equals(tracerUN)) {
+                if (dcase.get(i).getStatus().equals("NotTraced")) {
                     cases.add(dcase.get(i));
                 }
             }
@@ -778,19 +787,54 @@ public class Database {
         return cases;
     }
 
-    public ArrayList<Visit> traceUsers (String caseNum, int xNum) {
+    public ArrayList<Visit> traceUsers(String caseNum, int xNum) {
 
         // Subtract xNum to Days
 
         // Get Reported Case Date
-        
 
 
         ArrayList<Visit> possiblyexposed = new ArrayList<>();
 
 
-
-
         return possiblyexposed;
     }
+
+    public int checkNotify(String username) {
+        int notify = 0;
+        for (int i = 0; i < db.size(); i++) {
+            if (db.get(i).getUsername().equalsIgnoreCase(username)) {
+
+                if (db.get(i).getDateReported() != "Empty") {
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM,dd,yyyy");
+                    String ndate = db.get(i).getDateReported();
+
+                    LocalDate localDate = LocalDate.parse(ndate, formatter);
+
+                    if (ChronoUnit.DAYS.between(localDate, LocalDateTime.now()) >= 14) {
+                        db.get(i).setNotifyUser(2);
+                    }
+                }
+
+                notify = db.get(i).getNotifyUser();
+            }
+        }
+        return notify;
+    }
+
+    public ArrayList<Case> unassignedCases() {
+
+        ArrayList<Case> cases = new ArrayList<>();
+
+        for (int i = 0; i < dcase.size(); i++) {
+            if (dcase.get(i).getTracerUsername().equals("000")) {
+                cases.add(dcase.get(i));
+            }
+        }
+        return cases;
+    }
+
+
+
+
 }

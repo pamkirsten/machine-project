@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javafx.stage.StageStyle;
 import model.Case;
 import model.Database;
 import model.Government;
@@ -55,6 +56,7 @@ public class tracerController {
             System.out.println("CASE NUM: " + cases.get(i).getCasenum());
         }
     }
+
 
     public void traceSpecific() {
         int xNum = Integer.parseInt(tsX.getText().trim());
@@ -122,11 +124,12 @@ public class tracerController {
     public void goback(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/sample.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/mainmenu.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("COVID Tracker");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
             closewindow(event);

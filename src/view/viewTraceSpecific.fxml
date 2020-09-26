@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.tracerController">
    <children>
@@ -13,8 +18,22 @@
       </TableView>
       <TextField fx:id="tsNum" layoutX="32.0" layoutY="65.0" />
       <TextField fx:id="tsX" layoutX="32.0" layoutY="128.0" />
-      <Label layoutX="32.0" layoutY="105.0" text="Days before Report Date" />
-      <Label layoutX="32.0" layoutY="42.0" text="Case #" />
-      <Button layoutX="34.0" layoutY="169.0" mnemonicParsing="false" onAction="#traceSpecific" prefHeight="25.0" prefWidth="57.0" text="Trace" />
+      <Label layoutX="32.0" layoutY="105.0" text="Days before Report Date">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font></Label>
+      <Label layoutX="32.0" layoutY="42.0" text="Case #">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font></Label>
+      <Button layoutX="34.0" layoutY="169.0" mnemonicParsing="false" onAction="#traceSpecific" prefHeight="26.0" prefWidth="160.0" text="Trace">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font></Button>
+      <Button layoutX="207.0" layoutY="169.0" mnemonicParsing="false" onAction="#goback" prefHeight="26.0" prefWidth="160.0" text="Back to Main Menu">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font>
+      </Button>
    </children>
 </Pane>
