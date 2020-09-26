@@ -24,25 +24,18 @@ public class govController {
     private Government dgov = new Government();
 
     @FXML private TextField txtfieldUsername;
-    @FXML private Button btnCheckUser;
-    @FXML private Button btnCreate;
-    @FXML private Label labelPass;
     @FXML private Label labelcheckUser;
 
-    @FXML private TextField first;
-    @FXML private TextField middle;
-    @FXML private TextField last;
-    @FXML private TextField home;
-    @FXML private TextField work;
-    @FXML private TextField phone;
-    @FXML private TextField email;
     @FXML private TextField usernameTerminate;
     @FXML private TextField fieldCity;
     @FXML private DatePicker dateStart;
     @FXML private DatePicker dateEnd;
     @FXML private DatePicker tuStart;
     @FXML private DatePicker tuEnd;
-    @FXML private Label labelNumofCases;
+    @FXML private TextField txtCase;
+    @FXML private TextField txtTracerUN;
+
+
 
     @FXML private TableView<Case> tuTable = new TableView<>();
     @FXML private TableColumn<Case, String> tuCaseNum = new TableColumn<>("Case Number");
@@ -214,6 +207,73 @@ public class govController {
 
         //put it to the table
     }
+
+    public void openUnassigned(ActionEvent event){
+
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/unassignedMenu.fxml"));
+            javafx.stage.Stage stage = new Stage();
+            stage.setTitle("Show Unassigned Cases");
+            stage.setScene(new Scene(root, 600, 600));
+            stage.setResizable(false);
+            stage.show();
+
+            closewindow(event);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public void showUnassigned(){
+
+       // db.showUnassignedCases();
+        ArrayList<Case> unassigned = new ArrayList<>();
+
+        unassigned = db.unassignedCases();
+
+        System.out.println("-------------------UNASSIGNED CASES-------------------------");
+        for (int i = 0; i < unassigned.size(); i++) {
+            System.out.println("Case Num: " + unassigned.get(i).getCasenum());
+
+        }
+
+
+
+    }
+
+    public void assignCase(){
+
+        ArrayList<Case> unassigned = new ArrayList<>();
+
+        unassigned = db.unassignedCases();
+        check = 0;
+
+        int caseNum = Integer.parseInt(txtCase.getText());
+
+        for (int i = 0; i < unassigned.size(); i++) {
+            if(caseNum == unassigned.get(i).getCasenum()) {
+                unassigned.get(i).setTracerUsername(txtTracerUN.getText());
+                System.out.println("SUCCESSFULLY ASSIGNED!");
+                check=1;
+            }
+
+        }
+
+        if(check == 0 ){
+            System.out.println("USER ALREADY HAS A TRACER ASSIGNED!");
+        }
+
+
+    }
+
+
+
+
+
 
     public void durandCity() {
         int numofCases = 0;

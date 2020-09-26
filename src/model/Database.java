@@ -765,15 +765,25 @@ public class Database {
         // test
         tracerUN = "000";
 
-        System.out.println("Case Numbers assigned to: "+ tracerUN+" who haven't done contact tracing yet");
+        System.out.println("Case Numbers assigned to: " + tracerUN + " who haven't done contact tracing yet");
 
-        for(int i = 0; i<dcase.size(); i++ ){
-            if((dcase.get(i).getTracerUsername().equalsIgnoreCase(tracerUN)) && dcase.get(i).getStatus().equalsIgnoreCase("NotTraced")){
+        for (int i = 0; i < dcase.size(); i++) {
+            if ((dcase.get(i).getTracerUsername().equalsIgnoreCase(tracerUN)) && dcase.get(i).getStatus().equalsIgnoreCase("NotTraced")) {
                 System.out.println("/nCase #" + dcase.get(i).getCasenum());
             }
 
         }
 
+    }
+
+    public ArrayList<Case> unassignedCases() {
+        ArrayList<Case> cases = new ArrayList<>();
+        for (int j = 0; j < dcase.size(); j++) {
+            if (dcase.get(j).getTracerUsername().equalsIgnoreCase("000")) {
+                cases.add(dcase.get(j));
+            }
+        }
+        return cases;
     }
 
 

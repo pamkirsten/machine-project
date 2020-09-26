@@ -5,7 +5,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.govController">
    <children>
-      <Button fx:id="btnUnassigned" layoutX="173.0" layoutY="143.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="255.0" text="Show Unassigned Cases" />
+      <Button fx:id="btnUnassigned" layoutX="173.0" layoutY="143.0" mnemonicParsing="false" onAction="#openUnassigned" prefHeight="37.0" prefWidth="255.0" text="Show Unassigned Cases" />
       <Button fx:id="btnUpdates" layoutX="173.0" layoutY="190.0" mnemonicParsing="false" onAction="#openTracingUpdates" prefHeight="37.0" prefWidth="255.0" text="Show Contact Tracing Updates" />
       <Button fx:id="btnAnalytics" layoutX="173.0" layoutY="236.0" mnemonicParsing="false" onAction="#openAnalytics" prefHeight="37.0" prefWidth="255.0" text="Analytics" />
       <Button fx:id="btncreateGov" layoutX="173.0" layoutY="283.0" mnemonicParsing="false" onAction="#opencreateGov" prefHeight="37.0" prefWidth="255.0" text="Create Government Accounts" />
