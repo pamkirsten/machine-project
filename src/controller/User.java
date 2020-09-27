@@ -135,7 +135,7 @@ public class User {
     public void updatewindow(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/userUpdateInfo.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/citizenUpdateInput.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("Update User Information");
             stage.setScene(new Scene(root, 600, 600));
@@ -149,7 +149,7 @@ public class User {
     public void checkincode(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/checkIn.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/citizenCheckIn.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("Check-In");
             stage.setScene(new Scene(root, 600, 600));
@@ -199,7 +199,7 @@ public class User {
     public void backUser(ActionEvent event){
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/userMenu.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/citizenMenu.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("COVID Tracker");
             stage.setScene(new Scene(root, 600, 600));
@@ -216,7 +216,7 @@ public class User {
     public void openReport(ActionEvent event){
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/reportPositive.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/citizenReport.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("COVID Tracker");
             stage.setScene(new Scene(root, 600, 600));

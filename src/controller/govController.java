@@ -12,13 +12,16 @@ import javafx.stage.StageStyle;
 import model.Case;
 import model.Database;
 import model.Government;
+import model.Tracer;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class govController {
+public class GovController {
 
+    GovRegister temp = new GovRegister();
+    TracerRegister temp1 = new TracerRegister();
     private final Database db = new Database();
-    private final Government dgov = new Government();
 
     private static String username;
 
@@ -76,13 +79,14 @@ public class govController {
     public void opencreateGov(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/createGov.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/govCreateGov.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("User Menu");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
+            temp.setUsernameRegister(username);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -91,13 +95,14 @@ public class govController {
     public void opencreateTracer() {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/createTracer.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/govCreateTracer.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("User Menu");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
+            temp1.setUsernameRegister(username);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -106,7 +111,7 @@ public class govController {
     public void openTerminate(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/terminate.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/govTerminate.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("Register User");
             stage.setScene(new Scene(root, 600, 600));
@@ -128,7 +133,7 @@ public class govController {
     public void openTracingUpdates(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/tracingupdates.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/govUpdates.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("Contact Tracing Updates");
             stage.setScene(new Scene(root, 600, 600));
@@ -146,7 +151,7 @@ public class govController {
     public void openAnalytics(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/analytics.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/govAnalytics.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("Analytics");
             stage.setScene(new Scene(root, 600, 600));
@@ -187,7 +192,7 @@ public class govController {
 
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/unassignedMenu.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/govUnassigned.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("Show Unassigned Cases");
             stage.setScene(new Scene(root, 600, 600));

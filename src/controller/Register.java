@@ -162,7 +162,7 @@ public class Register {
     public void shownextwindow() {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/userRegister.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/mainRegisterInput.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("Register User Information");
             stage.setScene(new Scene(root, 600, 600));
