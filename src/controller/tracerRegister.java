@@ -137,7 +137,7 @@ public class tracerRegister {
         } else if (tracerInstance == 1){ // Account Username exists but not a Tracer
             newuser.setUsername(txtfieldUsername.getText());
             db.newtracer(newuser);
-            goback(event);
+            backtoGov(event);
         } else if (tracerInstance == 2){ // Account Username unique
             String newPass = randompass();
 
@@ -173,7 +173,7 @@ public class tracerRegister {
             newuser.setEmail(email.getText());
 
             db.newacct(newuser);
-            goback(event);
+            backtoGov(event);
         } else {
             // ... user chose CANCEL or close the dialog
         }
@@ -188,16 +188,16 @@ public class tracerRegister {
         Optional<ButtonType> result = alert1.showAndWait();
         if (result.get() == ButtonType.OK) {
             // ... user chose OK
-            goback(event);
+            backtoGov(event);
         } else {
             // ... user chose CANCEL or closed the dialog
         }
     }
 
-    public void goback(ActionEvent event) {
+    public void backtoGov(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/mainMenu.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/govMenu.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("COVID Tracker");
             stage.setScene(new Scene(root, 600, 600));

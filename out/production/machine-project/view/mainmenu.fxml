@@ -10,22 +10,22 @@
    <children>
       <Pane layoutY="-1.0">
          <children>
-            <ImageView fitHeight="600.0" fitWidth="617.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="606.0" fitWidth="609.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/mainmenubg.png" />
+                  <Image url="@../images/mainMenu.png" />
                </image>
             </ImageView>
-            <Button fx:id="loginbtn" layoutX="47.0" layoutY="463.0" mnemonicParsing="false" onAction="#loginuser" prefHeight="31.0" prefWidth="266.0" style="-fx-background-color: #004AAD#004AAD;" text="Login" textFill="WHITE">
+            <Button fx:id="loginbtn" layoutX="47.0" layoutY="449.0" mnemonicParsing="false" onAction="#loginuser" prefHeight="31.0" prefWidth="266.0" style="-fx-background-color: #004AAD;" text="Login" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="21.0" />
                </font>
             </Button>
-            <Button fx:id="registerbtn" alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="CENTER" layoutX="47.0" layoutY="414.0" mnemonicParsing="false" onAction="#registeruser" prefHeight="31.0" prefWidth="266.0" style="-fx-background-color: #F6C344#F6C344;" text="Register" textFill="WHITE">
+            <Button fx:id="registerbtn" alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="CENTER" layoutX="47.0" layoutY="400.0" mnemonicParsing="false" onAction="#registeruser" prefHeight="31.0" prefWidth="266.0" style="-fx-background-color: #F6C344#F6C344;" text="Register" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="21.0" />
                </font>
             </Button>
-            <Button fx:id="exitbtn" layoutX="47.0" layoutY="513.0" mnemonicParsing="false" onAction="#exitprogram" prefHeight="31.0" prefWidth="266.0" style="-fx-background-color: #EE4423#EE4423;" text="Exit" textFill="WHITE">
+            <Button fx:id="exitbtn" layoutX="47.0" layoutY="499.0" mnemonicParsing="false" onAction="#exitprogram" prefHeight="31.0" prefWidth="266.0" style="-fx-background-color: #EE4423#EE4423;" text="Exit" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="21.0" />
                </font>

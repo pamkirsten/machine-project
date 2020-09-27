@@ -3,23 +3,31 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.govController">
    <children>
-      <TextField fx:id="usernameTerminate" layoutX="286.0" layoutY="229.0" prefHeight="39.0" prefWidth="221.0" />
+      <ImageView fitHeight="600.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/terminate.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="usernameTerminate" layoutX="276.0" layoutY="237.0" prefHeight="16.0" prefWidth="221.0" />
       <Label layoutX="92.0" layoutY="242.0" text="Enter username of account:">
          <font>
-            <Font name="Arial Bold" size="14.0" />
+            <Font name="Arial" size="14.0" />
          </font></Label>
-      <Label layoutX="182.0" layoutY="174.0" text="Termination of Account">
+      <Button fx:id="btnConfirmTermination" layoutX="163.0" layoutY="300.0" mnemonicParsing="false" onAction="#confirmTermination" prefHeight="27.0" prefWidth="274.0" style="-fx-background-color: #179952#179952;" text="Confirm Termination" textFill="WHITE">
          <font>
-            <Font name="Arial Bold" size="21.0" />
-         </font></Label>
-      <Button fx:id="btnConfirmTermination" layoutX="204.0" layoutY="298.0" mnemonicParsing="false" onAction="#confirmTermination" text="Confirm Termination">
-         <font>
-            <Font name="Arial Bold" size="17.0" />
+            <Font name="Arial Bold" size="15.0" />
          </font></Button>
+      <Button fx:id="btnConfirmTermination1" layoutX="163.0" layoutY="341.0" mnemonicParsing="false" onAction="#backtoGov" prefHeight="27.0" prefWidth="274.0" style="-fx-background-color: #D63415#D63415;" text="Exit" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

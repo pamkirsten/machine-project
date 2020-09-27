@@ -4,56 +4,63 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Register">
    <children>
-      <Label layoutX="83.0" layoutY="169.0" text="Enter Username:">
+      <ImageView fitHeight="600.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/signup.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="85.0" layoutY="220.0" text="Enter Username:">
          <font>
-            <Font name="Arial Bold" size="13.0" />
+            <Font name="Arial" size="13.0" />
          </font></Label>
-      <Label layoutX="84.0" layoutY="230.0" text="Enter Password:">
+      <Label layoutX="85.0" layoutY="281.0" text="Enter Password:">
          <font>
-            <Font name="Arial Bold" size="13.0" />
+            <Font name="Arial" size="13.0" />
          </font></Label>
-      <Label layoutX="69.0" layoutY="280.0" text="Confirm Password:">
+      <Label layoutX="85.0" layoutY="331.0" text="Confirm Password:">
          <font>
-            <Font name="Arial Bold" size="13.0" />
+            <Font name="Arial" size="13.0" />
          </font></Label>
-      <TextField fx:id="reguser" layoutX="201.0" layoutY="164.0">
+      <TextField fx:id="reguser" layoutX="207.0" layoutY="215.0">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font></TextField>
-      <Button fx:id="btncheckuser" layoutX="374.0" layoutY="164.0" mnemonicParsing="false" onAction="#checkusername" prefHeight="26.0" prefWidth="146.0" text="Check Username">
+      <Button fx:id="btncheckuser" layoutX="381.0" layoutY="215.0" mnemonicParsing="false" onAction="#checkusername" prefHeight="26.0" prefWidth="146.0" style="-fx-background-color: #4FBCBF#4FBCBF;" text="Check Username" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font></Button>
-      <Label fx:id="labelcheckuser" layoutX="187.0" layoutY="197.0" prefHeight="17.0" prefWidth="254.0" text="Username has not been Checked">
+      <Label fx:id="labelcheckuser" layoutX="192.0" layoutY="247.0" prefHeight="17.0" prefWidth="194.0" text="Username has not been Checked">
          <font>
-            <Font name="Arial Italic" size="13.0" />
+            <Font name="Arial Italic" size="12.0" />
          </font></Label>
-      <Button fx:id="btncheckpass" layoutX="374.0" layoutY="233.0" mnemonicParsing="false" onAction="#checkpassword" prefHeight="39.0" prefWidth="144.0" text="Check Password">
+      <Button fx:id="btncheckpass" layoutX="381.0" layoutY="279.0" mnemonicParsing="false" onAction="#checkpassword" prefHeight="73.0" prefWidth="144.0" style="-fx-background-color: #4FBCBF#4FBCBF;" text="Check Password" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font></Button>
-      <Label fx:id="labelcheckpass" layoutX="191.0" layoutY="312.0" prefHeight="17.0" prefWidth="254.0" text="Password has not been Checked">
+      <Label fx:id="labelcheckpass" layoutX="192.0" layoutY="363.0" prefHeight="17.0" prefWidth="182.0" text="Password has not been Checked">
          <font>
-            <Font name="Arial Italic" size="13.0" />
+            <Font name="Arial Italic" size="12.0" />
          </font></Label>
-      <Button fx:id="btnregister" layoutX="114.0" layoutY="367.0" mnemonicParsing="false" onAction="#inputinfo" prefHeight="30.0" prefWidth="176.0" text="Register">
+      <Button fx:id="btnregister" layoutX="120.0" layoutY="418.0" mnemonicParsing="false" onAction="#inputinfo" prefHeight="30.0" prefWidth="176.0" style="-fx-background-color: #1FAB5E#1FAB5E;" text="Register" textFill="WHITE">
          <font>
-            <Font name="Arial Bold" size="13.0" />
+            <Font name="Arial" size="13.0" />
          </font></Button>
-      <Button layoutX="304.0" layoutY="366.0" mnemonicParsing="false" onAction="#closeaction" prefHeight="34.0" prefWidth="188.0" text="Cancel">
+      <Button layoutX="310.0" layoutY="417.0" mnemonicParsing="false" onAction="#closeaction" prefHeight="34.0" prefWidth="188.0" style="-fx-background-color: #C82101#C82101;" text="Cancel" textFill="WHITE">
          <font>
-            <Font name="Arial Bold" size="13.0" />
+            <Font name="Arial" size="13.0" />
          </font></Button>
-      <PasswordField fx:id="regpass1" layoutX="201.0" layoutY="227.0">
+      <PasswordField fx:id="regpass1" layoutX="207.0" layoutY="278.0">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font></PasswordField>
-      <PasswordField fx:id="regpass2" layoutX="201.0" layoutY="276.0">
+      <PasswordField fx:id="regpass2" layoutX="207.0" layoutY="327.0">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font></PasswordField>

@@ -180,10 +180,26 @@ public class User {
         closewindow(event);
     }
 
-    public void goback(ActionEvent event){
+    public void mainMenu(ActionEvent event){
         Parent root;
         try {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("view/mainMenu.fxml"));
+            javafx.stage.Stage stage = new Stage();
+            stage.setTitle("COVID Tracker");
+            stage.setScene(new Scene(root, 600, 600));
+            stage.setResizable(false);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.show();
+
+            closewindow(event);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void backUser(ActionEvent event){
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/userMenu.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("COVID Tracker");
             stage.setScene(new Scene(root, 600, 600));

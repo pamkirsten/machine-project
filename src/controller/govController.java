@@ -56,7 +56,7 @@ public class govController {
         }
     }
 
-    public void goback(ActionEvent event) {
+    public void backtoGov(ActionEvent event) {
         Parent root;
         try {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("view/govMenu.fxml"));

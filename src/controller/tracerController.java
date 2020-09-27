@@ -168,7 +168,7 @@ public class tracerController {
         }
     }
 
-    public void goback(ActionEvent event) {
+    public void backTracerMenu(ActionEvent event) {
         Parent root;
         try {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("view/tracerMenu.fxml"));

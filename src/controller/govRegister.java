@@ -138,7 +138,7 @@ public class govRegister {
         } else if (govInstance == 1){ // Account Username exists but not an Official
             newuser.setUsername(txtfieldUsername.getText());
             db.newgov(newuser);
-            goback(event);
+            backtoGov(event);
         } else if (govInstance == 2){ // Account Username unique
             String newPass = randompass();
 
@@ -174,7 +174,7 @@ public class govRegister {
             newuser.setEmail(email.getText());
 
             db.newacct(newuser);
-            goback(event);
+            backtoGov(event);
         } else {
             // ... user chose CANCEL or close the dialog
         }
@@ -189,16 +189,16 @@ public class govRegister {
         Optional<ButtonType> result = alert1.showAndWait();
         if (result.get() == ButtonType.OK) {
             // ... user chose OK
-            goback(event);
+            backtoGov(event);
         } else {
             // ... user chose CANCEL or closed the dialog
         }
     }
 
-    public void goback(ActionEvent event) {
+    public void backtoGov(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/mainMenu.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/govMenu.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("COVID Tracker");
             stage.setScene(new Scene(root, 600, 600));

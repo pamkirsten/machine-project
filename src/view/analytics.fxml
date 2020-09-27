@@ -1,42 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.govController">
    <children>
-      <TextField fx:id="fieldCity" layoutX="275.0" layoutY="186.0" prefHeight="27.0" prefWidth="188.0">
+      <ImageView fitHeight="600.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/analytics.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="fieldCity" layoutX="271.0" layoutY="238.0" prefHeight="27.0" prefWidth="188.0">
          <font>
             <Font name="Arial Italic" size="13.0" />
          </font></TextField>
-      <Label layoutX="161.0" layoutY="186.0" prefHeight="27.0" prefWidth="80.0" text="Enter City:">
+      <Label layoutX="145.0" layoutY="237.0" prefHeight="27.0" prefWidth="80.0" text="Enter City:">
          <font>
-            <Font name="Arial Bold" size="13.0" />
+            <Font name="Arial" size="14.0" />
          </font></Label>
-      <Label layoutX="147.0" layoutY="245.0" prefHeight="27.0" prefWidth="109.0" text="Start of Duration:">
+      <Label layoutX="143.0" layoutY="275.0" prefHeight="27.0" prefWidth="109.0" text="Start of Duration:">
          <font>
-            <Font name="Arial Bold" size="13.0" />
+            <Font name="Arial" size="13.0" />
          </font></Label>
-      <DatePicker fx:id="dateStart" layoutX="276.0" layoutY="244.0" />
-      <Label layoutX="149.0" layoutY="300.0" prefHeight="27.0" prefWidth="109.0" text="End of Duration:">
+      <DatePicker fx:id="dateStart" layoutX="271.0" layoutY="275.0" />
+      <Label layoutX="144.0" layoutY="318.0" prefHeight="27.0" prefWidth="109.0" text="End of Duration:">
          <font>
-            <Font name="Arial Bold" size="13.0" />
+            <Font name="Arial" size="13.0" />
          </font></Label>
-      <DatePicker fx:id="dateEnd" layoutX="275.0" layoutY="300.0" />
-      <Button layoutX="197.0" layoutY="358.0" mnemonicParsing="false" onAction="#durandCity" prefHeight="26.0" prefWidth="273.0" text="Analyze based on Duration &amp; Given City" textFill="#ad00a3">
+      <DatePicker fx:id="dateEnd" layoutX="271.0" layoutY="318.0" />
+      <Button layoutX="164.0" layoutY="379.0" mnemonicParsing="false" onAction="#durandCity" prefHeight="26.0" prefWidth="273.0" style="-fx-background-color: #22B5E8#22B5E8;" text="Analyze based on Duration &amp; Given City" textFill="WHITE">
          <font>
-            <Font name="Arial Bold" size="13.0" />
+            <Font name="Arial" size="13.0" />
          </font></Button>
-      <Button layoutX="197.0" layoutY="392.0" mnemonicParsing="false" onAction="#cityCases" prefHeight="26.0" prefWidth="273.0" text="Analyze based on Given City" textFill="#0003bf">
+      <Button layoutX="164.0" layoutY="413.0" mnemonicParsing="false" onAction="#cityCases" prefHeight="26.0" prefWidth="273.0" style="-fx-background-color: #22B5E8#22B5E8;" text="Analyze based on Given City" textFill="WHITE">
          <font>
-            <Font name="Arial Bold" size="13.0" />
+            <Font name="Arial" size="13.0" />
          </font></Button>
-      <Button layoutX="197.0" layoutY="427.0" mnemonicParsing="false" onAction="#durationCases" prefHeight="26.0" prefWidth="273.0" text="Analyze based on Duration" textFill="#03465b">
+      <Button layoutX="164.0" layoutY="448.0" mnemonicParsing="false" onAction="#durationCases" prefHeight="26.0" prefWidth="273.0" style="-fx-background-color: #22B5E8#22B5E8;" text="Analyze based on Duration" textFill="WHITE">
          <font>
-            <Font name="Arial Bold" size="13.0" />
+            <Font name="Arial" size="13.0" />
          </font></Button>
-      <Button layoutX="197.0" layoutY="461.0" mnemonicParsing="false" onAction="#mainmenu" prefHeight="26.0" prefWidth="273.0" text="Back to Main Menu" textFill="#eb0000">
+      <Button layoutX="164.0" layoutY="482.0" mnemonicParsing="false" onAction="#backtoGov" prefHeight="26.0" prefWidth="273.0" style="-fx-background-color: #C82101#C82101;" text="Back to Main Menu" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font></Button>

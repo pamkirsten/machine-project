@@ -2,56 +2,62 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.govController">
    <children>
-      <Button fx:id="btnUnassigned" layoutX="173.0" layoutY="143.0" mnemonicParsing="false" onAction="#openUnassigned" prefHeight="37.0" prefWidth="255.0" text="Show Unassigned Cases">
+      <ImageView fitHeight="600.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: #75C2DD#75C2DD;">
+         <image>
+            <Image url="@../images/govmenu.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnUnassigned" layoutX="173.0" layoutY="293.0" mnemonicParsing="false" onAction="#openUnassigned" prefHeight="25.0" prefWidth="255.0" style="-fx-background-color: #4499DD;" text="Show Unassigned Cases" textFill="WHITE">
          <font>
-            <Font name="Arial Bold" size="14.0" />
+            <Font name="Arial" size="14.0" />
          </font>
          <effect>
             <Glow />
          </effect></Button>
-      <Button fx:id="btnUpdates" layoutX="173.0" layoutY="190.0" mnemonicParsing="false" onAction="#openTracingUpdates" prefHeight="37.0" prefWidth="255.0" text="Show Contact Tracing Updates">
+      <Button fx:id="btnUpdates" layoutX="173.0" layoutY="332.0" mnemonicParsing="false" onAction="#openTracingUpdates" prefHeight="26.0" prefWidth="255.0" style="-fx-background-color: #4499DD;" text="Show Contact Tracing Updates" textFill="WHITE">
          <font>
-            <Font name="Arial Bold" size="14.0" />
+            <Font name="Arial" size="14.0" />
          </font>
          <effect>
             <Glow />
          </effect></Button>
-      <Button fx:id="btnAnalytics" layoutX="173.0" layoutY="236.0" mnemonicParsing="false" onAction="#openAnalytics" prefHeight="37.0" prefWidth="255.0" text="Analytics" textAlignment="CENTER">
+      <Button fx:id="btnAnalytics" layoutX="173.0" layoutY="367.0" mnemonicParsing="false" onAction="#openAnalytics" prefHeight="16.0" prefWidth="255.0" style="-fx-background-color: #4499DD;" text="Analytics" textAlignment="CENTER" textFill="WHITE">
          <font>
-            <Font name="Arial Bold" size="14.0" />
+            <Font name="Arial" size="14.0" />
          </font>
          <effect>
             <Glow />
          </effect></Button>
-      <Button fx:id="btncreateGov" layoutX="173.0" layoutY="283.0" mnemonicParsing="false" onAction="#opencreateGov" prefHeight="37.0" prefWidth="255.0" text="Create Government Accounts">
+      <Button fx:id="btncreateGov" layoutX="173.0" layoutY="403.0" mnemonicParsing="false" onAction="#opencreateGov" prefHeight="0.0" prefWidth="255.0" style="-fx-background-color: #4499DD;" text="Create Government Accounts" textFill="WHITE">
          <font>
-            <Font name="Arial Bold" size="14.0" />
+            <Font name="Arial" size="14.0" />
          </font>
          <effect>
             <Glow />
          </effect></Button>
-      <Button fx:id="btncreateTracer" layoutX="173.0" layoutY="327.0" mnemonicParsing="false" onAction="#opencreateTracer" prefHeight="37.0" prefWidth="255.0" text="Create Contact Tracer Accounts">
+      <Button fx:id="btncreateTracer" layoutX="173.0" layoutY="440.0" mnemonicParsing="false" onAction="#opencreateTracer" prefHeight="6.0" prefWidth="255.0" style="-fx-background-color: #4499DD;" text="Create Contact Tracer Accounts" textFill="WHITE">
          <font>
-            <Font name="Arial Bold" size="14.0" />
+            <Font name="Arial" size="14.0" />
          </font>
          <effect>
             <Glow />
          </effect></Button>
-      <Button fx:id="btnTerminate" layoutX="173.0" layoutY="374.0" mnemonicParsing="false" onAction="#openTerminate" prefHeight="37.0" prefWidth="255.0" text="Terminate Accounts">
+      <Button fx:id="btnTerminate" layoutX="173.0" layoutY="476.0" mnemonicParsing="false" onAction="#openTerminate" prefHeight="5.0" prefWidth="255.0" style="-fx-background-color: #4499DD;" text="Terminate Accounts" textFill="WHITE">
          <font>
-            <Font name="Arial Bold" size="14.0" />
+            <Font name="Arial" size="14.0" />
          </font>
          <effect>
             <Glow />
          </effect></Button>
-      <Button layoutX="173.0" layoutY="420.0" mnemonicParsing="false" onAction="#mainmenu" prefHeight="37.0" prefWidth="255.0" text="Logout">
+      <Button layoutX="173.0" layoutY="512.0" mnemonicParsing="false" onAction="#mainmenu" prefHeight="11.0" prefWidth="255.0" style="-fx-background-color: #C82101;" text="Logout" textFill="WHITE">
          <font>
-            <Font name="Arial Bold" size="14.0" />
+            <Font name="Arial" size="14.0" />
          </font>
          <effect>
             <Glow />

@@ -148,7 +148,7 @@ public class Login {
         }
     }
 
-    public void goback(ActionEvent event) {
+    public void mainMenu(ActionEvent event) {
         Parent root;
         try {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("view/mainMenu.fxml"));
