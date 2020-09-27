@@ -57,7 +57,7 @@ public class Register {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(null);
         alert.setTitle("Register Error");
-        alert.setContentText("Input cannot contain a space, colon, or comma!");
+        alert.setContentText("Input contains invalid characters!");
         alert.showAndWait();
     }
 
@@ -73,8 +73,9 @@ public class Register {
                 middle.getText().contains(":") || middle.getText().contains(",") ||
                 last.getText().contains(":") || last.getText().contains(",") ||
                 home.getText().contains(":") ||
+                txtCity.getText().contains(":") ||
                 work.getText().contains(":") ||
-                findspace(phone.getText()) || phone.getText().contains(":") || phone.getText().contains(",") ||
+                findspace(phone.getText()) || phone.getText().contains(":") || phone.getText().contains(",") || (!phone.getText().matches("[0-9]+")) ||
                 findspace(email.getText()) || email.getText().contains(":") || email.getText().contains(",")) {
             stringerror();
             return false;

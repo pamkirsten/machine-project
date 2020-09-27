@@ -6,6 +6,7 @@ public class Profile {
     private String lastname = "Empty";
 
     private String homeadress = "Empty";
+    private String hCity = "Empty";
     private String workadress = "Empty";
 
     private String phonenum = "Empty";
@@ -14,7 +15,6 @@ public class Profile {
     private String username = "Empty";
     private String password = "Empty";
     private String dateReported = "Empty";
-    private String hCity = "Empty";
 
     private int notifyUser = 0;
     private String warningCode = "Empty";

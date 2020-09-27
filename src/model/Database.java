@@ -16,16 +16,14 @@ import java.util.Scanner;
 
 public class Database {
 
-    private static ArrayList<Profile> db = new ArrayList<>();
+    private static final ArrayList<Profile> db = new ArrayList<>();
     private static ArrayList<Visit> dbv = new ArrayList<>();
-    private static ArrayList<Government> dgov = new ArrayList<>();
-    private static ArrayList<Case> dcase = new ArrayList<>();
-    private static ArrayList<Citizen> dcitizen = new ArrayList<>();
-    private static ArrayList<Tracer> dtracer = new ArrayList<>();
-
-    private Citizen newuser = new Citizen();
-
+    private static final ArrayList<Government> dgov = new ArrayList<>();
+    private static final ArrayList<Case> dcase = new ArrayList<>();
+    private static final ArrayList<Citizen> dcitizen = new ArrayList<>();
+    private static final ArrayList<Tracer> dtracer = new ArrayList<>();
     private static int casenum = dcase.size();
+    private final Citizen newuser = new Citizen();
 
     public void increment() {
         casenum += 1;
@@ -46,7 +44,7 @@ public class Database {
         System.out.println("@@@---SHUTTING DOWN---@@@");
         updatetext();
         updatevisitfile();
-        //updatecasefile();
+        savecases();
         infoprint();
         visitprint();
         caseprint();
@@ -490,11 +488,7 @@ public class Database {
     public boolean confirmpass(String user, String pass) {
         for (int i = 0; i < db.size(); i++) {
             if (db.get(i).getUsername().equals(user)) {
-                if (db.get(i).getPassword().equals(pass)) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return db.get(i).getPassword().equals(pass);
             }
         }
         return false;
@@ -511,14 +505,10 @@ public class Database {
     }
 
     public boolean regpassword(String userinput, String userinput1) {
-        if (userinput.equals(userinput1)) {
-            return true;
-        }
-        return false;
+        return userinput.equals(userinput1);
     }
 
     public int checkRole(String username) {
-
         int role = -99;
 
         for (int i = 0; i < db.size(); i++) {
@@ -546,10 +536,58 @@ public class Database {
     }
 
     public void newacct(Citizen temp) {
-        //Citizen temp = new Citizen("Fonzy", "Gay", "Lima", "Home", "Work", "123456", "fonzygay@gmail.com", "fonzyugly", "pretty");
         db.add(temp);
         updatetext();
+    }
 
+    public void newgov(Government temp) {
+        for (int i = 0; i < db.size(); i++){
+            if (temp.getUsername().equals(db.get(i).getUsername())){
+                temp.setFirstname(db.get(i).getFirstname());
+                temp.setMiddlename(db.get(i).getMiddlename());
+                temp.setLastname(db.get(i).getLastname());
+                temp.setHomeadress(db.get(i).getHomeadress());
+                temp.sethCity(db.get(i).gethCity());
+                temp.setWorkadress(db.get(i).getWorkadress());
+                temp.setPhonenum(db.get(i).getPhonenum());
+                temp.setEmail(db.get(i).getEmail());
+                temp.setUsername(db.get(i).getUsername());
+                temp.setPassword(db.get(i).getPassword());
+                temp.setDateReported(db.get(i).getDateReported());
+                temp.setNotifyUser(db.get(i).getNotifyUser());
+                temp.setWarningCode(db.get(i).getWarningCode());
+                temp.setWarningDate(db.get(i).getWarningDate());
+                db.remove(i);
+            }
+        }
+
+        db.add(temp);
+        updatetext();
+    }
+
+    public void newtracer(Tracer temp) {
+        for (int i = 0; i < db.size(); i++){
+            if (temp.getUsername().equals(db.get(i).getUsername())){
+                temp.setFirstname(db.get(i).getFirstname());
+                temp.setMiddlename(db.get(i).getMiddlename());
+                temp.setLastname(db.get(i).getLastname());
+                temp.setHomeadress(db.get(i).getHomeadress());
+                temp.sethCity(db.get(i).gethCity());
+                temp.setWorkadress(db.get(i).getWorkadress());
+                temp.setPhonenum(db.get(i).getPhonenum());
+                temp.setEmail(db.get(i).getEmail());
+                temp.setUsername(db.get(i).getUsername());
+                temp.setPassword(db.get(i).getPassword());
+                temp.setDateReported(db.get(i).getDateReported());
+                temp.setNotifyUser(db.get(i).getNotifyUser());
+                temp.setWarningCode(db.get(i).getWarningCode());
+                temp.setWarningDate(db.get(i).getWarningDate());
+                db.remove(i);
+            }
+        }
+
+        db.add(temp);
+        updatetext();
     }
 
     public void updateacct(String user, String pass, String first, String middle, String last, String home, String work, String phone, String email) {
@@ -652,11 +690,6 @@ public class Database {
         return cases;
     }
 
-    public void newgov(Government temp) {
-        dgov.add(temp);
-        //updatevisitfile(); //put update casefile function here
-    }
-
     public boolean checkDuration(DatePicker StartDate, DatePicker EndDate, String date) {
         String startdate = StartDate.getValue().format(DateTimeFormatter.ofPattern("MM,dd,YYYY"));
         String enddate = EndDate.getValue().format(DateTimeFormatter.ofPattern("MM,dd,YYYY"));
@@ -723,49 +756,36 @@ public class Database {
         return numCases;
     }
 
-    public int removeAccount(String name) {
-        int check = 0;
+    public int removeAccount(String username) {
+        int check = 0, role = checkRole(username);
+        Citizen temp = new Citizen();
 
-        for (int i = 0; i < db.size(); i++) {
-            if (checkRole(name) == 1) {
+        for (int i = 0; i < db.size(); i++){
+            if (username.equals(db.get(i).getUsername())){
+                if (role == 1 || role == 2){
+                    temp.setFirstname(db.get(i).getFirstname());
+                    temp.setMiddlename(db.get(i).getMiddlename());
+                    temp.setLastname(db.get(i).getLastname());
+                    temp.setHomeadress(db.get(i).getHomeadress());
+                    temp.sethCity(db.get(i).gethCity());
+                    temp.setWorkadress(db.get(i).getWorkadress());
+                    temp.setPhonenum(db.get(i).getPhonenum());
+                    temp.setEmail(db.get(i).getEmail());
+                    temp.setUsername(db.get(i).getUsername());
+                    temp.setPassword(db.get(i).getPassword());
+                    temp.setDateReported(db.get(i).getDateReported());
+                    temp.setNotifyUser(db.get(i).getNotifyUser());
+                    temp.setWarningCode(db.get(i).getWarningCode());
+                    temp.setWarningDate(db.get(i).getWarningDate());
 
-                newuser.setFirstname(db.get(i).getFirstname());
-                newuser.setUsername(db.get(i).getUsername());
-                newuser.setPassword(db.get(i).getPassword());
-                newuser.setMiddlename(db.get(i).getMiddlename());
-                newuser.setLastname(db.get(i).getLastname());
-                newuser.setHomeadress(db.get(i).getHomeadress());
-                newuser.setWorkadress(db.get(i).getWorkadress());
-                newuser.setPhonenum(db.get(i).getPhonenum());
-                newuser.setEmail(db.get(i).getEmail());
-                newacct(newuser);
-                db.remove(i);
-                check = 1;
-            }
-        }
-        for (int i = 0; i < db.size(); i++) {
-            if (checkRole(name) == 2) {
-                newuser.setFirstname(db.get(i).getFirstname());
-                newuser.setUsername(db.get(i).getUsername());
-                newuser.setPassword(db.get(i).getPassword());
-                newuser.setMiddlename(db.get(i).getMiddlename());
-                newuser.setLastname(db.get(i).getLastname());
-                newuser.setHomeadress(db.get(i).getHomeadress());
-                newuser.setWorkadress(db.get(i).getWorkadress());
-                newuser.setPhonenum(db.get(i).getPhonenum());
-                newuser.setEmail(db.get(i).getEmail());
-                newacct(newuser);
-                db.remove(i);
-                check = 1;
+                    db.remove(i);
+                    db.add(temp);
+                    return 1;
+                }
             }
         }
 
         return check;
-
-        //turns into citizen first
-
-        //update file
-
     }
 
     public void setTraced(String casenum) {
@@ -883,7 +903,6 @@ public class Database {
         }
     }
 
-
     public String getwarningDate(String username) {
         String date = "00/00/0000";
         for (int i = 0; i < db.size(); i++) {
@@ -904,12 +923,9 @@ public class Database {
                 if (db.get(i).getWarningCode() != "Empty") {
                     est = db.get(i).getWarningCode();
                 }
-
             }
         }
         return est;
     }
-
-    //String wEst = db.getwarningEst(inputuser.getText());
 
 }
