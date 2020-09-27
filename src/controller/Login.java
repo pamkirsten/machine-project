@@ -23,7 +23,7 @@ public class Login {
     private PasswordField passwordInput;
 
     Database database = new Database();
-    citizenController newCitizenController = new citizenController();
+    CitizenController newCitizenController = new CitizenController();
     TracerController tracer = new TracerController();
     GovController official = new GovController();
 

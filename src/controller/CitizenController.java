@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 import javafx.scene.control.Button;
 
 
-public class citizenController {
+public class CitizenController {
 
     @FXML
     private PasswordField regpass1;
