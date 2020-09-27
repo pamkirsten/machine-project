@@ -10,3 +10,7 @@ newcheck 09,17,2020 2244
 
 newcitizen
 dlsu 09,10,2020 2250
+
+citizen
+jolibee 09,02,2020 2353
+dlsu 08,30,2020 2353

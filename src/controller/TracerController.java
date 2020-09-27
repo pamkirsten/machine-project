@@ -140,6 +140,7 @@ public class TracerController {
     }
 
     public void informCitizens() {
+
         for (int i = 0; i < exposed.size(); i++){
             government.notifyUsers(exposed.get(i).getUser(), exposed.get(i).getCode(), exposed.get(i).getDate());
         }

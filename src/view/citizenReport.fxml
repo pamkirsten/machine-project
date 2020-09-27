@@ -24,7 +24,7 @@
          <font>
             <Font name="Arial" size="13.0" />
          </font></Label>
-      <Button fx:id="reportPositive" layoutX="192.0" layoutY="438.0" mnemonicParsing="false" onAction="#reportPositive" prefHeight="69.0" prefWidth="95.0" style="-fx-background-color: #FFFFFF;" text="Confirm Positive" textFill="WHITE">
+      <Button fx:id="reportPositive" layoutX="192.0" layoutY="438.0" mnemonicParsing="false" onAction="#reportPositive" prefHeight="69.0" prefWidth="95.0" style="-fx-background-color: #FFFFFF;" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font>
@@ -35,7 +35,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button fx:id="reportPositive1" layoutX="314.0" layoutY="438.0" mnemonicParsing="false" onAction="#backUser" prefHeight="69.0" prefWidth="70.0" style="-fx-background-color: #FFFFFF #FFFFFF;" textFill="WHITE">
+      <Button fx:id="reportPositive1" layoutX="322.0" layoutY="437.0" mnemonicParsing="false" onAction="#backUser" prefHeight="69.0" prefWidth="70.0" style="-fx-background-color: #FFFFFF #FFFFFF;" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font>
@@ -46,12 +46,12 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Label layoutX="192.0" layoutY="535.0" text="Confirm Positive">
+      <Label layoutX="193.0" layoutY="535.0" text="Confirm Positive">
          <font>
             <Font name="Arial" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="324.0" layoutY="536.0" text="Back To Menu">
+      <Label layoutX="334.0" layoutY="535.0" prefHeight="16.0" prefWidth="95.0" text="Back To Menu">
          <font>
             <Font name="Arial" size="13.0" />
          </font>

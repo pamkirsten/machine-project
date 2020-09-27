@@ -22,17 +22,17 @@
          </font></Label>
       <TextField fx:id="txtCase" layoutX="330.0" layoutY="430.0" />
       <TextField fx:id="txtTracerUN" layoutX="330.0" layoutY="470.0" />
-      <Button layoutX="145.0" layoutY="519.0" mnemonicParsing="false" onAction="#assignCase" style="-fx-background-color: #169D53#169D53;" text="Confirm Assignment" textFill="WHITE">
+      <Button layoutX="115.0" layoutY="519.0" mnemonicParsing="false" onAction="#assignCase" prefHeight="26.0" prefWidth="200.0" style="-fx-background-color: #169D53#169D53; -fx-background-radius: 15;" text="Confirm Assignment" textFill="WHITE">
          <font>
-            <Font name="Arial" size="13.0" />
+            <Font name="Arial Bold" size="13.0" />
          </font></Button>
-      <Button layoutX="167.0" layoutY="154.0" mnemonicParsing="false" onAction="#showUnassigned" prefHeight="16.0" prefWidth="267.0" style="-fx-background-color: #537BD1;" text="Show Unassigned Cases" textFill="WHITE">
+      <Button layoutX="167.0" layoutY="154.0" mnemonicParsing="false" onAction="#showUnassigned" prefHeight="16.0" prefWidth="267.0" style="-fx-background-color: #004AAD; -fx-background-radius: 15;" text="Show Unassigned Cases" textFill="WHITE">
          <font>
-            <Font name="Arial" size="13.0" />
+            <Font name="Arial Bold" size="13.0" />
          </font></Button>
-      <Button layoutX="301.0" layoutY="519.0" mnemonicParsing="false" onAction="#backtoGov" style="-fx-background-color: #C82101#C82101;" text="Back to Main Menu" textFill="WHITE">
+      <Button layoutX="330.0" layoutY="519.0" mnemonicParsing="false" onAction="#backtoGov" prefHeight="26.0" prefWidth="160.0" style="-fx-background-color: #C82101#C82101; -fx-background-radius: 15;" text="Back to Main Menu" textFill="WHITE">
          <font>
-            <Font name="Arial" size="13.0" />
+            <Font name="Arial Bold" size="13.0" />
          </font>
       </Button>
       <ListView fx:id="listUnassigned" layoutX="206.0" layoutY="193.0" prefHeight="216.0" prefWidth="200.0" />

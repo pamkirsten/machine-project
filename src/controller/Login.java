@@ -66,6 +66,10 @@ public class Login {
                 check = database.checkRole(usernameInput.getText());
                 notify = database.checkNotify(usernameInput.getText());
 
+                String wEst = database.getwarningEst(usernameInput.getText());
+
+                System.out.println(usernameInput.getText()+" "+notify+" "+ wEst);
+
                 if (check == 0) {
                     newCitizenController.setusername(usernameInput.getText());
                     showAlert(notify);

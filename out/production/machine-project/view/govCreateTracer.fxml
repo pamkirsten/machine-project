@@ -22,13 +22,13 @@
             <Font name="Arial" size="13.0" />
          </font></Button>
         <Label fx:id="labelcheckUser" layoutX="241.0" layoutY="268.0" text="Username not Checked" />
-        <Button fx:id="btnCreate" layoutX="171.0" layoutY="318.0" mnemonicParsing="false" onAction="#createtracerAcc" prefHeight="26.0" prefWidth="278.0" style="-fx-background-color: #179952#179952; -fx-background-radius: 15;" text="Create Tracer Account" textFill="WHITE">
+        <Button fx:id="btnCreate" layoutX="171.0" layoutY="318.0" mnemonicParsing="false" onAction="#createtracerAcc" prefHeight="27.0" prefWidth="278.0" style="-fx-background-color: #179952#179952; -fx-background-radius: 15;" text="Create Tracer Account" textFill="WHITE">
          <font>
-            <Font name="Arial" size="13.0" />
+            <Font name="Arial Bold" size="16.0" />
          </font></Button>
       <Button fx:id="btnCreate1" layoutX="173.0" layoutY="360.0" mnemonicParsing="false" onAction="#backtoGov" prefHeight="26.0" prefWidth="278.0" style="-fx-background-color: #D63415#D63415; -fx-background-radius: 15;" text="Back to Main Menu" textFill="WHITE">
          <font>
-            <Font name="Arial" size="13.0" />
+            <Font name="Arial Bold" size="16.0" />
          </font>
       </Button>
     </children>
