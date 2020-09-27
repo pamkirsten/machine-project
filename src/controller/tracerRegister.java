@@ -20,10 +20,11 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class tracerRegister {
+public class TracerRegister {
 
     private static final Tracer newuser = new Tracer();
     private final Database db = new Database();
+    private static String username;
 
     @FXML private TextField txtfieldUsername;
     @FXML private Label labelcheckUser;
@@ -36,10 +37,14 @@ public class tracerRegister {
     @FXML private TextField phone;
     @FXML private TextField email;
 
+    public void setUsernameRegister(String s) {
+        username = s;
+    }
+
     public void registerTracer(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/registerTracer.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/govInputTrc.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("Register Contact Tracer");
             stage.setScene(new Scene(root, 600, 600));
@@ -87,6 +92,8 @@ public class tracerRegister {
         } else if (db.regusername(txtfieldUsername.getText())) { // Return 2 if Account Username is Unique
             labelcheckUser.setText("Username unique!");
             return 2;
+        } else if (txtfieldUsername.getText().equals(username)) {
+            labelcheckUser.setText("Username cannot use own!");
         } else { // Existing - Check if Already a Tracer or Not
             labelcheckUser.setText("Username will be used to create new Tracer!");
             if (db.checkRole(txtfieldUsername.getText()) == 1){ // Return 0 if Account Username is already a Tracer

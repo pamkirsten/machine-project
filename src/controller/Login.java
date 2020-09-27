@@ -24,8 +24,8 @@ public class Login {
 
     Database db = new Database();
     User user = new User();
-    tracerController tracer = new tracerController();
-    govController official = new govController();
+    TracerController tracer = new TracerController();
+    GovController official = new GovController();
 
 
     public void showAlert(int check) {
@@ -74,14 +74,14 @@ public class Login {
                 }
                 if (check == 1) {
                     user.setusername(inputuser.getText());
-                    govController.setusername(inputuser.getText());
+                    GovController.setusername(inputuser.getText());
                     showAlert(notify);
                     citizenMenu(event);
                     governmentMenu(event);
                 }
                 if (check == 2) {
                     user.setusername(inputuser.getText());
-                    tracerController.setusername(inputuser.getText());
+                    TracerController.setusername(inputuser.getText());
                     showAlert(notify);
                     citizenMenu(event);
                     tracerMenu(event);
@@ -107,7 +107,7 @@ public class Login {
     public void citizenMenu(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/userMenu.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/citizenMenu.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("User Menu");
             stage.setScene(new Scene(root, 600, 600));

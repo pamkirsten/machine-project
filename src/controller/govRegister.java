@@ -21,10 +21,11 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class govRegister {
+public class GovRegister {
 
     private static final Government newuser = new Government();
     private final Database db = new Database();
+    private static String username;
 
     @FXML private TextField txtfieldUsername;
     @FXML private Label labelcheckUser;
@@ -37,10 +38,14 @@ public class govRegister {
     @FXML private TextField phone;
     @FXML private TextField email;
 
+    public void setUsernameRegister(String s) {
+        username = s;
+    }
+
     public void registerGov(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/registerGov.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/govInputGov.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("Register Contact Tracer");
             stage.setScene(new Scene(root, 600, 600));
@@ -88,6 +93,8 @@ public class govRegister {
         } else if (db.regusername(txtfieldUsername.getText())) { // Return 2 if Account Username is Unique
             labelcheckUser.setText("Username unique!");
             return 2;
+        } else if (txtfieldUsername.getText().equals(username)) {
+            labelcheckUser.setText("Username cannot use own!");
         } else { // Existing - Check if Already a Gov or Not
             labelcheckUser.setText("Username will be used to create new Official!");
             if (db.checkRole(txtfieldUsername.getText()) == 1){ // Return 0 if Account Username is already an Official

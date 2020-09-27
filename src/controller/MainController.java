@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Controller {
+public class MainController {
 
     private Object Stage;
     private Database db = new Database();
@@ -28,7 +28,7 @@ public class Controller {
     public void registeruser(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/registerview.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/mainRegister.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("Register User");
             stage.setScene(new Scene(root, 600, 600));
@@ -45,7 +45,7 @@ public class Controller {
     public void loginuser(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/loginMenu.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/mainLogin.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("Login User");
             stage.setScene(new Scene(root, 600, 600));

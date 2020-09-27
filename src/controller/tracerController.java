@@ -17,11 +17,10 @@ import model.Case;
 import model.Government;
 import model.Visit;
 
-public class tracerController {
+public class TracerController {
 
     @FXML private TextField tsNum;
     @FXML private TextField tsX;
-
     @FXML private ListView<Integer> listCases;
     @FXML private ListView<String> tsUser;
     @FXML private ListView<String> tsCode;
@@ -39,7 +38,7 @@ public class tracerController {
     public void viewShowCases(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/showCases.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/tracerShow.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("Show Cases");
             stage.setScene(new Scene(root, 600, 600));
@@ -127,7 +126,7 @@ public class tracerController {
     public void viewTraceSpecific(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/viewTraceSpecific.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/tracerTrace.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("Trace Specific User");
             stage.setScene(new Scene(root, 600, 600));
