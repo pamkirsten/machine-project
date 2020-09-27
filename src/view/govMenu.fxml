@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.govController">
    <children>
@@ -13,54 +13,33 @@
             <Image url="@../images/govmenu.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnUnassigned" layoutX="173.0" layoutY="293.0" mnemonicParsing="false" onAction="#openUnassigned" prefHeight="25.0" prefWidth="255.0" style="-fx-background-color: #4499DD;" text="Show Unassigned Cases" textFill="WHITE">
+      <Button fx:id="btnUnassigned" layoutX="173.0" layoutY="293.0" mnemonicParsing="false" onAction="#openUnassigned" prefHeight="25.0" prefWidth="255.0" style="-fx-background-color: #4499DD; -fx-background-radius: 12;" text="Show Unassigned Cases" textFill="WHITE">
          <font>
-            <Font name="Arial" size="14.0" />
-         </font>
-         <effect>
-            <Glow />
-         </effect></Button>
-      <Button fx:id="btnUpdates" layoutX="173.0" layoutY="332.0" mnemonicParsing="false" onAction="#openTracingUpdates" prefHeight="26.0" prefWidth="255.0" style="-fx-background-color: #4499DD;" text="Show Contact Tracing Updates" textFill="WHITE">
+            <Font name="Arial" size="15.0" />
+         </font></Button>
+      <Button fx:id="btnUpdates" layoutX="173.0" layoutY="330.0" mnemonicParsing="false" onAction="#openTracingUpdates" prefHeight="26.0" prefWidth="255.0" style="-fx-background-color: #4499DD#4499DD; -fx-background-radius: 12;" text="Show Contact Tracing Updates" textFill="WHITE">
          <font>
-            <Font name="Arial" size="14.0" />
-         </font>
-         <effect>
-            <Glow />
-         </effect></Button>
-      <Button fx:id="btnAnalytics" layoutX="173.0" layoutY="367.0" mnemonicParsing="false" onAction="#openAnalytics" prefHeight="16.0" prefWidth="255.0" style="-fx-background-color: #4499DD;" text="Analytics" textAlignment="CENTER" textFill="WHITE">
+            <Font name="Arial" size="15.0" />
+         </font></Button>
+      <Button fx:id="btnAnalytics" layoutX="173.0" layoutY="367.0" mnemonicParsing="false" onAction="#openAnalytics" prefHeight="16.0" prefWidth="255.0" style="-fx-background-color: #4499DD; -fx-background-radius: 12;" text="Analytics" textAlignment="CENTER" textFill="WHITE">
          <font>
-            <Font name="Arial" size="14.0" />
-         </font>
-         <effect>
-            <Glow />
-         </effect></Button>
-      <Button fx:id="btncreateGov" layoutX="173.0" layoutY="403.0" mnemonicParsing="false" onAction="#opencreateGov" prefHeight="0.0" prefWidth="255.0" style="-fx-background-color: #4499DD;" text="Create Government Accounts" textFill="WHITE">
+            <Font name="Arial" size="15.0" />
+         </font></Button>
+      <Button fx:id="btncreateGov" layoutX="173.0" layoutY="403.0" mnemonicParsing="false" onAction="#opencreateGov" prefHeight="0.0" prefWidth="255.0" style="-fx-background-color: #4499DD#4499DD; -fx-background-radius: 12;" text="Create Government Accounts" textFill="WHITE">
          <font>
-            <Font name="Arial" size="14.0" />
-         </font>
-         <effect>
-            <Glow />
-         </effect></Button>
-      <Button fx:id="btncreateTracer" layoutX="173.0" layoutY="440.0" mnemonicParsing="false" onAction="#opencreateTracer" prefHeight="6.0" prefWidth="255.0" style="-fx-background-color: #4499DD;" text="Create Contact Tracer Accounts" textFill="WHITE">
+            <Font name="Arial" size="15.0" />
+         </font></Button>
+      <Button fx:id="btncreateTracer" layoutX="173.0" layoutY="440.0" mnemonicParsing="false" onAction="#opencreateTracer" prefHeight="6.0" prefWidth="255.0" style="-fx-background-color: #4499DD#4499DD; -fx-background-radius: 12;" text="Create Contact Tracer Accounts" textFill="WHITE">
          <font>
-            <Font name="Arial" size="14.0" />
-         </font>
-         <effect>
-            <Glow />
-         </effect></Button>
-      <Button fx:id="btnTerminate" layoutX="173.0" layoutY="476.0" mnemonicParsing="false" onAction="#openTerminate" prefHeight="5.0" prefWidth="255.0" style="-fx-background-color: #4499DD;" text="Terminate Accounts" textFill="WHITE">
+            <Font name="Arial" size="15.0" />
+         </font></Button>
+      <Button fx:id="btnTerminate" layoutX="173.0" layoutY="476.0" mnemonicParsing="false" onAction="#openTerminate" prefHeight="5.0" prefWidth="255.0" style="-fx-background-color: #4499DD#4499DD; -fx-background-radius: 12;" text="Terminate Accounts" textFill="WHITE">
          <font>
-            <Font name="Arial" size="14.0" />
-         </font>
-         <effect>
-            <Glow />
-         </effect></Button>
-      <Button layoutX="173.0" layoutY="512.0" mnemonicParsing="false" onAction="#mainmenu" prefHeight="11.0" prefWidth="255.0" style="-fx-background-color: #C82101;" text="Logout" textFill="WHITE">
+            <Font name="Arial" size="15.0" />
+         </font></Button>
+      <Button layoutX="173.0" layoutY="512.0" mnemonicParsing="false" onAction="#mainmenu" prefHeight="11.0" prefWidth="255.0" style="-fx-background-color: #C82101; -fx-background-radius: 12;" text="Logout" textFill="WHITE">
          <font>
-            <Font name="Arial" size="14.0" />
-         </font>
-         <effect>
-            <Glow />
-         </effect></Button>
+            <Font name="Arial" size="15.0" />
+         </font></Button>
    </children>
 </Pane>

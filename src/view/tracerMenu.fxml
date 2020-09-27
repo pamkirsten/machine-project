@@ -12,21 +12,21 @@
             <Image url="@../images/tracerMenu.png" />
          </image>
       </ImageView>
-      <Button layoutX="174.0" layoutY="328.0" mnemonicParsing="false" onAction="#viewShowCases" prefHeight="32.0" prefWidth="253.0" style="-fx-background-color: #4499DD;" text="Show Cases" textFill="WHITE">
+      <Button layoutX="174.0" layoutY="328.0" mnemonicParsing="false" onAction="#viewShowCases" prefHeight="32.0" prefWidth="253.0" style="-fx-background-color: #4499DD; -fx-background-radius: 12;" text="Show Cases" textFill="WHITE">
          <font>
-            <Font name="Arial Bold" size="13.0" />
+            <Font name="Arial" size="15.0" />
          </font></Button>
-      <Button layoutX="174.0" layoutY="373.0" mnemonicParsing="false" onAction="#viewTraceSpecific" prefHeight="32.0" prefWidth="253.0" style="-fx-background-color: #4499DD;" text="Trace Specific Case" textFill="WHITE">
+      <Button layoutX="174.0" layoutY="373.0" mnemonicParsing="false" onAction="#viewTraceSpecific" prefHeight="32.0" prefWidth="253.0" style="-fx-background-color: #4499DD; -fx-background-radius: 12;" text="Trace Specific Case" textFill="WHITE">
          <font>
-            <Font name="Arial Bold" size="13.0" />
+            <Font name="Arial" size="15.0" />
          </font></Button>
-      <Button layoutX="174.0" layoutY="419.0" mnemonicParsing="false" onAction="#informCitizens" prefHeight="32.0" prefWidth="253.0" style="-fx-background-color: #4499DD;" text="Inform Citizens Possibly Exposed" textFill="WHITE">
+      <Button layoutX="174.0" layoutY="419.0" mnemonicParsing="false" onAction="#informCitizens" prefHeight="32.0" prefWidth="253.0" style="-fx-background-color: #4499DD; -fx-background-radius: 12;" text="Inform Citizens Possibly Exposed" textFill="WHITE">
          <font>
-            <Font name="Arial Bold" size="13.0" />
+            <Font name="Arial" size="15.0" />
          </font></Button>
-      <Button layoutX="174.0" layoutY="465.0" mnemonicParsing="false" onAction="#mainmenu" prefHeight="32.0" prefWidth="253.0" style="-fx-background-color: #D63415#D63415;" text="Logout" textFill="WHITE">
+      <Button layoutX="174.0" layoutY="465.0" mnemonicParsing="false" onAction="#mainmenu" prefHeight="32.0" prefWidth="253.0" style="-fx-background-color: #D63415#D63415; -fx-background-radius: 12;" text="Logout" textFill="WHITE">
          <font>
-            <Font name="Arial Bold" size="13.0" />
+            <Font name="Arial" size="15.0" />
          </font></Button>
    </children>
 </Pane>

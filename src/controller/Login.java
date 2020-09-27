@@ -35,9 +35,10 @@ public class Login {
             alert.setTitle("Positive Case Detected");
             String wDate = db.getwarningDate(inputuser.getText());
             String wEst = db.getwarningEst(inputuser.getText());
-            alert.setContentText("\n" + "Positive case detected on " + wDate + " in " + wEst + ". " +
-                    "We are advising you to go through testing as soon as possible " +
-                    "and report through this app should you test positive.");
+            alert.setContentText("WARNING: You may have been exposed to COVID-19. There was a positive case detected on "+wDate+" in " + wEst + ". " +
+                    "Please take a COVID-19 test as soon as possible and report if you are positive. Thank you.");
+
+
 
             alert.showAndWait();
         }

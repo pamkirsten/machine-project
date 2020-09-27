@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.Glow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.User">
    <children>
@@ -24,11 +21,11 @@
          <font>
             <Font name="Arial" size="13.0" />
          </font></Label>
-      <Button fx:id="reportPositive" layoutX="166.0" layoutY="462.0" mnemonicParsing="false" onAction="#reportPositive" prefHeight="26.0" prefWidth="273.0" style="-fx-background-color: #169D53#169D53;" text="Confirm Positive" textFill="WHITE">
+      <Button fx:id="reportPositive" layoutX="166.0" layoutY="462.0" mnemonicParsing="false" onAction="#reportPositive" prefHeight="26.0" prefWidth="273.0" style="-fx-background-color: #169D53#169D53; -fx-background-radius: 15;" text="Confirm Positive" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font></Button>
-      <Button fx:id="reportPositive1" layoutX="167.0" layoutY="500.0" mnemonicParsing="false" onAction="#backUser" prefHeight="26.0" prefWidth="272.0" style="-fx-background-color: #EE4423#EE4423;" text="Back to Main Menu" textFill="WHITE">
+      <Button fx:id="reportPositive1" layoutX="167.0" layoutY="500.0" mnemonicParsing="false" onAction="#backUser" prefHeight="26.0" prefWidth="272.0" style="-fx-background-color: #D63415; -fx-background-radius: 15;" text="Back to Main Menu" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font></Button>
