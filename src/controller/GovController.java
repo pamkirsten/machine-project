@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * The type Gov controller.
+ * The Government Controller.
  */
 public class GovController {
 
@@ -292,7 +292,6 @@ public class GovController {
 
     /**
      * Assigns a Positive Case to a Contact Tracer
-     *
      */
     public void assignCase() {
         ArrayList<Case> unassigned;
@@ -351,8 +350,7 @@ public class GovController {
     }
 
     /**
-     * Open unassigned.
-     *
+     * Displays the Analytics based on the given City
      */
     public void cityCases() {
         int numofCases = 0;
@@ -368,8 +366,7 @@ public class GovController {
     }
 
     /**
-     * Open unassigned.
-     *
+     * Displays the Analytics based on the given Duration
      */
     public void durationCases() {
         int numofCases = 0;
@@ -384,8 +381,9 @@ public class GovController {
     }
 
     /**
-     * Open unassigned.
+     * Displays an Error Prompt based on the given String
      *
+     * @param s error message
      */
     public void alertmessage(String s) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -396,8 +394,7 @@ public class GovController {
     }
 
     /**
-     * Open unassigned.
-     *
+     * Terminates an Account into a Citizen
      */
     public void confirmTermination(ActionEvent event) {
         int check = 0;

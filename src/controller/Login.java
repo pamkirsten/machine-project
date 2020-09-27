@@ -17,24 +17,24 @@ import model.Database;
 import java.io.IOException;
 
 /**
- * The type Login.
+ * The Login Controller
  */
 public class Login {
 
     /**
-     * The Database.
+     * Initializes a Database object
      */
     Database database = new Database();
     /**
-     * The New citizen controller.
+     * Initializes the Citizen Controller
      */
     CitizenController newCitizenController = new CitizenController();
     /**
-     * The Tracer.
+     * Initializes a Tracer Object
      */
     TracerController tracer = new TracerController();
     /**
-     * The Official.
+     * Initializes a Government Controller
      */
     GovController official = new GovController();
     @FXML

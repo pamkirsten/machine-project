@@ -21,7 +21,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * The type Citizen controller.
+ * The Citizen Controller.
  */
 public class CitizenController {
 
