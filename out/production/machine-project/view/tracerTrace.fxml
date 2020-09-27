@@ -22,13 +22,13 @@
          <font>
             <Font name="Arial" size="13.0" />
          </font></Label>
-      <Button layoutX="409.0" layoutY="179.0" mnemonicParsing="false" onAction="#traceSpecific" prefHeight="26.0" prefWidth="160.0" style="-fx-background-color: #5697EF#5697EF;" text="Trace" textFill="WHITE">
+      <Button layoutX="409.0" layoutY="179.0" mnemonicParsing="false" onAction="#traceSpecific" prefHeight="26.0" prefWidth="160.0" style="-fx-background-color: #5697EF#5697EF; -fx-background-radius: 15;" text="Trace" textFill="WHITE">
          <font>
-            <Font name="Arial" size="13.0" />
+            <Font name="Arial Bold" size="13.0" />
          </font></Button>
-      <Button layoutX="409.0" layoutY="213.0" mnemonicParsing="false" onAction="#backTracerMenu" prefHeight="26.0" prefWidth="160.0" style="-fx-background-color: #D63415#D63415;" text="Back to Tracer Menu" textFill="WHITE">
+      <Button layoutX="409.0" layoutY="213.0" mnemonicParsing="false" onAction="#backTracerMenu" prefHeight="26.0" prefWidth="160.0" style="-fx-background-color: #D63415#D63415; -fx-background-radius: 15;" text="Back to Tracer Menu" textFill="WHITE">
          <font>
-            <Font name="Arial" size="13.0" />
+            <Font name="Arial Bold" size="13.0" />
          </font>
       </Button>
       <ListView fx:id="tsUser" layoutX="32.0" layoutY="285.0" prefHeight="289.0" prefWidth="115.0" />

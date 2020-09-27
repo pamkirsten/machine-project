@@ -47,11 +47,11 @@
       <TextField fx:id="work" layoutX="302.0" layoutY="369.0" />
       <TextField fx:id="phone" layoutX="302.0" layoutY="406.0" />
       <TextField fx:id="email" layoutX="302.0" layoutY="444.0" />
-      <Button layoutX="150.0" layoutY="530.0" mnemonicParsing="false" onAction="#saveaction" prefHeight="27.0" prefWidth="151.0" style="-fx-background-color: #3A88F1#3A88F1;" text="Save" textFill="WHITE">
+      <Button layoutX="150.0" layoutY="530.0" mnemonicParsing="false" onAction="#saveaction" prefHeight="27.0" prefWidth="151.0" style="-fx-background-color: #179952; -fx-background-radius: 15;" text="Save" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font></Button>
-      <Button layoutX="307.0" layoutY="530.0" mnemonicParsing="false" onAction="#closewindow" prefHeight="27.0" prefWidth="151.0" style="-fx-background-color: #DF3817#DF3817;" text="Cancel" textFill="WHITE">
+      <Button layoutX="310.0" layoutY="530.0" mnemonicParsing="false" onAction="#closewindow" prefHeight="27.0" prefWidth="151.0" style="-fx-background-color: #DF3817#DF3817; -fx-background-radius: 15;" text="Cancel" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font></Button>

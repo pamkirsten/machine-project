@@ -22,11 +22,11 @@
          <font>
             <Font name="Arial" size="13.0" />
          </font></Label>
-      <Button layoutX="430.0" layoutY="161.0" mnemonicParsing="false" onAction="#tracingUpdates" prefHeight="26.0" prefWidth="110.0" style="-fx-background-color: #4499DD;" text="Display" textFill="WHITE">
+      <Button layoutX="430.0" layoutY="161.0" mnemonicParsing="false" onAction="#tracingUpdates" prefHeight="26.0" prefWidth="110.0" style="-fx-background-color: #4499DD; -fx-background-radius: 15;" text="Display" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font></Button>
-      <Button layoutX="430.0" layoutY="203.0" mnemonicParsing="false" onAction="#backtoGov" prefHeight="26.0" prefWidth="110.0" style="-fx-background-color: #C82101#C82101;" text="Close" textFill="WHITE">
+      <Button layoutX="430.0" layoutY="203.0" mnemonicParsing="false" onAction="#backtoGov" prefHeight="26.0" prefWidth="110.0" style="-fx-background-color: #C82101#C82101; -fx-background-radius: 15;" text="Close" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font></Button>
