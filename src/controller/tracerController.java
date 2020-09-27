@@ -88,6 +88,9 @@ public class tracerController {
         ArrayList<Case> cases;
         cases = dbg.getCases(username);
 
+        System.out.println("\n\n\nREACHED HERE\n\n\n");
+        System.out.println(cases.size());
+
         // Check if the Case Number input belongs to the Contact Tracer
         for (int i = 0; i < cases.size(); i++){
             if (tsNum.getText().equals(Integer.toString(cases.get(i).getCasenum()))){
@@ -102,7 +105,7 @@ public class tracerController {
         }
 
         // Sets the status of case to Traced
-        // dbg.setTraced(tsNum.getText());
+        dbg.setTraced(tsNum.getText());
 
         // Print Possibly Exposed here
         for (int j = 0; j < possiblyexposed.size(); j++){
