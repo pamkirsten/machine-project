@@ -55,7 +55,7 @@ public class Login {
 
     public void loginOption(ActionEvent event) {
         int check = -999;
-        int notify = 0;
+        int notify = -999;
 
 
         if (database.checkusername(usernameInput.getText())) {
