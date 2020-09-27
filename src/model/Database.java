@@ -851,9 +851,10 @@ public class Database {
                         }
                     }
 
-                    notify = profiles.get(i).getNotifyUser();
+
                 }
             }
+            notify = profiles.get(i).getNotifyUser();
         }
 
         return notify;
