@@ -28,7 +28,7 @@
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font></Button>
-      <Button fx:id="reportPositive1" layoutX="167.0" layoutY="500.0" mnemonicParsing="false" onAction="#goback" prefHeight="26.0" prefWidth="272.0" style="-fx-background-color: #EE4423#EE4423;" text="Back to Main Menu" textFill="WHITE">
+      <Button fx:id="reportPositive1" layoutX="167.0" layoutY="500.0" mnemonicParsing="false" onAction="#backUser" prefHeight="26.0" prefWidth="272.0" style="-fx-background-color: #EE4423#EE4423;" text="Back to Main Menu" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font></Button>
