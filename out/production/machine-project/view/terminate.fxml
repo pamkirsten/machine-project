@@ -24,7 +24,7 @@
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font></Button>
-      <Button fx:id="btnConfirmTermination1" layoutX="163.0" layoutY="341.0" mnemonicParsing="false" onAction="#goback" prefHeight="27.0" prefWidth="274.0" style="-fx-background-color: #D63415#D63415;" text="Exit" textFill="WHITE">
+      <Button fx:id="btnConfirmTermination1" layoutX="163.0" layoutY="341.0" mnemonicParsing="false" onAction="#backtoGov" prefHeight="27.0" prefWidth="274.0" style="-fx-background-color: #D63415#D63415;" text="Exit" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="15.0" />
          </font>

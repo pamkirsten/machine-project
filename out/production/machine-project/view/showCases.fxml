@@ -26,7 +26,7 @@
             <Font name="Arial Bold" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="195.0" layoutY="520.0" mnemonicParsing="false" onAction="#goback" prefHeight="26.0" prefWidth="213.0" style="-fx-background-color: #D63415#D63415;" text="Back to Tracer Menu" textFill="WHITE">
+      <Button layoutX="195.0" layoutY="520.0" mnemonicParsing="false" onAction="#backTracerMenu" prefHeight="26.0" prefWidth="213.0" style="-fx-background-color: #D63415#D63415;" text="Back to Tracer Menu" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font>
