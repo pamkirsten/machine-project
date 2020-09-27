@@ -18,21 +18,21 @@
       </ImageView>
       <Label layoutX="171.0" layoutY="199.0" text="Username:">
          <font>
-            <Font name="Helvetica" size="15.0" />
+            <Font name="Arial" size="15.0" />
          </font></Label>
       <Label layoutX="171.0" layoutY="244.0" text="Password:">
          <font>
-            <Font name="Helvetica" size="15.0" />
+            <Font name="Arial" size="15.0" />
          </font></Label>
       <TextField fx:id="inputuser" layoutX="263.0" layoutY="196.0" />
       <PasswordField fx:id="inputpass" layoutX="262.0" layoutY="241.0" />
       <Button layoutX="170.0" layoutY="294.0" mnemonicParsing="false" onAction="#loginuser" prefHeight="33.0" prefWidth="124.0" style="-fx-background-color: #004AAD#004AAD;" text="Login" textFill="#fcfcfc">
          <font>
-            <Font name="Helvetica" size="13.0" />
+            <Font name="Arial" size="13.0" />
          </font></Button>
       <Button layoutX="306.0" layoutY="294.0" mnemonicParsing="false" onAction="#goback" prefHeight="33.0" prefWidth="117.0" style="-fx-background-color: #BC1823#BC1823;" text="Cancel" textFill="WHITE">
          <font>
-            <Font name="Helvetica" size="13.0" />
+            <Font name="Arial" size="13.0" />
          </font></Button>
    </children>
 </Pane>
