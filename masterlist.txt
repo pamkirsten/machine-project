@@ -1,8 +1,2 @@
 Admin2020 official
-bryan citizen
-newofficial official
-newtracer tracer
-newcitizen citizen
-newcitizenacc citizen
-newaccount citizen
-citizen citizen
+newaccount official

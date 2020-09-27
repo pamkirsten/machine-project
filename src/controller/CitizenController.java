@@ -217,16 +217,7 @@ public class CitizenController {
     }
 
     public void openReport(ActionEvent event) {
-        int check = database.checkIfReported(username);
         int checkNotify = database.checkNotify(username);
-
-        if (checkNotify == 0) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setHeaderText(null);
-            alert.setTitle("WARNING!");
-            alert.setContentText("You have already reported yourself as a COVID-19 positive citizen. You may not report again. Thank you.");
-            alert.showAndWait();
-        }
 
         if (checkNotify != 0) {
             Parent root;

@@ -109,6 +109,10 @@ public class Database {
 
                     tempS = readuser.nextLine();
                     account = tempS.split(":");
+                    temp1.sethCity(account[1]);
+
+                    tempS = readuser.nextLine();
+                    account = tempS.split(":");
                     temp1.setWorkAdd(account[1]);
 
                     tempS = readuser.nextLine();
@@ -140,6 +144,10 @@ public class Database {
                     tempS = readuser.nextLine();
                     account = tempS.split(":");
                     temp2.setHomeAdd(account[1]);
+
+                    tempS = readuser.nextLine();
+                    account = tempS.split(":");
+                    temp2.sethCity(account[1]);
 
                     tempS = readuser.nextLine();
                     account = tempS.split(":");
@@ -558,19 +566,6 @@ public class Database {
         return numCases;
     }
 
-    public int checkIfReported(String user) {
-        int report = 0;
-        for (int i = 0; i < accounts.size(); i++) {
-            if (accounts.get(i).getUsername().equalsIgnoreCase(user)) {
-                if (accounts.get(i).isPositive()) {
-                    report = 1;
-                }
-            }
-        }
-
-        return report;
-    }
-
     public int checkNotify(String username) {
         int notify = 0;
         for (int i = 0; i < accounts.size(); i++) {
@@ -578,16 +573,12 @@ public class Database {
                 if (accounts.get(i).getNotifyUser() != 1) {
                     if (accounts.get(i).getDateReported() != "Empty") {
                         for (int j = accounts.size(); i < 0; i--) {
-
-                            System.out.println("dateReported = " + accounts.get(i).getDateReported());
-
                             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM,dd,yyyy");
                             String ndate = accounts.get(j).getDateReported();
 
                             LocalDate localDate = LocalDate.parse(ndate, formatter);
 
                             if (ChronoUnit.DAYS.between(localDate, LocalDateTime.now()) >= 14) {
-                                System.out.println("days = " + ChronoUnit.DAYS.between(localDate, LocalDateTime.now()));
                                 accounts.get(i).setNotifyUser(2);
                             }
                         }
@@ -837,8 +828,6 @@ public class Database {
         }
 
         establishments = visittemp;
-
-        System.out.println(Arrays.toString(users.toArray()));
     }
 
     public int givenDuration(DatePicker StartDate, DatePicker EndDate) {

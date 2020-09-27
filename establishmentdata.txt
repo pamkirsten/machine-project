@@ -1,20 +1,2 @@
-bryan
-jollibee 09,09,2020 1200
-dlsu 09,10,2020 1400
-mcdo 09,01,2020 0219
-
-newtracer
-jollibee 09,09,2020 0900
-dlsu 09,10,2020 1400
-dlsu 09,03,2020 2027
-newcheck 09,17,2020 2244
-
-newcitizen
-dlsu 09,10,2020 2250
-
-citizen
-jolibee 09,02,2020 2353
-dlsu 08,30,2020 2353
-
-newcitizenacc
-dlsu 09,01,2020 0044
+Admin2020
+dlsu 09,01,2020 0403
