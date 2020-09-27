@@ -220,7 +220,7 @@ public class CitizenController {
         int check = database.checkIfReported(username);
         int checkNotify = database.checkNotify(username);
 
-        if (check == 1 && checkNotify == 0) {
+        if (checkNotify == 0) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setHeaderText(null);
             alert.setTitle("WARNING!");
@@ -228,7 +228,7 @@ public class CitizenController {
             alert.showAndWait();
         }
 
-        if (check == 0) {
+        if (checkNotify != 0) {
             Parent root;
             try {
                 root = FXMLLoader.load(getClass().getClassLoader().getResource("view/citizenReport.fxml"));
@@ -267,6 +267,9 @@ public class CitizenController {
             reportPositive.setDisable(false);
         }
 
-        reportPositive.setDisable(true);
+        else{
+
+        reportPositive.setDisable(true);}
     }
+
 }

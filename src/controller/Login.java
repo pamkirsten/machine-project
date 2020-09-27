@@ -41,7 +41,7 @@ public class Login {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setHeaderText(null);
             alert.setTitle("WARNING");
-            alert.setContentText("You have not took a COVID 19 test for the past 14 days. Please take one immediately. ");
+            alert.setContentText("You have not taken a COVID 19 test for the past 14 days. Please take one immediately. ");
 
             alert.showAndWait();
         }

@@ -577,13 +577,19 @@ public class Database {
             if (accounts.get(i).getUsername().equalsIgnoreCase(username)) {
                 if (accounts.get(i).getNotifyUser() != 1) {
                     if (accounts.get(i).getDateReported() != "Empty") {
-                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM,dd,yyyy");
-                        String ndate = accounts.get(i).getDateReported();
+                        for (int j = accounts.size(); i < 0; i--) {
 
-                        LocalDate localDate = LocalDate.parse(ndate, formatter);
+                            System.out.println("dateReported = " + accounts.get(i).getDateReported());
 
-                        if (ChronoUnit.DAYS.between(localDate, LocalDateTime.now()) >= 14) {
-                            accounts.get(i).setNotifyUser(2);
+                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM,dd,yyyy");
+                            String ndate = accounts.get(j).getDateReported();
+
+                            LocalDate localDate = LocalDate.parse(ndate, formatter);
+
+                            if (ChronoUnit.DAYS.between(localDate, LocalDateTime.now()) >= 14) {
+                                System.out.println("days = " + ChronoUnit.DAYS.between(localDate, LocalDateTime.now()));
+                                accounts.get(i).setNotifyUser(2);
+                            }
                         }
                     }
                 }
@@ -682,6 +688,7 @@ public class Database {
         for (int i = 0; i < accounts.size(); i++) {
             if (accounts.get(i).getUsername().equals(user)) {
                 accounts.get(i).setPositive();
+                accounts.get(i).setNotifyUser(0);
             }
         }
 
