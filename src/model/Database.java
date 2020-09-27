@@ -541,8 +541,8 @@ public class Database {
     }
 
     public void newgov(Government temp) {
-        for (int i = 0; i < profiles.size(); i++){
-            if (temp.getUsername().equals(profiles.get(i).getUsername())){
+        for (int i = 0; i < profiles.size(); i++) {
+            if (temp.getUsername().equals(profiles.get(i).getUsername())) {
                 temp.setFirstName(profiles.get(i).getFirstName());
                 temp.setMiddleName(profiles.get(i).getMiddleName());
                 temp.setLastName(profiles.get(i).getLastName());
@@ -566,8 +566,8 @@ public class Database {
     }
 
     public void newtracer(Tracer temp) {
-        for (int i = 0; i < profiles.size(); i++){
-            if (temp.getUsername().equals(profiles.get(i).getUsername())){
+        for (int i = 0; i < profiles.size(); i++) {
+            if (temp.getUsername().equals(profiles.get(i).getUsername())) {
                 temp.setFirstName(profiles.get(i).getFirstName());
                 temp.setMiddleName(profiles.get(i).getMiddleName());
                 temp.setLastName(profiles.get(i).getLastName());
@@ -760,9 +760,9 @@ public class Database {
         int check = 0, role = checkRole(username);
         Citizen temp = new Citizen();
 
-        for (int i = 0; i < profiles.size(); i++){
-            if (username.equals(profiles.get(i).getUsername())){
-                if (role == 1 || role == 2){
+        for (int i = 0; i < profiles.size(); i++) {
+            if (username.equals(profiles.get(i).getUsername())) {
+                if (role == 1 || role == 2) {
                     temp.setFirstName(profiles.get(i).getFirstName());
                     temp.setMiddleName(profiles.get(i).getMiddleName());
                     temp.setLastName(profiles.get(i).getLastName());
@@ -826,21 +826,23 @@ public class Database {
         int notify = 0;
         for (int i = 0; i < profiles.size(); i++) {
             if (profiles.get(i).getUsername().equalsIgnoreCase(username)) {
+                if (profiles.get(i).getNotifyUser() != 1) {
+                    if (profiles.get(i).getDateReported() != "Empty") {
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM,dd,yyyy");
+                        String ndate = profiles.get(i).getDateReported();
 
-                if (profiles.get(i).getDateReported() != "Empty") {
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM,dd,yyyy");
-                    String ndate = profiles.get(i).getDateReported();
+                        LocalDate localDate = LocalDate.parse(ndate, formatter);
 
-                    LocalDate localDate = LocalDate.parse(ndate, formatter);
-
-                    if (ChronoUnit.DAYS.between(localDate, LocalDateTime.now()) >= 14) {
-                        profiles.get(i).setNotifyUser(2);
+                        if (ChronoUnit.DAYS.between(localDate, LocalDateTime.now()) >= 14) {
+                            profiles.get(i).setNotifyUser(2);
+                        }
                     }
-                }
 
-                notify = profiles.get(i).getNotifyUser();
+                    notify = profiles.get(i).getNotifyUser();
+                }
             }
         }
+
         return notify;
     }
 

@@ -86,6 +86,7 @@ public class Login {
                     citizenMenu(event);
                     tracerMenu(event);
                 }
+
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);

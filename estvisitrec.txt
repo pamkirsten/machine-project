@@ -6,3 +6,7 @@ newtracer
 jollibee 09,09,2020 0900
 dlsu 09,10,2020 1400
 dlsu 09,03,2020 2027
+newcheck 09,17,2020 2244
+
+newcitizen
+dlsu 09,10,2020 2250

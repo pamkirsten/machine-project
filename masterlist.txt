@@ -2,3 +2,4 @@ bryan citizen
 newofficial official
 newtracer tracer
 newaccount citizen
+newcitizen citizen
