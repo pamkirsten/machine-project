@@ -13,7 +13,7 @@ import model.Database;
 import java.io.IOException;
 
 /**
- * The type Main controller.
+ * The Main Controller
  */
 public class MainController {
 
@@ -21,7 +21,7 @@ public class MainController {
     private final Database database = new Database();
 
     /**
-     * Exitprogram.
+     * Exits the Program
      */
     public void exitprogram() {
         database.endProgram();
@@ -29,7 +29,7 @@ public class MainController {
     }
 
     /**
-     * Reg option.
+     * Displays the Register Menu
      *
      * @param event the event
      */
@@ -52,7 +52,7 @@ public class MainController {
     }
 
     /**
-     * User login.
+     * Displays the Login Menu
      *
      * @param event the event
      */
@@ -75,7 +75,7 @@ public class MainController {
     }
 
     /**
-     * Close.
+     * Closes the Event
      *
      * @param event the event
      */

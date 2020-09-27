@@ -17,24 +17,24 @@ import model.Database;
 import java.io.IOException;
 
 /**
- * The type Login.
+ * The Login Controller
  */
 public class Login {
 
     /**
-     * The Database.
+     * Initializes a Database object
      */
     Database database = new Database();
     /**
-     * The New citizen controller.
+     * Initializes the Citizen Controller
      */
     CitizenController newCitizenController = new CitizenController();
     /**
-     * The Tracer.
+     * Initializes a Tracer Object
      */
     TracerController tracer = new TracerController();
     /**
-     * The Official.
+     * Initializes a Government Controller
      */
     GovController official = new GovController();
     @FXML
@@ -43,7 +43,8 @@ public class Login {
     private PasswordField passwordInput;
 
     /**
-     * Show alert.
+     * Displays an Alert if the user was exposed to a Positive Case
+     * or if the User has not tested positive for 14 days
      *
      * @param check the check
      */
@@ -69,7 +70,7 @@ public class Login {
     }
 
     /**
-     * Login option.
+     * Checks if the Username and Password matches the Database
      *
      * @param event the event
      */
@@ -129,7 +130,7 @@ public class Login {
     }
 
     /**
-     * Citizen menu.
+     * Displays the Citizen Menu
      *
      * @param event the event
      */
@@ -149,7 +150,7 @@ public class Login {
     }
 
     /**
-     * Government menu.
+     * Displays the Government Menu
      *
      * @param event the event
      */
@@ -170,7 +171,7 @@ public class Login {
     }
 
     /**
-     * Tracer menu.
+     * Displays the Contact Tracer Menu
      *
      * @param event the event
      */
@@ -191,7 +192,7 @@ public class Login {
     }
 
     /**
-     * Main menu.
+     * Displays the Main Menu
      *
      * @param event the event
      */
@@ -214,7 +215,7 @@ public class Login {
     }
 
     /**
-     * Close.
+     * Closes the Event
      *
      * @param event the event
      */

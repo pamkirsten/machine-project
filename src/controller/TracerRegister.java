@@ -52,16 +52,16 @@ public class TracerRegister {
     private TextField emailAdd;
 
     /**
-     * Sets username register.
+     * Sets the username variable into the username of the logged in.
      *
-     * @param s the s
+     * @param s the username
      */
     public void setUsernameRegister(String s) {
         username = s;
     }
 
     /**
-     * Register tracer.
+     * Displays the Contact Tracer Registration Menu
      *
      * @param event the event
      */
@@ -82,9 +82,9 @@ public class TracerRegister {
     }
 
     /**
-     * Stringerror.
+     * Displays an Error Prompt based on the String input
      *
-     * @param s the s
+     * @param s the error input
      */
     public void stringerror(String s) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -95,10 +95,10 @@ public class TracerRegister {
     }
 
     /**
-     * Findspace boolean.
+     * Checks if a String contains a space character
      *
-     * @param s the s
-     * @return the boolean
+     * @param s the String
+     * @return the result if the String contains a space
      */
     public boolean findspace(String s) {
         Pattern pattern = Pattern.compile("\\s");
@@ -127,9 +127,9 @@ public class TracerRegister {
     }
 
     /**
-     * Check user int.
+     * Checks all the User Input's validity
      *
-     * @return the int
+     * @return the result based on the input
      */
     public int checkUser() {
         if (findspace(txtfieldUsername.getText()) || txtfieldUsername.getText().contains(":") || txtfieldUsername.getText().contains(",")) { // Invalid Username
@@ -152,9 +152,10 @@ public class TracerRegister {
     }
 
     /**
-     * Randompass string.
+     * Generates a random password which is 6 characters and contains at least
+     * one numerical value or special character
      *
-     * @return the string
+     * @return the password
      */
     public String randompass() {
         String alphaUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -188,7 +189,7 @@ public class TracerRegister {
     }
 
     /**
-     * Createtracer acc.
+     * Creates a new Tracer Account
      *
      * @param event the event
      */
@@ -218,7 +219,7 @@ public class TracerRegister {
     }
 
     /**
-     * Savetracerregister.
+     * Saves the User Information Input during Tracer Registration
      *
      * @param event the event
      */
@@ -245,7 +246,7 @@ public class TracerRegister {
     }
 
     /**
-     * Cancelregister.
+     * Display a Confirmation Prompt to cancel Registration
      *
      * @param event the event
      */
@@ -262,7 +263,7 @@ public class TracerRegister {
     }
 
     /**
-     * Backto gov.
+     * Returns the user to Government Menu
      *
      * @param event the event
      */
@@ -285,7 +286,7 @@ public class TracerRegister {
     }
 
     /**
-     * Close.
+     * Closes the Event
      *
      * @param event the event
      */

@@ -789,23 +789,6 @@ public class Database {
     }
 
     /**
-     * Gets case num.
-     *
-     * @param user the user
-     * @return the case num
-     */
-    public int getCaseNum(String user) {
-        int cNum = 0;
-        for (int i = 0; i < cases.size(); i++) {
-            if (cases.get(i).getUsername().equals(user)) {
-                cNum = cases.get(i).getCasenum();
-                return cNum;
-            }
-        }
-        return cNum;
-    }
-
-    /**
      * Gets warning date.
      *
      * @param username the username
@@ -842,6 +825,25 @@ public class Database {
     }
 
     /**
+     * Gets case num.
+     *
+     * @return the case num
+     */
+    public int getAssignedCaseNum(){
+        increment();
+        return casenum;
+    }
+
+    /**
+     * Gets case num.
+     *
+     * @return total case num
+     */
+    public int getTotalCases(){
+        return cases.size();
+    }
+
+    /**
      * Sets positive.
      *
      * @param user the user
@@ -859,15 +861,6 @@ public class Database {
         }
 
 
-    }
-
-    public int getAssignedCaseNum() {
-        increment();
-        return casenum;
-    }
-
-    public int getTotalCases() {
-        return cases.size();
     }
 
     /**
