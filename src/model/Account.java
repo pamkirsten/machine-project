@@ -1,6 +1,6 @@
 package model;
 
-public class Profile {
+public class Account {
     private String firstName = "Empty";
     private String middleName = "Empty";
     private String lastName = "Empty";
@@ -20,14 +20,42 @@ public class Profile {
     private String warningCode = "Empty";
     private String warningDate = "Empty";
     private boolean isPositive = false;
+    private int CaseNum;
 
-    public String getWarningCode() { return warningCode; }
+    public Account(String firstName, String middleName, String lastName, String homeAdd, String workAdd, String phoneNumber, String emailAdd, String username, String password) {
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
 
-    public void setWarningCode(String warningCode) { this.warningCode = warningCode; }
+        this.homeAdd = homeAdd;
+        this.workAdd = workAdd;
 
-    public String getWarningDate() { return warningDate; }
+        this.phoneNumber = phoneNumber;
+        this.emailAdd = emailAdd;
 
-    public void setWarningDate(String warningDate) { this.warningDate = warningDate; }
+        this.username = username;
+        this.password = password;
+    }
+
+    public Account() {
+
+    }
+
+    public String getWarningCode() {
+        return warningCode;
+    }
+
+    public void setWarningCode(String warningCode) {
+        this.warningCode = warningCode;
+    }
+
+    public String getWarningDate() {
+        return warningDate;
+    }
+
+    public void setWarningDate(String warningDate) {
+        this.warningDate = warningDate;
+    }
 
     public int getNotifyUser() {
         return notifyUser;
@@ -36,8 +64,6 @@ public class Profile {
     public void setNotifyUser(int notifyUser) {
         this.notifyUser = notifyUser;
     }
-
-
 
     public String gethCity() {
         return hCity;
@@ -55,41 +81,12 @@ public class Profile {
         isPositive = true;
     }
 
-    private int CaseNum;
-
     public String getDateReported() {
         return dateReported;
     }
 
     public void setDateReported(String dateReported) {
         this.dateReported = dateReported;
-    }
-
-    public int getCaseNum() {
-        return CaseNum;
-    }
-
-    public void setCaseNum(int caseNum) {
-        CaseNum = caseNum;
-    }
-
-    public Profile(String firstName, String middleName, String lastName, String homeAdd, String workAdd, String phoneNumber, String emailAdd, String username, String password) {
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-
-        this.homeAdd = homeAdd;
-        this.workAdd = workAdd;
-
-        this.phoneNumber = phoneNumber;
-        this.emailAdd = emailAdd;
-
-        this.username = username;
-        this.password = password;
-    }
-
-    public Profile(){
-
     }
 
     public String getFirstName() {

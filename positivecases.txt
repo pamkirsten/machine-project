@@ -1,6 +1,6 @@
-1 bryan 09,05,2020 newtracer Traced
-2 newtracer 09,04,2020 newtracer NotTraced
-4 citizen 09,04,2020 000 NotTraced
-4 citizen 09,03,2020 000 NotTraced
-5 newofficial 09,03,2020 newtracer NotTraced
-6 newcitizenacc 09,01,2020 000 NotTraced
+1 bryan 09,05,2020 newtracer T
+2 newtracer 09,04,2020 newtracer P
+4 citizen 09,04,2020 000 P
+4 citizen 09,03,2020 000 P
+5 newofficial 09,03,2020 newtracer P
+6 newcitizenacc 09,01,2020 000 P

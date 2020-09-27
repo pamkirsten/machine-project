@@ -14,11 +14,10 @@ import java.io.IOException;
 public class MainController {
 
     private Object Stage;
-    private Database db = new Database();
+    private final Database database = new Database();
 
     public void exitprogram() {
-        db.shutdown();
-
+        database.endProgram();
         System.exit(0);
     }
 
@@ -33,7 +32,7 @@ public class MainController {
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
-            closeWindow(event);
+            close(event);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -50,13 +49,13 @@ public class MainController {
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
-            closeWindow(event);
+            close(event);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void closeWindow(ActionEvent event) {
-        ((Node)(event.getSource())).getScene().getWindow().hide();
+    public void close(ActionEvent event) {
+        ((Node) (event.getSource())).getScene().getWindow().hide();
     }
 }

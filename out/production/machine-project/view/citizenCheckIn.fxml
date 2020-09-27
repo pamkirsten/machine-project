@@ -28,7 +28,7 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor></Label>
       <TextField fx:id="code" layoutX="275.0" layoutY="313.0" prefHeight="27.0" prefWidth="199.0" />
-      <Button layoutX="187.0" layoutY="399.0" mnemonicParsing="false" onAction="#CheckIn" prefHeight="95.0" prefWidth="101.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;" textFill="WHITE">
+      <Button layoutX="187.0" layoutY="399.0" mnemonicParsing="false" onAction="#checkIn" prefHeight="95.0" prefWidth="101.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;" textFill="WHITE">
          <font>
             <Font name="Arial" size="14.0" />
          </font>

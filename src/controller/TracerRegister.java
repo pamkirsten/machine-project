@@ -6,12 +6,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import javafx.stage.StageStyle;
 import model.Database;
-
 import model.Tracer;
 
 import java.io.IOException;
@@ -22,20 +23,29 @@ import java.util.regex.Pattern;
 
 public class TracerRegister {
 
-    private static final Tracer TRACER = new Tracer();
-    private final Database db = new Database();
+    private static final Tracer tracerdata = new Tracer();
     private static String username;
-
-    @FXML private TextField txtfieldUsername;
-    @FXML private Label labelcheckUser;
-    @FXML private TextField firstName;
-    @FXML private TextField middleName;
-    @FXML private TextField lastName;
-    @FXML private TextField homeAdd;
-    @FXML private TextField txtCity;
-    @FXML private TextField workAdd;
-    @FXML private TextField phoneNumber;
-    @FXML private TextField emailAdd;
+    private final Database database = new Database();
+    @FXML
+    private TextField txtfieldUsername;
+    @FXML
+    private Label labelcheckUser;
+    @FXML
+    private TextField firstName;
+    @FXML
+    private TextField middleName;
+    @FXML
+    private TextField lastName;
+    @FXML
+    private TextField homeAdd;
+    @FXML
+    private TextField txtCity;
+    @FXML
+    private TextField workAdd;
+    @FXML
+    private TextField phoneNumber;
+    @FXML
+    private TextField emailAdd;
 
     public void setUsernameRegister(String s) {
         username = s;
@@ -67,8 +77,7 @@ public class TracerRegister {
     public boolean findspace(String s) {
         Pattern pattern = Pattern.compile("\\s");
         Matcher matcher = pattern.matcher(s);
-        boolean found = matcher.find();
-        return found;
+        return matcher.find();
     }
 
     public boolean checkuserinfo() {
@@ -87,15 +96,15 @@ public class TracerRegister {
     }
 
     public int checkUser() {
-        if (findspace(txtfieldUsername.getText()) || txtfieldUsername.getText().contains(":") || txtfieldUsername.getText().contains(",")){ // Invalid Username
+        if (findspace(txtfieldUsername.getText()) || txtfieldUsername.getText().contains(":") || txtfieldUsername.getText().contains(",")) { // Invalid Username
             labelcheckUser.setText("Username contains invalid char!");
-        } else if (db.regusername(txtfieldUsername.getText())) { // Return 2 if Account Username is Unique
+        } else if (database.checkUsernameEqual(txtfieldUsername.getText())) { // Return 2 if Account Username is Unique
             labelcheckUser.setText("Username unique!");
             return 2;
         } else if (txtfieldUsername.getText().equals(username)) {
             labelcheckUser.setText("Username cannot use own!");
         } else { // Existing - Check if Already a Tracer or Not
-            if (db.checkRole(txtfieldUsername.getText()) == 2){ // Return 0 if Account Username is already a Tracer
+            if (database.checkRole(txtfieldUsername.getText()) == 2) { // Return 0 if Account Username is already a Tracer
                 labelcheckUser.setText("Username is already a Tracer account!");
                 return 0;
             } else {
@@ -140,13 +149,13 @@ public class TracerRegister {
     public void createtracerAcc(ActionEvent event) {
         int tracerInstance = checkUser();
 
-        if (tracerInstance == 0){ // Account is already a Tracer
+        if (tracerInstance == 0) { // Account is already a Tracer
             stringerror("Account is already a Tracer!");
-        } else if (tracerInstance == 1){ // Account Username exists but not a Tracer
-            TRACER.setUsername(txtfieldUsername.getText());
-            db.newtracer(TRACER);
+        } else if (tracerInstance == 1) { // Account Username exists but not a Tracer
+            tracerdata.setUsername(txtfieldUsername.getText());
+            database.createTracer(tracerdata);
             backtoGov(event);
-        } else if (tracerInstance == 2){ // Account Username unique
+        } else if (tracerInstance == 2) { // Account Username unique
             String newPass = randompass();
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -155,39 +164,36 @@ public class TracerRegister {
             alert.setContentText("User : " + txtfieldUsername.getText() + "'s new password is: " + newPass);
             alert.showAndWait();
 
-            TRACER.setUsername(txtfieldUsername.getText());
-            TRACER.setPassword(newPass);
+            tracerdata.setUsername(txtfieldUsername.getText());
+            tracerdata.setPassword(newPass);
 
             registerTracer(event);
         }
     }
 
-    public void saveaction(ActionEvent event) {
+    public void savetracerregister(ActionEvent event) {
         Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
         alert1.setHeaderText(null);
         alert1.setTitle("Confirmation Dialog");
-        alert1.setContentText("Are you ok with this?");
+        alert1.setContentText("Are you sure with this?");
 
         Optional<ButtonType> result = alert1.showAndWait();
         if (result.get() == ButtonType.OK && checkuserinfo()) {
-            // ... user chose OK
-            TRACER.setFirstName(firstName.getText());
-            TRACER.setMiddleName(middleName.getText());
-            TRACER.setLastName(lastName.getText());
-            TRACER.setHomeAdd(homeAdd.getText());
-            TRACER.sethCity(txtCity.getText());
-            TRACER.setWorkAdd(workAdd.getText());
-            TRACER.setPhoneNumber(phoneNumber.getText());
-            TRACER.setEmailAdd(emailAdd.getText());
+            tracerdata.setFirstName(firstName.getText());
+            tracerdata.setMiddleName(middleName.getText());
+            tracerdata.setLastName(lastName.getText());
+            tracerdata.setHomeAdd(homeAdd.getText());
+            tracerdata.sethCity(txtCity.getText());
+            tracerdata.setWorkAdd(workAdd.getText());
+            tracerdata.setPhoneNumber(phoneNumber.getText());
+            tracerdata.setEmailAdd(emailAdd.getText());
 
-            db.newAcct(TRACER);
+            database.createAccount(tracerdata);
             backtoGov(event);
-        } else {
-            // ... user chose CANCEL or close the dialog
         }
     }
 
-    public void closeaction(ActionEvent event) {
+    public void cancelregister(ActionEvent event) {
         Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
         alert1.setHeaderText(null);
         alert1.setTitle("Confirmation Dialog");
@@ -195,10 +201,7 @@ public class TracerRegister {
 
         Optional<ButtonType> result = alert1.showAndWait();
         if (result.get() == ButtonType.OK) {
-            // ... user chose OK
             backtoGov(event);
-        } else {
-            // ... user chose CANCEL or closed the dialog
         }
     }
 
@@ -213,13 +216,13 @@ public class TracerRegister {
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
-            closewindow(event);
+            close(event);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void closewindow(ActionEvent event) {
+    public void close(ActionEvent event) {
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
 }

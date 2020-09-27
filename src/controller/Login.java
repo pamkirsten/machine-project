@@ -17,29 +17,24 @@ import java.io.IOException;
 
 public class Login {
 
-    @FXML
-    private TextField usernameInput;
-    @FXML
-    private PasswordField passwordInput;
-
     Database database = new Database();
     CitizenController newCitizenController = new CitizenController();
     TracerController tracer = new TracerController();
     GovController official = new GovController();
-
+    @FXML
+    private TextField usernameInput;
+    @FXML
+    private PasswordField passwordInput;
 
     public void showAlert(int check) {
         if (check == 1) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setHeaderText(null);
             alert.setTitle("Positive Case Detected");
-            String wDate = database.getwarningDate(usernameInput.getText());
-            String wEst = database.getwarningEst(usernameInput.getText());
-            alert.setContentText("WARNING: You may have been exposed to COVID-19. There was a positive case detected on "+wDate+" in " + wEst + ". " +
+            String wDate = database.getWarningDate(usernameInput.getText());
+            String wEst = database.getWarningEst(usernameInput.getText());
+            alert.setContentText("WARNING: You may have been exposed to COVID-19. There was a positive case detected on " + wDate + " in " + wEst + ". " +
                     "Please take a COVID-19 test as soon as possible and report if you are positive. Thank you.");
-
-
-
             alert.showAndWait();
         }
         if (check == 2) {
@@ -50,25 +45,23 @@ public class Login {
 
             alert.showAndWait();
         }
-
     }
 
     public void loginOption(ActionEvent event) {
         int check = -999;
         int notify = -999;
 
+        if (database.checkUsername(usernameInput.getText())) {
+            if (database.checkPassword(usernameInput.getText(), passwordInput.getText())) {
 
-        if (database.checkusername(usernameInput.getText())) {
-            if (database.confirmpass(usernameInput.getText(), passwordInput.getText())) {
-
-                closewindow(event);
+                close(event);
 
                 check = database.checkRole(usernameInput.getText());
                 notify = database.checkNotify(usernameInput.getText());
 
-                String wEst = database.getwarningEst(usernameInput.getText());
+                String wEst = database.getWarningEst(usernameInput.getText());
 
-                System.out.println(usernameInput.getText()+" "+notify+" "+ wEst);
+                System.out.println(usernameInput.getText() + " " + notify + " " + wEst);
 
                 if (check == 0) {
                     newCitizenController.setusername(usernameInput.getText());
@@ -124,7 +117,6 @@ public class Login {
     }
 
     public void governmentMenu(ActionEvent event) {
-
         Parent root;
         try {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("view/govMenu.fxml"));
@@ -165,13 +157,13 @@ public class Login {
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
-            closewindow(event);
+            close(event);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void closewindow(ActionEvent event) {
+    public void close(ActionEvent event) {
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
 }

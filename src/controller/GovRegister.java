@@ -24,19 +24,28 @@ import java.util.regex.Pattern;
 public class GovRegister {
 
     private static final Government newgovacc = new Government();
-    private final Database db = new Database();
     private static String username;
-
-    @FXML private TextField txtfieldUsername;
-    @FXML private Label labelcheckUser;
-    @FXML private TextField firstName;
-    @FXML private TextField middleName;
-    @FXML private TextField lastName;
-    @FXML private TextField homeAdd;
-    @FXML private TextField txtCity;
-    @FXML private TextField workAdd;
-    @FXML private TextField phoneNum;
-    @FXML private TextField emailAdd;
+    private final Database db = new Database();
+    @FXML
+    private TextField txtfieldUsername;
+    @FXML
+    private Label labelcheckUser;
+    @FXML
+    private TextField firstName;
+    @FXML
+    private TextField middleName;
+    @FXML
+    private TextField lastName;
+    @FXML
+    private TextField homeAdd;
+    @FXML
+    private TextField txtCity;
+    @FXML
+    private TextField workAdd;
+    @FXML
+    private TextField phoneNum;
+    @FXML
+    private TextField emailAdd;
 
     public void setUsernameRegister(String s) {
         username = s;
@@ -68,8 +77,7 @@ public class GovRegister {
     public boolean findspace(String s) {
         Pattern pattern = Pattern.compile("\\s");
         Matcher matcher = pattern.matcher(s);
-        boolean found = matcher.find();
-        return found;
+        return matcher.find();
     }
 
     public boolean checkuserinfo() {
@@ -88,15 +96,15 @@ public class GovRegister {
     }
 
     public int checkUser() {
-        if (findspace(txtfieldUsername.getText()) || txtfieldUsername.getText().contains(":") || txtfieldUsername.getText().contains(",")){ // Invalid Username
+        if (findspace(txtfieldUsername.getText()) || txtfieldUsername.getText().contains(":") || txtfieldUsername.getText().contains(",")) { // Invalid Username
             labelcheckUser.setText("Username contains invalid char!");
-        } else if (db.regusername(txtfieldUsername.getText())) { // Return 2 if Account Username is Unique
+        } else if (db.checkUsernameEqual(txtfieldUsername.getText())) { // Return 2 if Account Username is Unique
             labelcheckUser.setText("Username unique!");
             return 2;
         } else if (txtfieldUsername.getText().equals(username)) {
             labelcheckUser.setText("Username cannot use own!");
         } else { // Existing - Check if Already a Gov or Not
-            if (db.checkRole(txtfieldUsername.getText()) == 1){ // Return 0 if Account Username is already an Official
+            if (db.checkRole(txtfieldUsername.getText()) == 1) { // Return 0 if Account Username is already an Official
                 labelcheckUser.setText("Username is already an Official account!");
                 return 0;
             } else {
@@ -141,13 +149,13 @@ public class GovRegister {
     public void creategovAcc(ActionEvent event) {
         int govInstance = checkUser();
 
-        if (govInstance == 0){ // Account is already an Official
+        if (govInstance == 0) { // Account is already an Official
             stringerror("Account is already an Official!");
-        } else if (govInstance == 1){ // Account Username exists but not an Official
+        } else if (govInstance == 1) { // Account Username exists but not an Official
             newgovacc.setUsername(txtfieldUsername.getText());
-            db.newgov(newgovacc);
+            db.createOfficial(newgovacc);
             backtoGov(event);
-        } else if (govInstance == 2){ // Account Username unique
+        } else if (govInstance == 2) { // Account Username unique
             String newPass = randompass();
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -163,15 +171,14 @@ public class GovRegister {
         }
     }
 
-    public void saveaction(ActionEvent event) {
+    public void savegovregister(ActionEvent event) {
         Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
         alert1.setHeaderText(null);
         alert1.setTitle("Confirmation Dialog");
-        alert1.setContentText("Are you ok with this?");
+        alert1.setContentText("Are you sure with this?");
 
         Optional<ButtonType> result = alert1.showAndWait();
         if (result.get() == ButtonType.OK && checkuserinfo()) {
-            // ... user chose OK
             newgovacc.setFirstName(firstName.getText());
             newgovacc.setMiddleName(middleName.getText());
             newgovacc.setLastName(lastName.getText());
@@ -181,14 +188,12 @@ public class GovRegister {
             newgovacc.setPhoneNumber(phoneNum.getText());
             newgovacc.setEmailAdd(emailAdd.getText());
 
-            db.newAcct(newgovacc);
+            db.createAccount(newgovacc);
             backtoGov(event);
-        } else {
-
         }
     }
 
-    public void closeaction(ActionEvent event) {
+    public void cancelregister(ActionEvent event) {
         Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
         alert1.setHeaderText(null);
         alert1.setTitle("Confirmation Dialog");
@@ -196,10 +201,7 @@ public class GovRegister {
 
         Optional<ButtonType> result = alert1.showAndWait();
         if (result.get() == ButtonType.OK) {
-            // ... user chose OK
             backtoGov(event);
-        } else {
-            // ... user chose CANCEL or closed the dialog
         }
     }
 
@@ -214,13 +216,13 @@ public class GovRegister {
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
-            closewindow(event);
+            close(event);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void closewindow(ActionEvent event) {
+    public void close(ActionEvent event) {
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
 }

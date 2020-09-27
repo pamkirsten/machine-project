@@ -51,7 +51,7 @@
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font></Button>
-      <Button layoutX="310.0" layoutY="530.0" mnemonicParsing="false" onAction="#closewindow" prefHeight="27.0" prefWidth="151.0" style="-fx-background-color: #DF3817#DF3817; -fx-background-radius: 15;" text="Cancel" textFill="WHITE">
+      <Button layoutX="310.0" layoutY="530.0" mnemonicParsing="false" onAction="#close" prefHeight="27.0" prefWidth="151.0" style="-fx-background-color: #DF3817#DF3817; -fx-background-radius: 15;" text="Cancel" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font></Button>

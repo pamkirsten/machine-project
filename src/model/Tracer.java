@@ -6,7 +6,7 @@ public class Tracer extends Citizen {
         super(firstname, middlename, lastname, homeadress, workadress, phonenum, email, username, password);
     }
 
-    public Tracer(){
+    public Tracer() {
 
     }
 }

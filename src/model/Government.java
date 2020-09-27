@@ -10,31 +10,31 @@ public class Government extends Citizen {
         super(firstname, middlename, lastname, homeadress, workadress, phonenum, email, username, password);
     }
 
-    public Government(){
+    public Government() {
 
     }
 
-    public ArrayList<Case> getCases(String tracerName){
+    public ArrayList<Case> getCases(String tracerName) {
         ArrayList<Case> cases;
         cases = database.getCasesAssignedToTracer(tracerName);
 
         return cases;
     }
 
-    public boolean checkIfTraced(int casenum){
+    public boolean checkIfTraced(int casenum) {
         return database.checkTraced(casenum);
     }
 
-    public void setTraced(String casenum){
+    public void setTraced(String casenum) {
         database.setTraced(casenum);
     }
 
-    public void notifyUsers(String exposedUsername, String code, String date){
+    public void notifyUsers(String exposedUsername, String code, String date) {
         database.setNotify(exposedUsername, code, date);
     }
 
-    public ArrayList<Visit> getRecords(String casenum, int xNum){
-        return database.traceUsers(casenum, xNum);
+    public ArrayList<Establishment> getRecords(String casenum, int xNum) {
+        return database.traceAccounts(casenum, xNum);
     }
 
 }

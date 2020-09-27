@@ -1,6 +1,7 @@
 bryan
 jollibee 09,09,2020 1200
 dlsu 09,10,2020 1400
+mcdo 09,01,2020 0219
 
 newtracer
 jollibee 09,09,2020 0900

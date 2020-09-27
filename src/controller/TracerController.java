@@ -10,28 +10,35 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import java.io.IOException;
-import java.util.ArrayList;
 import javafx.stage.StageStyle;
 import model.Case;
+import model.Establishment;
 import model.Government;
-import model.Visit;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class TracerController {
 
-    @FXML private TextField tsNum;
-    @FXML private TextField tsX;
-    @FXML private ListView<Integer> listCases;
-    @FXML private ListView<String> tsUser;
-    @FXML private ListView<String> tsCode;
-    @FXML private ListView<String> tsDate;
-    @FXML private ListView<String> tsTime;
-
-    private final Government government = new Government();
-    private static ArrayList<Visit> exposed = new ArrayList<>();
+    private static ArrayList<Establishment> exposed = new ArrayList<>();
     private static String username;
+    private final Government government = new Government();
+    @FXML
+    private TextField tsNum;
+    @FXML
+    private TextField tsX;
+    @FXML
+    private ListView<Integer> listCases;
+    @FXML
+    private ListView<String> tsUser;
+    @FXML
+    private ListView<String> tsCode;
+    @FXML
+    private ListView<String> tsDate;
+    @FXML
+    private ListView<String> tsTime;
 
-    public static void setusername(String user){
+    public static void setusername(String user) {
         username = user;
     }
 
@@ -44,9 +51,8 @@ public class TracerController {
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
             stage.show();
-            //showCases();
 
-            closewindow(event);
+            close(event);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -57,14 +63,12 @@ public class TracerController {
         ArrayList<Case> cases;
         cases = government.getCases(username);
 
-        for (int i = 0; i < cases.size(); i++){
+        for (int i = 0; i < cases.size(); i++) {
             listCases.getItems().add(cases.get(i).getCasenum());
-            System.out.println("CASE NUM: " + cases.get(i).getCasenum());
         }
     }
 
     public void traceSpecific() {
-
         tsUser.getItems().clear();
         tsCode.getItems().clear();
         tsDate.getItems().clear();
@@ -74,13 +78,13 @@ public class TracerController {
 
         // Check if User has already been Traced
         // Check if X is at least 0, if false, using 8 as default.
-        if (government.checkIfTraced(Integer.parseInt(tsNum.getText()))){
+        if (government.checkIfTraced(Integer.parseInt(tsNum.getText()))) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Case Error");
             alert.setContentText("Case has already been traced!");
             alert.showAndWait();
-        } else if (tsX.getText() == null || tsX.getText().trim().isEmpty() || Integer.parseInt(tsX.getText().trim()) < 0){
+        } else if (tsX.getText() == null || tsX.getText().trim().isEmpty() || Integer.parseInt(tsX.getText().trim()) < 0) {
             xNum = 8;
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -96,19 +100,16 @@ public class TracerController {
         ArrayList<Case> cases;
         cases = government.getCases(username);
 
-        System.out.println("\n\n\nREACHED HERE\n\n\n");
-        System.out.println(cases.size());
-
         // Check if the Case Number input belongs to the Contact Tracer
-        for (int i = 0; i < cases.size(); i++){
-            if (tsNum.getText().equals(Integer.toString(cases.get(i).getCasenum()))){
+        for (int i = 0; i < cases.size(); i++) {
+            if (tsNum.getText().equals(Integer.toString(cases.get(i).getCasenum()))) {
                 casenumChk = 1;
             }
         }
 
-        ArrayList<Visit> possiblyexposed = new ArrayList<>();
+        ArrayList<Establishment> possiblyexposed = new ArrayList<>();
 
-        if (casenumChk == 1){ // Trace Users
+        if (casenumChk == 1) { // Trace Users
             possiblyexposed = government.getRecords(tsNum.getText(), xNum);
         }
 
@@ -116,17 +117,12 @@ public class TracerController {
         government.setTraced(tsNum.getText());
 
         // Print Possibly Exposed here
-        for (int j = 0; j < possiblyexposed.size(); j++){
-            String code = possiblyexposed.get(j).getCode();
-            tsUser.getItems().add(possiblyexposed.get(j).getUser());
+        for (int j = 0; j < possiblyexposed.size(); j++) {
+            String code = possiblyexposed.get(j).getEstCode();
+            tsUser.getItems().add(possiblyexposed.get(j).getUsername());
             tsCode.getItems().add(code);
-            tsDate.getItems().add(possiblyexposed.get(j).getDate());
-            tsTime.getItems().add(possiblyexposed.get(j).getTime());
-
-            System.out.println("USERNAME: " + possiblyexposed.get(j).getUser());
-            System.out.println("CODE: " + possiblyexposed.get(j).getCode());
-            System.out.println("DATE " + possiblyexposed.get(j).getDate());
-            System.out.println("TIME " + possiblyexposed.get(j).getTime());
+            tsDate.getItems().add(possiblyexposed.get(j).getCheckInDate());
+            tsTime.getItems().add(possiblyexposed.get(j).getCheckInTime());
         }
 
         exposed = possiblyexposed;
@@ -142,16 +138,15 @@ public class TracerController {
             stage.setResizable(false);
             stage.show();
 
-            closewindow(event);
+            close(event);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void informCitizens() {
-
-        for (int i = 0; i < exposed.size(); i++){
-            government.notifyUsers(exposed.get(i).getUser(), exposed.get(i).getCode(), exposed.get(i).getDate());
+        for (int i = 0; i < exposed.size(); i++) {
+            government.notifyUsers(exposed.get(i).getUsername(), exposed.get(i).getEstCode(), exposed.get(i).getCheckInDate());
         }
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -163,7 +158,7 @@ public class TracerController {
         exposed.clear();
     }
 
-    public void mainmenu(ActionEvent event) {
+    public void mainMenu(ActionEvent event) {
         Parent root;
         try {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("view/mainMenu.fxml"));
@@ -174,7 +169,7 @@ public class TracerController {
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
-            closewindow(event);
+            close(event);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -191,14 +186,13 @@ public class TracerController {
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
-            closewindow(event);
+            close(event);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void closewindow(ActionEvent event) {
+    public void close(ActionEvent event) {
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
-
 }

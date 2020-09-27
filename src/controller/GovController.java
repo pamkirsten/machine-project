@@ -6,7 +6,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.Case;
@@ -17,11 +20,10 @@ import java.util.ArrayList;
 
 public class GovController {
 
+    private static String username;
+    private final Database db = new Database();
     GovRegister temp = new GovRegister();
     TracerRegister temp1 = new TracerRegister();
-    private final Database db = new Database();
-
-    private static String username;
 
     @FXML
     private TextField usernameTerminate;
@@ -63,7 +65,7 @@ public class GovController {
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
-            closewindow(event);
+            close(event);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -80,7 +82,7 @@ public class GovController {
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
-            closewindow(event);
+            close(event);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -129,14 +131,14 @@ public class GovController {
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
-            closewindow(event);
+            close(event);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void closewindow(ActionEvent event) {
+    public void close(ActionEvent event) {
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
 
@@ -151,7 +153,7 @@ public class GovController {
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
-            closewindow(event);
+            close(event);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -169,7 +171,7 @@ public class GovController {
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
-            closewindow(event);
+            close(event);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -182,24 +184,16 @@ public class GovController {
         tuStatus.getItems().clear();
         ArrayList<Case> cases;
 
-        cases = db.positivefromdaterange(tuStart, tuEnd);
+        cases = db.getPositiveFromDateRange(tuStart, tuEnd);
 
         for (int i = 0; i < cases.size(); i++) {
-
             tuNum.getItems().add(cases.get(i).getCasenum());
             tuUser.getItems().add(cases.get(i).getTracerUsername());
             tuStatus.getItems().add(cases.get(i).getStatus());
-
-            System.out.println("Case Num: " + cases.get(i).getCasenum());
-            System.out.println("Contact Tracer: " + cases.get(i).getTracerUsername());
-            System.out.println("Status: " + cases.get(i).getStatus());
-            System.out.println("-------------------POSITIVE-------------------------");
         }
-
     }
 
     public void openUnassigned(ActionEvent event) {
-
         Parent root;
         try {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("view/govUnassigned.fxml"));
@@ -210,7 +204,7 @@ public class GovController {
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
-            closewindow(event);
+            close(event);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -220,21 +214,19 @@ public class GovController {
     public void showUnassigned() {
         listUnassigned.getItems().clear();
 
-        ArrayList<Case> unassigned = new ArrayList<>();
+        ArrayList<Case> unassigned;
 
-        unassigned = db.unassignedCases();
+        unassigned = db.getUnassignedCases();
 
-        System.out.println("-------------------UNASSIGNED CASES-------------------------");
         for (int i = 0; i < unassigned.size(); i++) {
-            System.out.println("Case Num: " + unassigned.get(i).getCasenum());
             listUnassigned.getItems().add(unassigned.get(i).getCasenum());
         }
     }
 
     public void assignCase() {
-        ArrayList<Case> unassigned = new ArrayList<>();
+        ArrayList<Case> unassigned;
 
-        unassigned = db.unassignedCases();
+        unassigned = db.getUnassignedCases();
         int check = 0;
 
         int caseNum = Integer.parseInt(txtCase.getText());
@@ -249,9 +241,8 @@ public class GovController {
                     alert.setContentText("TRACER HAS BEEN SUCCESSFULLY ASSIGNED!");
                     alert.showAndWait();
 
-                    //System.out.println("SUCCESSFULLY ASSIGNED!");
                     check = 1;
-                    db.saveCases();
+                    db.updateCasesFile();
                 } else {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setHeaderText(null);
@@ -259,7 +250,6 @@ public class GovController {
                     alert.setContentText("USER IS NOT A TRACER!");
                     alert.showAndWait();
 
-                    //System.out.println("USER IS NOT A TRACER!");
                     check = 2;
                 }
             }
@@ -270,14 +260,12 @@ public class GovController {
             alert.setTitle("Confirmation");
             alert.setContentText("USER ALREADY HAS A TRACER ASSIGNED!");
             alert.showAndWait();
-
-            //System.out.println("USER ALREADY HAS A TRACER ASSIGNED!");
         }
     }
 
     public void durandCity() {
         int numofCases = 0;
-        numofCases = db.durAndCity(fieldCity.getText(), dateStart, dateEnd);
+        numofCases = db.checkDurAndCity(fieldCity.getText(), dateStart, dateEnd);
         String str1 = Integer.toString(numofCases);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -290,9 +278,8 @@ public class GovController {
 
     public void cityCases() {
         int numofCases = 0;
-        numofCases = db.CityCases(fieldCity.getText());
+        numofCases = db.checkCityCases(fieldCity.getText());
         String str1 = Integer.toString(numofCases);
-        //labelNumofCases.setText(str1);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
@@ -303,19 +290,15 @@ public class GovController {
     }
 
     public void durationCases() {
-
         int numofCases = 0;
         numofCases = db.givenDuration(dateStart, dateEnd);
         String str1 = Integer.toString(numofCases);
-        // labelNumofCases.setText(str1);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
         alert.setTitle("Number of Positive Cases");
         alert.setContentText("Number of positive cases in the duration: " + str1);
         alert.showAndWait();
-
-
     }
 
     public void alertmessage(String s) {

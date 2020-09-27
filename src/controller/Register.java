@@ -22,6 +22,8 @@ import java.util.regex.Pattern;
 
 public class Register {
 
+    private static final Citizen citizen = new Citizen();
+    private final Database database = new Database();
     @FXML
     private Label labelUserChecker;
     @FXML
@@ -48,10 +50,6 @@ public class Register {
     private TextField phoneAdd;
     @FXML
     private TextField Email;
-
-    private Database database = new Database();
-
-    private static Citizen citizen = new Citizen();
 
     public void stringerror() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -84,9 +82,9 @@ public class Register {
     }
 
     public void checkUsername() {
-        if (findspace(user.getText()) || user.getText().contains(":") || user.getText().contains(",")){
+        if (findspace(user.getText()) || user.getText().contains(":") || user.getText().contains(",")) {
             labelUserChecker.setText("Username contains invalid char!");
-        } else if (database.regusername(user.getText())) {
+        } else if (database.checkUsernameEqual(user.getText())) {
             labelUserChecker.setText("Username unique!");
         } else {
             labelUserChecker.setText("Username not unique!");
@@ -98,22 +96,21 @@ public class Register {
         Matcher m = pass.matcher(password1.getText());
         boolean result = m.find();
 
-        if (result){
+        if (result) {
             return true;
-        } else if (password1.getText().matches(".*\\d.*")) {
-            return true;
+        } else {
+            return password1.getText().matches(".*\\d.*");
         }
-        return false;
     }
 
     public void checkPassword() {
-        if (password1.getText().length() < 6){
+        if (password1.getText().length() < 6) {
             labelPasswordChecker.setText("Password must be at least 6 characters!");
-        } else if (!checkValidPass()){
+        } else if (!checkValidPass()) {
             labelPasswordChecker.setText("Password must contain a digit or a spchar!");
-        } else if (findspace(password1.getText()) || password1.getText().contains(":") || password1.getText().contains(",")){
+        } else if (findspace(password1.getText()) || password1.getText().contains(":") || password1.getText().contains(",")) {
             labelPasswordChecker.setText("Password contains invalid char!");
-        } else if (database.regpassword(password1.getText(), password2.getText())) {
+        } else if (database.checkPasswordEqual(password1.getText(), password2.getText())) {
             labelPasswordChecker.setText("Password matched!");
         } else {
             labelPasswordChecker.setText("Password not matched!");
@@ -129,17 +126,14 @@ public class Register {
                 Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
                 alert1.setHeaderText(null);
                 alert1.setTitle("Confirmation Dialog");
-                alert1.setContentText("Are you ok with this?");
+                alert1.setContentText("Are you sure with this?");
 
                 Optional<ButtonType> result = alert1.showAndWait();
                 if (result.get() == ButtonType.OK) {
-                    // ... user chose OK
                     citizen.setUsername(user.getText());
                     citizen.setPassword(password1.getText());
-                    closewindow(event);
-                    showNextWindow();
-                } else {
-                    // ... user chose CANCEL or closed the dialog
+                    close(event);
+                    showRegisterInput();
                 }
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -159,7 +153,7 @@ public class Register {
         }
     }
 
-    public void showNextWindow() {
+    public void showRegisterInput() {
         Parent root;
         try {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("view/mainRegisterInput.fxml"));
@@ -182,7 +176,6 @@ public class Register {
 
         Optional<ButtonType> result = alert1.showAndWait();
         if (result.get() == ButtonType.OK && checkInformation()) {
-            // ... user chose OK
             citizen.setFirstName(firstName.getText());
             citizen.setMiddleName(middleName.getText());
             citizen.setLastName(lastName.getText());
@@ -192,12 +185,9 @@ public class Register {
             citizen.setPhoneNumber(phoneAdd.getText());
             citizen.setEmailAdd(Email.getText());
 
-            database.newAcct(citizen);
+            database.createAccount(citizen);
 
             mainMenu(event);
-        } else {
-
-
         }
     }
 
@@ -210,9 +200,6 @@ public class Register {
         Optional<ButtonType> result = alert1.showAndWait();
         if (result.get() == ButtonType.OK) {
             mainMenu(event);
-        } else {
-          // user closed the dialogue
-
         }
     }
 
@@ -227,13 +214,13 @@ public class Register {
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
-            closewindow(event);
+            close(event);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void closewindow(ActionEvent event) {
+    public void close(ActionEvent event) {
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
 }
