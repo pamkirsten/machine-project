@@ -10,6 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.Citizen;
@@ -199,6 +200,7 @@ public class Register {
             stage.setTitle("Register User Information");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.getIcons().add(new Image("/icon.png"));
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
         } catch (IOException e) {
@@ -264,6 +266,7 @@ public class Register {
             stage.setTitle("COVID Tracker");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.getIcons().add(new Image("/icon.png"));
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
