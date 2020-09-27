@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * The type Database.
+ */
 public class Database {
 
     private static final ArrayList<Account> accounts = new ArrayList<>();
@@ -25,12 +28,18 @@ public class Database {
     private static int casenum = cases.size();
     private final Citizen citizen = new Citizen();
 
+    /**
+     * Start program.
+     */
     public void startProgram() {
         openAccountsFile();
         openEstablishmentsFile();
         openCasesFile();
     }
 
+    /**
+     * Open accounts file.
+     */
     public void openAccountsFile() {
         try {
             FileWriter text = new FileWriter("masterlist.txt", true);
@@ -169,6 +178,9 @@ public class Database {
         }
     }
 
+    /**
+     * Open cases file.
+     */
     public void openCasesFile() {
         try {
             FileWriter text = new FileWriter("positivecases.txt", true);
@@ -209,6 +221,9 @@ public class Database {
         }
     }
 
+    /**
+     * Open establishments file.
+     */
     public void openEstablishmentsFile() {
         try {
             FileWriter text = new FileWriter("establishmentdata.txt", true);
@@ -250,21 +265,41 @@ public class Database {
 
     }
 
+    /**
+     * Create account.
+     *
+     * @param temp the temp
+     */
     public void createAccount(Citizen temp) {
         accounts.add(temp);
         updateAccountsFile();
     }
 
+    /**
+     * Create case.
+     *
+     * @param temp the temp
+     */
     public void createCase(Case temp) {
         cases.add(temp);
         updateCasesFile();
     }
 
+    /**
+     * Create establishment.
+     *
+     * @param temp the temp
+     */
     public void createEstablishment(Establishment temp) {
         establishments.add(temp);
         updateEstablishmentsFile();
     }
 
+    /**
+     * Create official.
+     *
+     * @param temp the temp
+     */
     public void createOfficial(Government temp) {
         for (int i = 0; i < accounts.size(); i++) {
             if (temp.getUsername().equals(accounts.get(i).getUsername())) {
@@ -290,6 +325,11 @@ public class Database {
         updateAccountsFile();
     }
 
+    /**
+     * Create tracer.
+     *
+     * @param temp the temp
+     */
     public void createTracer(Tracer temp) {
         for (int i = 0; i < accounts.size(); i++) {
             if (temp.getUsername().equals(accounts.get(i).getUsername())) {
@@ -315,6 +355,9 @@ public class Database {
         updateAccountsFile();
     }
 
+    /**
+     * Update accounts file.
+     */
     public void updateAccountsFile() {
         try {
             FileWriter text = new FileWriter("masterlist.txt");
@@ -371,6 +414,19 @@ public class Database {
         }
     }
 
+    /**
+     * Update accounts data.
+     *
+     * @param user   the user
+     * @param pass   the pass
+     * @param first  the first
+     * @param middle the middle
+     * @param last   the last
+     * @param home   the home
+     * @param work   the work
+     * @param phone  the phone
+     * @param email  the email
+     */
     public void updateAccountsData(String user, String pass, String first, String middle, String last, String home, String work, String phone, String email) {
         for (int i = 0; i < accounts.size(); i++) {
             if (accounts.get(i).getUsername().equals(user)) {
@@ -389,6 +445,9 @@ public class Database {
         }
     }
 
+    /**
+     * Update cases file.
+     */
     public void updateCasesFile() {
         try {
             FileWriter text = new FileWriter("positivecases.txt");
@@ -420,6 +479,9 @@ public class Database {
         }
     }
 
+    /**
+     * Update establishments file.
+     */
     public void updateEstablishmentsFile() {
         arrangeEstablishments();
 
@@ -481,6 +543,12 @@ public class Database {
         }
     }
 
+    /**
+     * Check username boolean.
+     *
+     * @param userinput the userinput
+     * @return the boolean
+     */
     public boolean checkUsername(String userinput) {
         for (int i = 0; i < accounts.size(); i++) {
             if (userinput.equals(accounts.get(i).getUsername())) {
@@ -490,6 +558,13 @@ public class Database {
         return false;
     }
 
+    /**
+     * Check password boolean.
+     *
+     * @param user the user
+     * @param pass the pass
+     * @return the boolean
+     */
     public boolean checkPassword(String user, String pass) {
         for (int i = 0; i < accounts.size(); i++) {
             if (accounts.get(i).getUsername().equals(user)) {
@@ -499,6 +574,12 @@ public class Database {
         return false;
     }
 
+    /**
+     * Check username equal boolean.
+     *
+     * @param userinput the userinput
+     * @return the boolean
+     */
     public boolean checkUsernameEqual(String userinput) {
         for (int i = 0; i < accounts.size(); i++) {
             if (userinput.equals(accounts.get(i).getUsername())) {
@@ -508,10 +589,23 @@ public class Database {
         return true;
     }
 
+    /**
+     * Check password equal boolean.
+     *
+     * @param userinput  the userinput
+     * @param userinput1 the userinput 1
+     * @return the boolean
+     */
     public boolean checkPasswordEqual(String userinput, String userinput1) {
         return userinput.equals(userinput1);
     }
 
+    /**
+     * Check role int.
+     *
+     * @param username the username
+     * @return the int
+     */
     public int checkRole(String username) {
         int role = -99;
 
@@ -534,6 +628,14 @@ public class Database {
         return role;
     }
 
+    /**
+     * Check duration boolean.
+     *
+     * @param StartDate the start date
+     * @param EndDate   the end date
+     * @param date      the date
+     * @return the boolean
+     */
     public boolean checkDuration(DatePicker StartDate, DatePicker EndDate, String date) {
         String startdate = StartDate.getValue().format(DateTimeFormatter.ofPattern("MM,dd,YYYY"));
         String enddate = EndDate.getValue().format(DateTimeFormatter.ofPattern("MM,dd,YYYY"));
@@ -546,6 +648,14 @@ public class Database {
         return false;
     }
 
+    /**
+     * Check dur and city int.
+     *
+     * @param City      the city
+     * @param StartDate the start date
+     * @param EndDate   the end date
+     * @return the int
+     */
     public int checkDurAndCity(String City, DatePicker StartDate, DatePicker EndDate) {
         int numCases = 0;
         String startdate = StartDate.getValue().format(DateTimeFormatter.ofPattern("MM,dd,YYYY"));
@@ -566,6 +676,12 @@ public class Database {
         return numCases;
     }
 
+    /**
+     * Check notify int.
+     *
+     * @param username the username
+     * @return the int
+     */
     public int checkNotify(String username) {
         int notify = 0;
         for (int i = 0; i < accounts.size(); i++) {
@@ -591,6 +707,12 @@ public class Database {
         return notify;
     }
 
+    /**
+     * Check traced boolean.
+     *
+     * @param casenum the casenum
+     * @return the boolean
+     */
     public boolean checkTraced(int casenum) {
         for (int i = 0; i < cases.size(); i++) {
             if (casenum == cases.get(i).getCasenum()) {
@@ -602,6 +724,12 @@ public class Database {
         return false;
     }
 
+    /**
+     * Check city cases int.
+     *
+     * @param City the city
+     * @return the int
+     */
     public int checkCityCases(String City) {
         int numCases = 0;
 
@@ -618,6 +746,12 @@ public class Database {
         return numCases;
     }
 
+    /**
+     * Gets positive.
+     *
+     * @param user the user
+     * @return the positive
+     */
     public boolean getPositive(String user) {
         for (int i = 0; i < accounts.size(); i++) {
             if (accounts.get(i).getUsername().equals(user)) {
@@ -627,6 +761,12 @@ public class Database {
         return false;
     }
 
+    /**
+     * Gets date reported.
+     *
+     * @param user the user
+     * @return the date reported
+     */
     public String getDateReported(String user) {
         String datereported = "empty";
         for (int i = 0; i < cases.size(); i++) {
@@ -638,6 +778,12 @@ public class Database {
         return datereported;
     }
 
+    /**
+     * Gets case num.
+     *
+     * @param user the user
+     * @return the case num
+     */
     public int getCaseNum(String user) {
         int cNum = 0;
         for (int i = 0; i < cases.size(); i++) {
@@ -649,6 +795,12 @@ public class Database {
         return cNum;
     }
 
+    /**
+     * Gets warning date.
+     *
+     * @param username the username
+     * @return the warning date
+     */
     public String getWarningDate(String username) {
         String date = "00/00/0000";
         for (int i = 0; i < accounts.size(); i++) {
@@ -661,6 +813,12 @@ public class Database {
         return date;
     }
 
+    /**
+     * Gets warning est.
+     *
+     * @param username the username
+     * @return the warning est
+     */
     public String getWarningEst(String username) {
         String est = "Empty";
         for (int i = 0; i < accounts.size(); i++) {
@@ -673,6 +831,11 @@ public class Database {
         return est;
     }
 
+    /**
+     * Sets positive.
+     *
+     * @param user the user
+     */
     public void setPositive(String user) {
         increment();
 
@@ -691,6 +854,13 @@ public class Database {
         }
     }
 
+    /**
+     * Sets notify.
+     *
+     * @param exposedName the exposed name
+     * @param code        the code
+     * @param date        the date
+     */
     public void setNotify(String exposedName, String code, String date) {
         for (int i = 0; i < accounts.size(); i++) {
             if (exposedName.equals(accounts.get(i).getUsername())) {
@@ -701,6 +871,11 @@ public class Database {
         }
     }
 
+    /**
+     * Sets traced.
+     *
+     * @param casenum the casenum
+     */
     public void setTraced(String casenum) {
         for (int i = 0; i < cases.size(); i++) {
             if (casenum.equals(Integer.toString(cases.get(i).getCasenum()))) {
@@ -709,6 +884,12 @@ public class Database {
         }
     }
 
+    /**
+     * Gets cases assigned to tracer.
+     *
+     * @param tracerUN the tracer un
+     * @return the cases assigned to tracer
+     */
     public ArrayList<Case> getCasesAssignedToTracer(String tracerUN) {
         ArrayList<Case> cases = new ArrayList<>();
 
@@ -723,6 +904,11 @@ public class Database {
         return cases;
     }
 
+    /**
+     * Gets unassigned cases.
+     *
+     * @return the unassigned cases
+     */
     public ArrayList<Case> getUnassignedCases() {
         ArrayList<Case> cases = new ArrayList<>();
 
@@ -735,6 +921,13 @@ public class Database {
         return cases;
     }
 
+    /**
+     * Gets positive from date range.
+     *
+     * @param start the start
+     * @param end   the end
+     * @return the positive from date range
+     */
     public ArrayList<Case> getPositiveFromDateRange(DatePicker start, DatePicker end) {
         ArrayList<Case> cases = new ArrayList<>();
         for (int i = 0; i < accounts.size(); i++) {
@@ -752,6 +945,13 @@ public class Database {
         return cases;
     }
 
+    /**
+     * Trace accounts array list.
+     *
+     * @param caseNum the case num
+     * @param xNum    the x num
+     * @return the array list
+     */
     public ArrayList<Establishment> traceAccounts(String caseNum, int xNum) {
 
         Case positiveUser = new Case();
@@ -801,6 +1001,9 @@ public class Database {
         return records;
     }
 
+    /**
+     * Arrange establishments.
+     */
     public void arrangeEstablishments() {
         ArrayList<String> users = new ArrayList<>();
         ArrayList<Establishment> visittemp = new ArrayList<>();
@@ -830,6 +1033,13 @@ public class Database {
         establishments = visittemp;
     }
 
+    /**
+     * Given duration int.
+     *
+     * @param StartDate the start date
+     * @param EndDate   the end date
+     * @return the int
+     */
     public int givenDuration(DatePicker StartDate, DatePicker EndDate) {
         int numCases = 0;
         String startdate = StartDate.getValue().format(DateTimeFormatter.ofPattern("MM,dd,YYYY"));
@@ -843,10 +1053,19 @@ public class Database {
         return numCases;
     }
 
+    /**
+     * Increment.
+     */
     public void increment() {
         casenum += 1;
     }
 
+    /**
+     * Remove account int.
+     *
+     * @param username the username
+     * @return the int
+     */
     public int removeAccount(String username) {
         int check = 0, role = checkRole(username);
         Citizen temp = new Citizen();
@@ -879,6 +1098,9 @@ public class Database {
         return check;
     }
 
+    /**
+     * End program.
+     */
     public void endProgram() {
         updateAccountsFile();
         updateEstablishmentsFile();

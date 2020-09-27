@@ -15,17 +15,37 @@ import model.Database;
 
 import java.io.IOException;
 
+/**
+ * The type Login.
+ */
 public class Login {
 
+    /**
+     * The Database.
+     */
     Database database = new Database();
+    /**
+     * The New citizen controller.
+     */
     CitizenController newCitizenController = new CitizenController();
+    /**
+     * The Tracer.
+     */
     TracerController tracer = new TracerController();
+    /**
+     * The Official.
+     */
     GovController official = new GovController();
     @FXML
     private TextField usernameInput;
     @FXML
     private PasswordField passwordInput;
 
+    /**
+     * Show alert.
+     *
+     * @param check the check
+     */
     public void showAlert(int check) {
         if (check == 1) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -47,6 +67,11 @@ public class Login {
         }
     }
 
+    /**
+     * Login option.
+     *
+     * @param event the event
+     */
     public void loginOption(ActionEvent event) {
         int check = -999;
         int notify = -999;
@@ -102,6 +127,11 @@ public class Login {
         }
     }
 
+    /**
+     * Citizen menu.
+     *
+     * @param event the event
+     */
     public void citizenMenu(ActionEvent event) {
         Parent root;
         try {
@@ -116,6 +146,11 @@ public class Login {
         }
     }
 
+    /**
+     * Government menu.
+     *
+     * @param event the event
+     */
     public void governmentMenu(ActionEvent event) {
         Parent root;
         try {
@@ -131,6 +166,11 @@ public class Login {
         }
     }
 
+    /**
+     * Tracer menu.
+     *
+     * @param event the event
+     */
     public void tracerMenu(ActionEvent event) {
         Parent root;
         try {
@@ -146,6 +186,11 @@ public class Login {
         }
     }
 
+    /**
+     * Main menu.
+     *
+     * @param event the event
+     */
     public void mainMenu(ActionEvent event) {
         Parent root;
         try {
@@ -163,6 +208,11 @@ public class Login {
         }
     }
 
+    /**
+     * Close.
+     *
+     * @param event the event
+     */
     public void close(ActionEvent event) {
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }

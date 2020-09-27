@@ -20,6 +20,9 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * The type Register.
+ */
 public class Register {
 
     private static final Citizen citizen = new Citizen();
@@ -51,6 +54,10 @@ public class Register {
     @FXML
     private TextField Email;
 
+
+    /**
+     * Stringerror.
+     */
     public void stringerror() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(null);
@@ -59,6 +66,12 @@ public class Register {
         alert.showAndWait();
     }
 
+    /**
+     * Findspace boolean.
+     *
+     * @param s the s
+     * @return the boolean
+     */
     public boolean findspace(String s) {
         Pattern pattern = Pattern.compile("\\s");
         Matcher matcher = pattern.matcher(s);
@@ -66,6 +79,11 @@ public class Register {
         return found;
     }
 
+    /**
+     * Check information boolean.
+     *
+     * @return the boolean
+     */
     public boolean checkInformation() {
         if (firstName.getText().contains(":") || firstName.getText().contains(",") ||
                 middleName.getText().contains(":") || middleName.getText().contains(",") ||
@@ -81,6 +99,9 @@ public class Register {
         return true;
     }
 
+    /**
+     * Check username.
+     */
     public void checkUsername() {
         if (findspace(user.getText()) || user.getText().contains(":") || user.getText().contains(",")) {
             labelUserChecker.setText("Username contains invalid char!");
@@ -91,6 +112,12 @@ public class Register {
         }
     }
 
+
+    /**
+     * Check valid pass boolean.
+     *
+     * @return the boolean
+     */
     public boolean checkValidPass() {
         Pattern pass = Pattern.compile("[$&+;=\\\\?@#|/'<>^*()%!-]");
         Matcher m = pass.matcher(password1.getText());
@@ -103,6 +130,9 @@ public class Register {
         }
     }
 
+    /**
+     * Check password.
+     */
     public void checkPassword() {
         if (password1.getText().length() < 6) {
             labelPasswordChecker.setText("Password must be at least 6 characters!");
@@ -117,6 +147,11 @@ public class Register {
         }
     }
 
+    /**
+     * Enter user info.
+     *
+     * @param event the event
+     */
     public void enterUserInfo(ActionEvent event) {
         checkUsername();
         checkPassword();
@@ -153,6 +188,9 @@ public class Register {
         }
     }
 
+    /**
+     * Show register input.
+     */
     public void showRegisterInput() {
         Parent root;
         try {
@@ -168,6 +206,11 @@ public class Register {
         }
     }
 
+    /**
+     * Saving infos.
+     *
+     * @param event the event
+     */
     public void savingInfos(ActionEvent event) {
         Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
         alert1.setHeaderText(null);
@@ -191,6 +234,11 @@ public class Register {
         }
     }
 
+    /**
+     * Cancel.
+     *
+     * @param event the event
+     */
     public void cancel(ActionEvent event) {
         Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
         alert1.setHeaderText(null);
@@ -203,6 +251,11 @@ public class Register {
         }
     }
 
+    /**
+     * Main menu.
+     *
+     * @param event the event
+     */
     public void mainMenu(ActionEvent event) {
         Parent root;
         try {
@@ -220,6 +273,11 @@ public class Register {
         }
     }
 
+    /**
+     * Close.
+     *
+     * @param event the event
+     */
     public void close(ActionEvent event) {
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }

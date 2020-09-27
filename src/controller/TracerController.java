@@ -18,6 +18,9 @@ import model.Government;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * The type Tracer controller.
+ */
 public class TracerController {
 
     private static ArrayList<Establishment> exposed = new ArrayList<>();
@@ -38,10 +41,20 @@ public class TracerController {
     @FXML
     private ListView<String> tsTime;
 
+    /**
+     * Sets .
+     *
+     * @param user the user
+     */
     public static void setusername(String user) {
         username = user;
     }
 
+    /**
+     * View show cases.
+     *
+     * @param event the event
+     */
     public void viewShowCases(ActionEvent event) {
         Parent root;
         try {
@@ -58,6 +71,9 @@ public class TracerController {
         }
     }
 
+    /**
+     * Show cases.
+     */
     public void showCases() {
         listCases.getItems().clear();
         ArrayList<Case> cases;
@@ -68,6 +84,9 @@ public class TracerController {
         }
     }
 
+    /**
+     * Trace specific.
+     */
     public void traceSpecific() {
         tsUser.getItems().clear();
         tsCode.getItems().clear();
@@ -128,6 +147,11 @@ public class TracerController {
         exposed = possiblyexposed;
     }
 
+    /**
+     * View trace specific.
+     *
+     * @param event the event
+     */
     public void viewTraceSpecific(ActionEvent event) {
         Parent root;
         try {
@@ -144,6 +168,9 @@ public class TracerController {
         }
     }
 
+    /**
+     * Inform citizens.
+     */
     public void informCitizens() {
         for (int i = 0; i < exposed.size(); i++) {
             government.notifyUsers(exposed.get(i).getUsername(), exposed.get(i).getEstCode(), exposed.get(i).getCheckInDate());
@@ -158,6 +185,11 @@ public class TracerController {
         exposed.clear();
     }
 
+    /**
+     * Main menu.
+     *
+     * @param event the event
+     */
     public void mainMenu(ActionEvent event) {
         Parent root;
         try {
@@ -175,6 +207,11 @@ public class TracerController {
         }
     }
 
+    /**
+     * Back tracer menu.
+     *
+     * @param event the event
+     */
     public void backTracerMenu(ActionEvent event) {
         Parent root;
         try {
@@ -192,6 +229,11 @@ public class TracerController {
         }
     }
 
+    /**
+     * Close.
+     *
+     * @param event the event
+     */
     public void close(ActionEvent event) {
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }

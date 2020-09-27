@@ -11,16 +11,27 @@ import model.Database;
 
 import java.io.IOException;
 
+/**
+ * The type Main controller.
+ */
 public class MainController {
 
     private Object Stage;
     private final Database database = new Database();
 
+    /**
+     * Exitprogram.
+     */
     public void exitprogram() {
         database.endProgram();
         System.exit(0);
     }
 
+    /**
+     * Reg option.
+     *
+     * @param event the event
+     */
     public void regOption(ActionEvent event) {
         Parent root;
         try {
@@ -38,6 +49,11 @@ public class MainController {
         }
     }
 
+    /**
+     * User login.
+     *
+     * @param event the event
+     */
     public void userLogin(ActionEvent event) {
         Parent root;
         try {
@@ -55,6 +71,11 @@ public class MainController {
         }
     }
 
+    /**
+     * Close.
+     *
+     * @param event the event
+     */
     public void close(ActionEvent event) {
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }

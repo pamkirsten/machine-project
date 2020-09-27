@@ -18,6 +18,9 @@ import model.Database;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * The type Gov controller.
+ */
 public class GovController {
 
     private static String username;
@@ -50,10 +53,20 @@ public class GovController {
     @FXML
     private ListView<String> tuStatus;
 
+    /**
+     * Sets .
+     *
+     * @param user the user
+     */
     public static void setusername(String user) {
         username = user;
     }
 
+    /**
+     * Mainmenu.
+     *
+     * @param event the event
+     */
     public void mainmenu(ActionEvent event) {
         Parent root;
         try {
@@ -71,6 +84,11 @@ public class GovController {
         }
     }
 
+    /**
+     * Backto gov.
+     *
+     * @param event the event
+     */
     public void backtoGov(ActionEvent event) {
         Parent root;
         try {
@@ -88,6 +106,11 @@ public class GovController {
         }
     }
 
+    /**
+     * Opencreate gov.
+     *
+     * @param event the event
+     */
     public void opencreateGov(ActionEvent event) {
         Parent root;
         try {
@@ -104,6 +127,9 @@ public class GovController {
         }
     }
 
+    /**
+     * Opencreate tracer.
+     */
     public void opencreateTracer() {
         Parent root;
         try {
@@ -120,6 +146,11 @@ public class GovController {
         }
     }
 
+    /**
+     * Open terminate.
+     *
+     * @param event the event
+     */
     public void openTerminate(ActionEvent event) {
         Parent root;
         try {
@@ -138,10 +169,20 @@ public class GovController {
         }
     }
 
+    /**
+     * Close.
+     *
+     * @param event the event
+     */
     public void close(ActionEvent event) {
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
 
+    /**
+     * Open tracing updates.
+     *
+     * @param event the event
+     */
     public void openTracingUpdates(ActionEvent event) {
         Parent root;
         try {
@@ -160,6 +201,11 @@ public class GovController {
         }
     }
 
+    /**
+     * Open analytics.
+     *
+     * @param event the event
+     */
     public void openAnalytics(ActionEvent event) {
         Parent root;
         try {
@@ -178,6 +224,9 @@ public class GovController {
         }
     }
 
+    /**
+     * Tracing updates.
+     */
     public void tracingUpdates() {
         tuNum.getItems().clear();
         tuUser.getItems().clear();
@@ -193,6 +242,11 @@ public class GovController {
         }
     }
 
+    /**
+     * Open unassigned.
+     *
+     * @param event the event
+     */
     public void openUnassigned(ActionEvent event) {
         Parent root;
         try {

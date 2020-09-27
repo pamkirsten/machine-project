@@ -19,6 +19,9 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * The type Citizen controller.
+ */
 public class CitizenController {
 
     private static String username;
@@ -50,10 +53,18 @@ public class CitizenController {
     @FXML
     private TextField code;
 
+    /**
+     * Close.
+     *
+     * @param event the event
+     */
     public void close(ActionEvent event) {
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
 
+    /**
+     * Stringerror.
+     */
     public void stringerror() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(null);
@@ -62,6 +73,11 @@ public class CitizenController {
         alert.showAndWait();
     }
 
+    /**
+     * Passworderror.
+     *
+     * @param s the s
+     */
     public void passworderror(String s) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(null);
@@ -70,6 +86,12 @@ public class CitizenController {
         alert.showAndWait();
     }
 
+    /**
+     * Findspace boolean.
+     *
+     * @param s the s
+     * @return the boolean
+     */
     public boolean findspace(String s) {
         Pattern pattern = Pattern.compile("\\s");
         Matcher matcher = pattern.matcher(s);
@@ -77,6 +99,11 @@ public class CitizenController {
         return found;
     }
 
+    /**
+     * Checkpassword boolean.
+     *
+     * @return the boolean
+     */
     public boolean checkpassword() {
         if (regpass1.getText().length() < 6) {
             passworderror("Password must be at least 6 characters!");
@@ -91,6 +118,11 @@ public class CitizenController {
         return true;
     }
 
+    /**
+     * Checkpassvalid boolean.
+     *
+     * @return the boolean
+     */
     public boolean checkpassvalid() {
         Pattern pass = Pattern.compile("[$&+;=\\\\?@#|/'<>^*()%!-]");
         Matcher m = pass.matcher(regpass1.getText());
@@ -101,6 +133,11 @@ public class CitizenController {
         } else return regpass1.getText().matches(".*\\d.*");
     }
 
+    /**
+     * Checkuserinfo boolean.
+     *
+     * @return the boolean
+     */
     public boolean checkuserinfo() {
         if (firstName.getText().contains(":") || firstName.getText().contains(",") ||
                 middleName.getText().contains(":") || middleName.getText().contains(",") ||
@@ -116,10 +153,20 @@ public class CitizenController {
         return true;
     }
 
+    /**
+     * Sets .
+     *
+     * @param user the user
+     */
     public void setusername(String user) {
         username = user;
     }
 
+    /**
+     * Save user info.
+     *
+     * @param event the event
+     */
     public void saveUserInfo(ActionEvent event) {
         if (checkuserinfo()) {
             Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
@@ -135,6 +182,11 @@ public class CitizenController {
         }
     }
 
+    /**
+     * Update info.
+     *
+     * @param event the event
+     */
     public void updateInfo(ActionEvent event) {
         Parent root;
         try {
@@ -149,6 +201,11 @@ public class CitizenController {
         }
     }
 
+    /**
+     * Open check in.
+     *
+     * @param event the event
+     */
     public void openCheckIn(ActionEvent event) {
         Parent root;
         try {
@@ -163,6 +220,11 @@ public class CitizenController {
         }
     }
 
+    /**
+     * Check in.
+     *
+     * @param event the event
+     */
     public void checkIn(ActionEvent event) {
         String tempstring1 = date.getValue().toString();
         String[] fdate = tempstring1.split("-");
@@ -182,6 +244,11 @@ public class CitizenController {
         close(event);
     }
 
+    /**
+     * Main menu.
+     *
+     * @param event the event
+     */
     public void mainMenu(ActionEvent event) {
         Parent root;
         try {
@@ -199,6 +266,11 @@ public class CitizenController {
         }
     }
 
+    /**
+     * Back user.
+     *
+     * @param event the event
+     */
     public void backUser(ActionEvent event) {
         Parent root;
         try {
@@ -216,6 +288,11 @@ public class CitizenController {
         }
     }
 
+    /**
+     * Open report.
+     *
+     * @param event the event
+     */
     public void openReport(ActionEvent event) {
         Parent root;
         try {
@@ -232,6 +309,11 @@ public class CitizenController {
         }
     }
 
+    /**
+     * Report positive.
+     *
+     * @param event the event
+     */
     public void reportPositive(ActionEvent event) {
         String temp = dateReported.getValue().toString();
         String[] fdate = temp.split("-");

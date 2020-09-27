@@ -21,6 +21,9 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * The type Gov register.
+ */
 public class GovRegister {
 
     private static final Government newgovacc = new Government();
@@ -47,10 +50,20 @@ public class GovRegister {
     @FXML
     private TextField emailAdd;
 
+    /**
+     * Sets username register.
+     *
+     * @param s the s
+     */
     public void setUsernameRegister(String s) {
         username = s;
     }
 
+    /**
+     * Register gov.
+     *
+     * @param event the event
+     */
     public void registerGov(ActionEvent event) {
         Parent root;
         try {
@@ -66,6 +79,11 @@ public class GovRegister {
         }
     }
 
+    /**
+     * Stringerror.
+     *
+     * @param s the s
+     */
     public void stringerror(String s) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(null);
@@ -74,12 +92,23 @@ public class GovRegister {
         alert.showAndWait();
     }
 
+    /**
+     * Findspace boolean.
+     *
+     * @param s the s
+     * @return the boolean
+     */
     public boolean findspace(String s) {
         Pattern pattern = Pattern.compile("\\s");
         Matcher matcher = pattern.matcher(s);
         return matcher.find();
     }
 
+    /**
+     * Checkuserinfo boolean.
+     *
+     * @return the boolean
+     */
     public boolean checkuserinfo() {
         if (firstName.getText().contains(":") || firstName.getText().contains(",") ||
                 middleName.getText().contains(":") || middleName.getText().contains(",") ||
@@ -95,6 +124,11 @@ public class GovRegister {
         return true;
     }
 
+    /**
+     * Check user int.
+     *
+     * @return the int
+     */
     public int checkUser() {
         if (findspace(txtfieldUsername.getText()) || txtfieldUsername.getText().contains(":") || txtfieldUsername.getText().contains(",")) { // Invalid Username
             labelcheckUser.setText("Username contains invalid char!");
@@ -115,6 +149,11 @@ public class GovRegister {
         return 0;
     }
 
+    /**
+     * Randompass string.
+     *
+     * @return the string
+     */
     public String randompass() {
         String alphaUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String alphaLower = "abcdefghijklmnopqrstuvwxyz";
@@ -146,6 +185,11 @@ public class GovRegister {
         return password;
     }
 
+    /**
+     * Creategov acc.
+     *
+     * @param event the event
+     */
     public void creategovAcc(ActionEvent event) {
         int govInstance = checkUser();
 
@@ -171,6 +215,11 @@ public class GovRegister {
         }
     }
 
+    /**
+     * Savegovregister.
+     *
+     * @param event the event
+     */
     public void savegovregister(ActionEvent event) {
         Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
         alert1.setHeaderText(null);
@@ -193,6 +242,11 @@ public class GovRegister {
         }
     }
 
+    /**
+     * Cancelregister.
+     *
+     * @param event the event
+     */
     public void cancelregister(ActionEvent event) {
         Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
         alert1.setHeaderText(null);
@@ -205,6 +259,11 @@ public class GovRegister {
         }
     }
 
+    /**
+     * Backto gov.
+     *
+     * @param event the event
+     */
     public void backtoGov(ActionEvent event) {
         Parent root;
         try {
@@ -222,6 +281,11 @@ public class GovRegister {
         }
     }
 
+    /**
+     * Close.
+     *
+     * @param event the event
+     */
     public void close(ActionEvent event) {
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }
