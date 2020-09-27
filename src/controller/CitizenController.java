@@ -328,16 +328,18 @@ public class CitizenController {
         String temp = dateReported.getValue().toString();
         String[] fdate = temp.split("-");
         temp = fdate[1] + "," + fdate[2] + "," + fdate[0];
-
+        int casenum = database.getAssignedCaseNum();
         cases.setUsername(username);
+        cases.setCasenum(casenum);
         cases.setDateReported(temp);
         database.createCase(cases);
+
         database.setPositive(username);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
         alert.setTitle("Positive Confirmation");
-        alert.setContentText("\nYour Assigned Case Number is: " + database.getCaseNum(username) + "\n Date Reported: " + database.getDateReported(username));
+        alert.setContentText("\nYour Assigned Case Number is: " + database.getTotalCases() + "\n Date Reported: " + database.getDateReported(username));
         alert.showAndWait();
 
         database.updateCasesFile();

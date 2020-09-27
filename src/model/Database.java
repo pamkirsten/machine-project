@@ -837,7 +837,7 @@ public class Database {
      * @param user the user
      */
     public void setPositive(String user) {
-        increment();
+        //increment();
 
         for (int i = 0; i < accounts.size(); i++) {
             if (accounts.get(i).getUsername().equals(user)) {
@@ -846,12 +846,21 @@ public class Database {
             }
         }
 
-        for (int i = 0; i < cases.size(); i++) {
+        /*for (int i = 0; i < cases.size(); i++) {
             if (cases.get(i).getUsername().equals(user)) {
                 cases.get(i).setCasenum(casenum);
-
             }
-        }
+        }*/
+
+    }
+
+    public int getAssignedCaseNum(){
+        increment();
+        return casenum;
+    }
+
+    public int getTotalCases(){
+        return cases.size();
     }
 
     /**
