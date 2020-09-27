@@ -5,14 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.Database;
 
 import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class MainController {
 
@@ -25,7 +22,7 @@ public class MainController {
         System.exit(0);
     }
 
-    public void registeruser(ActionEvent event) {
+    public void regOption(ActionEvent event) {
         Parent root;
         try {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("view/mainRegister.fxml"));
@@ -36,13 +33,13 @@ public class MainController {
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
-            closewindow(event);
+            closeWindow(event);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void loginuser(ActionEvent event) {
+    public void userLogin(ActionEvent event) {
         Parent root;
         try {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("view/mainLogin.fxml"));
@@ -53,13 +50,13 @@ public class MainController {
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
-            closewindow(event);
+            closeWindow(event);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void closewindow(ActionEvent event) {
+    public void closeWindow(ActionEvent event) {
         ((Node)(event.getSource())).getScene().getWindow().hide();
     }
 }

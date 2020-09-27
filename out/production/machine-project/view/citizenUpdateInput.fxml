@@ -40,14 +40,14 @@
          <font>
             <Font name="Arial" size="13.0" />
          </font></Label>
-      <TextField fx:id="first" layoutX="302.0" layoutY="173.0" />
-      <TextField fx:id="middle" layoutX="302.0" layoutY="212.0" />
-      <TextField fx:id="last" layoutX="302.0" layoutY="252.0" />
-      <TextField fx:id="home" layoutX="302.0" layoutY="292.0" />
-      <TextField fx:id="work" layoutX="302.0" layoutY="369.0" />
-      <TextField fx:id="phone" layoutX="302.0" layoutY="406.0" />
-      <TextField fx:id="email" layoutX="302.0" layoutY="444.0" />
-      <Button layoutX="150.0" layoutY="530.0" mnemonicParsing="false" onAction="#saveaction" prefHeight="27.0" prefWidth="151.0" style="-fx-background-color: #179952; -fx-background-radius: 15;" text="Save" textFill="WHITE">
+      <TextField fx:id="firstName" layoutX="302.0" layoutY="173.0" />
+      <TextField fx:id="middleName" layoutX="302.0" layoutY="212.0" />
+      <TextField fx:id="lastName" layoutX="302.0" layoutY="252.0" />
+      <TextField fx:id="homeAdd" layoutX="302.0" layoutY="292.0" />
+      <TextField fx:id="workAdd" layoutX="302.0" layoutY="369.0" />
+      <TextField fx:id="phoneNum" layoutX="302.0" layoutY="406.0" />
+      <TextField fx:id="emailAdd" layoutX="302.0" layoutY="444.0" />
+      <Button layoutX="150.0" layoutY="530.0" mnemonicParsing="false" onAction="#saveUserInfo" prefHeight="27.0" prefWidth="151.0" style="-fx-background-color: #179952; -fx-background-radius: 15;" text="Save" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font></Button>

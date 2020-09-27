@@ -23,35 +23,35 @@ import java.util.regex.Pattern;
 public class Register {
 
     @FXML
-    private Label labelcheckuser;
+    private Label labelUserChecker;
     @FXML
-    private Label labelcheckpass;
+    private Label labelPasswordChecker;
     @FXML
-    private TextField reguser;
+    private TextField user;
     @FXML
-    private TextField regpass1;
+    private TextField password1;
     @FXML
-    private TextField regpass2;
+    private TextField password2;
     @FXML
-    private TextField first;
+    private TextField firstName;
     @FXML
     private TextField txtCity;
     @FXML
-    private TextField middle;
+    private TextField middleName;
     @FXML
-    private TextField last;
+    private TextField lastName;
     @FXML
-    private TextField home;
+    private TextField homeAdd;
     @FXML
-    private TextField work;
+    private TextField workAdd;
     @FXML
-    private TextField phone;
+    private TextField phoneAdd;
     @FXML
-    private TextField email;
+    private TextField Email;
 
-    private Database db = new Database();
+    private Database database = new Database();
 
-    private static Citizen newuser = new Citizen();
+    private static Citizen citizen = new Citizen();
 
     public void stringerror() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -68,64 +68,64 @@ public class Register {
         return found;
     }
 
-    public boolean checkuserinfo() {
-        if (first.getText().contains(":") || first.getText().contains(",") ||
-                middle.getText().contains(":") || middle.getText().contains(",") ||
-                last.getText().contains(":") || last.getText().contains(",") ||
-                home.getText().contains(":") ||
+    public boolean checkInformation() {
+        if (firstName.getText().contains(":") || firstName.getText().contains(",") ||
+                middleName.getText().contains(":") || middleName.getText().contains(",") ||
+                lastName.getText().contains(":") || lastName.getText().contains(",") ||
+                homeAdd.getText().contains(":") ||
                 txtCity.getText().contains(":") ||
-                work.getText().contains(":") ||
-                findspace(phone.getText()) || phone.getText().contains(":") || phone.getText().contains(",") || (!phone.getText().matches("[0-9]+")) ||
-                findspace(email.getText()) || email.getText().contains(":") || email.getText().contains(",")) {
+                workAdd.getText().contains(":") ||
+                findspace(phoneAdd.getText()) || phoneAdd.getText().contains(":") || phoneAdd.getText().contains(",") || (!phoneAdd.getText().matches("[0-9]+")) ||
+                findspace(Email.getText()) || Email.getText().contains(":") || Email.getText().contains(",")) {
             stringerror();
             return false;
         }
         return true;
     }
 
-    public void checkusername() {
-        if (findspace(reguser.getText()) || reguser.getText().contains(":") || reguser.getText().contains(",")){
-            labelcheckuser.setText("Username contains invalid char!");
-        } else if (db.regusername(reguser.getText())) {
-            labelcheckuser.setText("Username unique!");
+    public void checkUsername() {
+        if (findspace(user.getText()) || user.getText().contains(":") || user.getText().contains(",")){
+            labelUserChecker.setText("Username contains invalid char!");
+        } else if (database.regusername(user.getText())) {
+            labelUserChecker.setText("Username unique!");
         } else {
-            labelcheckuser.setText("Username not unique!");
+            labelUserChecker.setText("Username not unique!");
         }
     }
 
-    public boolean checkpassvalid() {
+    public boolean checkValidPass() {
         Pattern pass = Pattern.compile("[$&+;=\\\\?@#|/'<>^*()%!-]");
-        Matcher m = pass.matcher(regpass1.getText());
+        Matcher m = pass.matcher(password1.getText());
         boolean result = m.find();
 
         if (result){
             return true;
-        } else if (regpass1.getText().matches(".*\\d.*")) {
+        } else if (password1.getText().matches(".*\\d.*")) {
             return true;
         }
         return false;
     }
 
-    public void checkpassword() {
-        if (regpass1.getText().length() < 6){
-            labelcheckpass.setText("Password must be at least 6 characters!");
-        } else if (!checkpassvalid()){
-            labelcheckpass.setText("Password must contain a digit or a spchar!");
-        } else if (findspace(regpass1.getText()) || regpass1.getText().contains(":") || regpass1.getText().contains(",")){
-            labelcheckpass.setText("Password contains invalid char!");
-        } else if (db.regpassword(regpass1.getText(), regpass2.getText())) {
-            labelcheckpass.setText("Password matched!");
+    public void checkPassword() {
+        if (password1.getText().length() < 6){
+            labelPasswordChecker.setText("Password must be at least 6 characters!");
+        } else if (!checkValidPass()){
+            labelPasswordChecker.setText("Password must contain a digit or a spchar!");
+        } else if (findspace(password1.getText()) || password1.getText().contains(":") || password1.getText().contains(",")){
+            labelPasswordChecker.setText("Password contains invalid char!");
+        } else if (database.regpassword(password1.getText(), password2.getText())) {
+            labelPasswordChecker.setText("Password matched!");
         } else {
-            labelcheckpass.setText("Password not matched!");
+            labelPasswordChecker.setText("Password not matched!");
         }
     }
 
-    public void inputinfo(ActionEvent event) {
-        checkusername();
-        checkpassword();
+    public void enterUserInfo(ActionEvent event) {
+        checkUsername();
+        checkPassword();
 
-        if (labelcheckuser.getText().equals("Username unique!")) {
-            if (labelcheckpass.getText().equals("Password matched!")) {
+        if (labelUserChecker.getText().equals("Username unique!")) {
+            if (labelPasswordChecker.getText().equals("Password matched!")) {
                 Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
                 alert1.setHeaderText(null);
                 alert1.setTitle("Confirmation Dialog");
@@ -134,10 +134,10 @@ public class Register {
                 Optional<ButtonType> result = alert1.showAndWait();
                 if (result.get() == ButtonType.OK) {
                     // ... user chose OK
-                    newuser.setUsername(reguser.getText());
-                    newuser.setPassword(regpass1.getText());
+                    citizen.setUsername(user.getText());
+                    citizen.setPassword(password1.getText());
                     closewindow(event);
-                    shownextwindow();
+                    showNextWindow();
                 } else {
                     // ... user chose CANCEL or closed the dialog
                 }
@@ -159,7 +159,7 @@ public class Register {
         }
     }
 
-    public void shownextwindow() {
+    public void showNextWindow() {
         Parent root;
         try {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("view/mainRegisterInput.fxml"));
@@ -174,34 +174,34 @@ public class Register {
         }
     }
 
-    public void saveaction(ActionEvent event) {
+    public void savingInfos(ActionEvent event) {
         Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
         alert1.setHeaderText(null);
         alert1.setTitle("Confirmation Dialog");
         alert1.setContentText("Are you ok with this?");
 
         Optional<ButtonType> result = alert1.showAndWait();
-        if (result.get() == ButtonType.OK && checkuserinfo()) {
+        if (result.get() == ButtonType.OK && checkInformation()) {
             // ... user chose OK
-            newuser.setFirstname(first.getText());
-            newuser.setMiddlename(middle.getText());
-            newuser.setLastname(last.getText());
-            newuser.setHomeadress(home.getText());
-            newuser.sethCity(txtCity.getText());
-            newuser.setWorkadress(work.getText());
-            newuser.setPhonenum(phone.getText());
-            newuser.setEmail(email.getText());
+            citizen.setFirstName(firstName.getText());
+            citizen.setMiddleName(middleName.getText());
+            citizen.setLastName(lastName.getText());
+            citizen.setHomeAdd(homeAdd.getText());
+            citizen.sethCity(txtCity.getText());
+            citizen.setWorkAdd(workAdd.getText());
+            citizen.setPhoneNumber(phoneAdd.getText());
+            citizen.setEmailAdd(Email.getText());
 
-            db.newacct(newuser);
+            database.newAcct(citizen);
 
-            goback(event);
+            mainMenu(event);
         } else {
-            // ... user chose CANCEL or closed the dialog
+
 
         }
     }
 
-    public void closeaction(ActionEvent event) {
+    public void cancel(ActionEvent event) {
         Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
         alert1.setHeaderText(null);
         alert1.setTitle("Confirmation Dialog");
@@ -209,15 +209,14 @@ public class Register {
 
         Optional<ButtonType> result = alert1.showAndWait();
         if (result.get() == ButtonType.OK) {
-            // ... user chose OK
-            goback(event);
+            mainMenu(event);
         } else {
-            // ... user chose CANCEL or closed the dialog
+          // user closed the dialogue
 
         }
     }
 
-    public void goback(ActionEvent event) {
+    public void mainMenu(ActionEvent event) {
         Parent root;
         try {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("view/mainMenu.fxml"));

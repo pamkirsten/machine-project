@@ -25,13 +25,13 @@ import javafx.scene.control.Button;
 public class User {
 
     @FXML private PasswordField regpass1;
-    @FXML private TextField first;
-    @FXML private TextField middle;
-    @FXML private TextField last;
-    @FXML private TextField home;
-    @FXML private TextField work;
-    @FXML private TextField phone;
-    @FXML private TextField email;
+    @FXML private TextField firstName;
+    @FXML private TextField middleName;
+    @FXML private TextField lastName;
+    @FXML private TextField homeAdd;
+    @FXML private TextField workAdd;
+    @FXML private TextField phoneNum;
+    @FXML private TextField emailAdd;
     @FXML private Button reportPositive;
     @FXML private DatePicker date;
     @FXML private DatePicker dateReported;
@@ -39,9 +39,9 @@ public class User {
 
     private static int casenum;
 
-    private Database db = new Database();
-    private Visit dbv = new Visit();
-    private Case dcase = new Case();
+    private Database database = new Database();
+    private Visit visit = new Visit();
+    private Case cases = new Case();
 
     private static String username;
 
@@ -96,13 +96,13 @@ public class User {
     }
 
     public boolean checkuserinfo() {
-        if (first.getText().contains(":") || first.getText().contains(",") ||
-                middle.getText().contains(":") || middle.getText().contains(",") ||
-                last.getText().contains(":") || last.getText().contains(",") ||
-                home.getText().contains(":") ||
-                work.getText().contains(":") ||
-                findspace(phone.getText()) || phone.getText().contains(":") || phone.getText().contains(",") || (!phone.getText().matches("[0-9]+")) ||
-                findspace(email.getText()) || email.getText().contains(":") || email.getText().contains(",") ||
+        if (firstName.getText().contains(":") || firstName.getText().contains(",") ||
+                middleName.getText().contains(":") || middleName.getText().contains(",") ||
+                lastName.getText().contains(":") || lastName.getText().contains(",") ||
+                homeAdd.getText().contains(":") ||
+                workAdd.getText().contains(":") ||
+                findspace(phoneNum.getText()) || phoneNum.getText().contains(":") || phoneNum.getText().contains(",") || (!phoneNum.getText().matches("[0-9]+")) ||
+                findspace(emailAdd.getText()) || emailAdd.getText().contains(":") || emailAdd.getText().contains(",") ||
                 findspace(regpass1.getText()) || regpass1.getText().contains(":") || regpass1.getText().contains(",") || !checkpassword()){
             stringerror();
             return false;
@@ -114,7 +114,7 @@ public class User {
         this.username = user;
     }
 
-    public void saveaction(ActionEvent event){
+    public void saveUserInfo(ActionEvent event){
         if (checkuserinfo()) {
             Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
             alert1.setHeaderText(null);
@@ -123,16 +123,16 @@ public class User {
 
             Optional<ButtonType> result = alert1.showAndWait();
             if (result.get() == ButtonType.OK) {
-                // ... user chose OK
-                db.updateacct(username, regpass1.getText(), first.getText(), middle.getText(), last.getText(), home.getText(), work.getText(), phone.getText(), email.getText());
+                
+                database.updateacct(username, regpass1.getText(), firstName.getText(), middleName.getText(), lastName.getText(), homeAdd.getText(), workAdd.getText(), phoneNum.getText(), emailAdd.getText());
                 closewindow(event);
             } else {
-                // ... user chose CANCEL or closed the dialog
+                // user closed
             }
         }
     }
 
-    public void updatewindow(ActionEvent event) {
+    public void updateInfo(ActionEvent event) {
         Parent root;
         try {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("view/citizenUpdateInput.fxml"));
@@ -146,7 +146,7 @@ public class User {
         }
     }
 
-    public void checkincode(ActionEvent event) {
+    public void openCheckIn(ActionEvent event) {
         Parent root;
         try {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("view/citizenCheckIn.fxml"));
@@ -160,7 +160,7 @@ public class User {
         }
     }
 
-    public void checkin(ActionEvent event){
+    public void CheckIn(ActionEvent event){
 
         String temp = date.getValue().toString();
         String[] fdate = temp.split("-");
@@ -170,12 +170,12 @@ public class User {
         String[] ftime = temp1.split(":");
         temp1 = ftime[0] + ftime[1];
 
-        dbv.setTime(temp1);
-        dbv.setDate(temp);
-        dbv.setUser(username);
-        dbv.setCode(code.getText());
+        visit.setTime(temp1);
+        visit.setDate(temp);
+        visit.setUser(username);
+        visit.setCode(code.getText());
 
-        db.newvisit(dbv);
+        database.newVisit(visit);
 
         closewindow(event);
     }
@@ -236,18 +236,18 @@ public class User {
         String[] fdate = temp.split("-");
         temp = fdate[1] + "," + fdate[2] + "," + fdate[0];
 
-        dcase.setUsername(username);
-        dcase.setDateReported(temp);
-        db.newcase(dcase);
-        db.setPositive(username);
+        cases.setUsername(username);
+        cases.setDateReported(temp);
+        database.newcase(cases);
+        database.setPositive(username);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
         alert.setTitle("Positive Confirmation");
-        alert.setContentText("\nYour Assigned Case Number is: " + db.getCaseNum(username) +"\n Date Reported: "+ db.getDateReported(username));
+        alert.setContentText("\nYour Assigned Case Number is: " + database.getCaseNum(username) +"\n Date Reported: "+ database.getDateReported(username));
         alert.showAndWait();
 
-        db.savecases();
+        database.saveCases();
 
         reportPositive.setDisable(true);
 

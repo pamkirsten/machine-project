@@ -18,12 +18,12 @@ import java.io.IOException;
 public class Login {
 
     @FXML
-    private TextField inputuser;
+    private TextField usernameInput;
     @FXML
-    private PasswordField inputpass;
+    private PasswordField passwordInput;
 
-    Database db = new Database();
-    User user = new User();
+    Database database = new Database();
+    User newUser = new User();
     TracerController tracer = new TracerController();
     GovController official = new GovController();
 
@@ -33,8 +33,8 @@ public class Login {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setHeaderText(null);
             alert.setTitle("Positive Case Detected");
-            String wDate = db.getwarningDate(inputuser.getText());
-            String wEst = db.getwarningEst(inputuser.getText());
+            String wDate = database.getwarningDate(usernameInput.getText());
+            String wEst = database.getwarningEst(usernameInput.getText());
             alert.setContentText("WARNING: You may have been exposed to COVID-19. There was a positive case detected on "+wDate+" in " + wEst + ". " +
                     "Please take a COVID-19 test as soon as possible and report if you are positive. Thank you.");
 
@@ -53,35 +53,35 @@ public class Login {
 
     }
 
-    public void loginuser(ActionEvent event) {
+    public void loginOption(ActionEvent event) {
         int check = -999;
         int notify = 0;
 
 
-        if (db.checkusername(inputuser.getText())) {
-            if (db.confirmpass(inputuser.getText(), inputpass.getText())) {
+        if (database.checkusername(usernameInput.getText())) {
+            if (database.confirmpass(usernameInput.getText(), passwordInput.getText())) {
 
                 closewindow(event);
 
-                check = db.checkRole(inputuser.getText());
-                notify = db.checkNotify(inputuser.getText());
+                check = database.checkRole(usernameInput.getText());
+                notify = database.checkNotify(usernameInput.getText());
 
                 if (check == 0) {
-                    user.setusername(inputuser.getText());
+                    newUser.setusername(usernameInput.getText());
                     showAlert(notify);
                     citizenMenu(event);
 
                 }
                 if (check == 1) {
-                    user.setusername(inputuser.getText());
-                    GovController.setusername(inputuser.getText());
+                    newUser.setusername(usernameInput.getText());
+                    GovController.setusername(usernameInput.getText());
                     showAlert(notify);
                     citizenMenu(event);
                     governmentMenu(event);
                 }
                 if (check == 2) {
-                    user.setusername(inputuser.getText());
-                    TracerController.setusername(inputuser.getText());
+                    newUser.setusername(usernameInput.getText());
+                    TracerController.setusername(usernameInput.getText());
                     showAlert(notify);
                     citizenMenu(event);
                     tracerMenu(event);
@@ -154,7 +154,7 @@ public class Login {
         try {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("view/mainMenu.fxml"));
             javafx.stage.Stage stage = new Stage();
-            stage.setTitle("COVID Tracker");
+            stage.setTitle("COVID-19 Tracker");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
             stage.initStyle(StageStyle.UNDECORATED);

@@ -1,16 +1,16 @@
 package model;
 
 public class Profile {
-    private String firstname = "Empty";
-    private String middlename = "Empty";
-    private String lastname = "Empty";
+    private String firstName = "Empty";
+    private String middleName = "Empty";
+    private String lastName = "Empty";
 
-    private String homeadress = "Empty";
+    private String homeAdd = "Empty";
     private String hCity = "Empty";
-    private String workadress = "Empty";
+    private String workAdd = "Empty";
 
-    private String phonenum = "Empty";
-    private String email = "Empty";
+    private String phoneNumber = "Empty";
+    private String emailAdd = "Empty";
 
     private String username = "Empty";
     private String password = "Empty";
@@ -72,16 +72,16 @@ public class Profile {
         CaseNum = caseNum;
     }
 
-    public Profile(String firstname, String middlename, String lastname, String homeadress, String workadress, String phonenum, String email, String username, String password) {
-        this.firstname = firstname;
-        this.middlename = middlename;
-        this.lastname = lastname;
+    public Profile(String firstName, String middleName, String lastName, String homeAdd, String workAdd, String phoneNumber, String emailAdd, String username, String password) {
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
 
-        this.homeadress = homeadress;
-        this.workadress = workadress;
+        this.homeAdd = homeAdd;
+        this.workAdd = workAdd;
 
-        this.phonenum = phonenum;
-        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.emailAdd = emailAdd;
 
         this.username = username;
         this.password = password;
@@ -91,60 +91,60 @@ public class Profile {
 
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getMiddlename() {
-        return middlename;
+    public String getMiddleName() {
+        return middleName;
     }
 
-    public void setMiddlename(String middlename) {
-        this.middlename = middlename;
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getHomeadress() {
-        return homeadress;
+    public String getHomeAdd() {
+        return homeAdd;
     }
 
-    public void setHomeadress(String homeadress) {
-        this.homeadress = homeadress;
+    public void setHomeAdd(String homeAdd) {
+        this.homeAdd = homeAdd;
     }
 
-    public String getWorkadress() {
-        return workadress;
+    public String getWorkAdd() {
+        return workAdd;
     }
 
-    public void setWorkadress(String workadress) {
-        this.workadress = workadress;
+    public void setWorkAdd(String workAdd) {
+        this.workAdd = workAdd;
     }
 
-    public String getPhonenum() {
-        return phonenum;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhonenum(String phonenum) {
-        this.phonenum = phonenum;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public String getEmail() {
-        return email;
+    public String getEmailAdd() {
+        return emailAdd;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmailAdd(String emailAdd) {
+        this.emailAdd = emailAdd;
     }
 
     public String getUsername() {

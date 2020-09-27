@@ -27,7 +27,7 @@ public class TracerController {
     @FXML private ListView<String> tsDate;
     @FXML private ListView<String> tsTime;
 
-    private final Government dbg = new Government();
+    private final Government government = new Government();
     private static ArrayList<Visit> exposed = new ArrayList<>();
     private static String username;
 
@@ -55,7 +55,7 @@ public class TracerController {
     public void showCases() {
         listCases.getItems().clear();
         ArrayList<Case> cases;
-        cases = dbg.getCases(username);
+        cases = government.getCases(username);
 
         for (int i = 0; i < cases.size(); i++){
             listCases.getItems().add(cases.get(i).getCasenum());
@@ -85,7 +85,7 @@ public class TracerController {
 
         int casenumChk = 0;
         ArrayList<Case> cases;
-        cases = dbg.getCases(username);
+        cases = government.getCases(username);
 
         System.out.println("\n\n\nREACHED HERE\n\n\n");
         System.out.println(cases.size());
@@ -100,11 +100,11 @@ public class TracerController {
         ArrayList<Visit> possiblyexposed = new ArrayList<>();
 
         if (casenumChk == 1){ // Trace Users
-            possiblyexposed = dbg.getRecords(tsNum.getText(), xNum);
+            possiblyexposed = government.getRecords(tsNum.getText(), xNum);
         }
 
         // Sets the status of case to Traced
-        dbg.setTraced(tsNum.getText());
+        government.setTraced(tsNum.getText());
 
         // Print Possibly Exposed here
         for (int j = 0; j < possiblyexposed.size(); j++){
@@ -141,7 +141,7 @@ public class TracerController {
 
     public void informCitizens() {
         for (int i = 0; i < exposed.size(); i++){
-            dbg.notifyUsers(exposed.get(i).getUser(), exposed.get(i).getCode(), exposed.get(i).getDate());
+            government.notifyUsers(exposed.get(i).getUser(), exposed.get(i).getCode(), exposed.get(i).getDate());
         }
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

@@ -24,9 +24,9 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor></Label>
       <TextField fx:id="code" layoutX="275.0" layoutY="313.0" prefHeight="27.0" prefWidth="199.0" />
-      <Button layoutX="192.0" layoutY="407.0" mnemonicParsing="false" onAction="#checkin" prefHeight="27.0" prefWidth="243.0" style="-fx-background-color: #008000#008000; -fx-background-radius: 15;" text="Confirm Check In" textFill="WHITE">
+      <Button layoutX="192.0" layoutY="407.0" mnemonicParsing="false" onAction="#CheckIn" prefHeight="27.0" prefWidth="243.0" style="-fx-background-color: #008000#008000; -fx-background-radius: 15;" text="Confirm Check-In" textFill="WHITE">
          <font>
-            <Font name="Arial" size="13.0" />
+            <Font name="Arial" size="14.0" />
          </font>
          <cursor>
             <Cursor fx:constant="DEFAULT" />
@@ -41,7 +41,7 @@
       <DatePicker fx:id="date" layoutX="281.0" layoutY="354.0" />
       <Button layoutX="193.0" layoutY="443.0" mnemonicParsing="false" onAction="#backUser" prefHeight="27.0" prefWidth="243.0" style="-fx-background-color: #E62121#E62121; -fx-background-radius: 15;" text="Back to Main Menu" textFill="WHITE">
          <font>
-            <Font name="Arial" size="13.0" />
+            <Font name="Arial" size="14.0" />
          </font>
          <cursor>
             <Cursor fx:constant="DEFAULT" />

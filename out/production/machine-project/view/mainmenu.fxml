@@ -14,12 +14,12 @@
                   <Image url="@../images/mainMenu.png" />
                </image>
             </ImageView>
-            <Button fx:id="loginbtn" layoutX="45.0" layoutY="454.0" mnemonicParsing="false" onAction="#loginuser" prefHeight="31.0" prefWidth="266.0" style="-fx-background-color: #004AAD; -fx-background-radius: 15;" text="Login" textFill="WHITE">
+            <Button fx:id="loginbtn" layoutX="45.0" layoutY="454.0" mnemonicParsing="false" onAction="#userLogin" prefHeight="31.0" prefWidth="266.0" style="-fx-background-color: #004AAD; -fx-background-radius: 15;" text="Login" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="21.0" />
                </font>
             </Button>
-            <Button fx:id="registerbtn" alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="CENTER" layoutX="45.0" layoutY="402.0" mnemonicParsing="false" onAction="#registeruser" prefHeight="31.0" prefWidth="266.0" style="-fx-background-color: #F6C344#F6C344; -fx-background-radius: 15;" text="Register" textFill="WHITE">
+            <Button fx:id="registerbtn" alignment="CENTER" blendMode="SRC_ATOP" contentDisplay="CENTER" layoutX="45.0" layoutY="402.0" mnemonicParsing="false" onAction="#regOption" prefHeight="31.0" prefWidth="266.0" style="-fx-background-color: #F6C344#F6C344; -fx-background-radius: 15;" text="Register" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="21.0" />
                </font>

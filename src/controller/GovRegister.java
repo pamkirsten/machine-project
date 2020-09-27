@@ -6,13 +6,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import javafx.stage.StageStyle;
 import model.Database;
-
-import model.Tracer;
+import model.Government;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -20,31 +21,31 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TracerRegister {
+public class GovRegister {
 
-    private static final Tracer newuser = new Tracer();
+    private static final Government newgovacc = new Government();
     private final Database db = new Database();
     private static String username;
 
     @FXML private TextField txtfieldUsername;
     @FXML private Label labelcheckUser;
-    @FXML private TextField first;
-    @FXML private TextField middle;
-    @FXML private TextField last;
-    @FXML private TextField home;
+    @FXML private TextField firstName;
+    @FXML private TextField middleName;
+    @FXML private TextField lastName;
+    @FXML private TextField homeAdd;
     @FXML private TextField txtCity;
-    @FXML private TextField work;
-    @FXML private TextField phone;
-    @FXML private TextField email;
+    @FXML private TextField workAdd;
+    @FXML private TextField phoneNum;
+    @FXML private TextField emailAdd;
 
     public void setUsernameRegister(String s) {
         username = s;
     }
 
-    public void registerTracer(ActionEvent event) {
+    public void registerGov(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/govInputTrc.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/govInputGov.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("Register Contact Tracer");
             stage.setScene(new Scene(root, 600, 600));
@@ -72,14 +73,14 @@ public class TracerRegister {
     }
 
     public boolean checkuserinfo() {
-        if (first.getText().contains(":") || first.getText().contains(",") ||
-                middle.getText().contains(":") || middle.getText().contains(",") ||
-                last.getText().contains(":") || last.getText().contains(",") ||
-                home.getText().contains(":") ||
+        if (firstName.getText().contains(":") || firstName.getText().contains(",") ||
+                middleName.getText().contains(":") || middleName.getText().contains(",") ||
+                lastName.getText().contains(":") || lastName.getText().contains(",") ||
+                homeAdd.getText().contains(":") ||
                 txtCity.getText().contains(":") ||
-                work.getText().contains(":") ||
-                findspace(phone.getText()) || phone.getText().contains(":") || phone.getText().contains(",") || (!phone.getText().matches("[0-9]+")) ||
-                findspace(email.getText()) || email.getText().contains(":") || email.getText().contains(",")) {
+                workAdd.getText().contains(":") ||
+                findspace(phoneNum.getText()) || phoneNum.getText().contains(":") || phoneNum.getText().contains(",") || (!phoneNum.getText().matches("[0-9]+")) ||
+                findspace(emailAdd.getText()) || emailAdd.getText().contains(":") || emailAdd.getText().contains(",")) {
             stringerror("Input contains invalid characters!");
             return false;
         }
@@ -94,12 +95,12 @@ public class TracerRegister {
             return 2;
         } else if (txtfieldUsername.getText().equals(username)) {
             labelcheckUser.setText("Username cannot use own!");
-        } else { // Existing - Check if Already a Tracer or Not
-            labelcheckUser.setText("Username will be used to create new Tracer!");
-            if (db.checkRole(txtfieldUsername.getText()) == 1){ // Return 0 if Account Username is already a Tracer
+        } else { // Existing - Check if Already a Gov or Not
+            labelcheckUser.setText("Username will be used to create new Official!");
+            if (db.checkRole(txtfieldUsername.getText()) == 1){ // Return 0 if Account Username is already an Official
                 return 0;
             } else {
-                return 1; // Return 1 if Account Username exist but is not a Tracer
+                return 1; // Return 1 if Account Username exist but is not an Official
             }
         }
         return 0;
@@ -136,16 +137,16 @@ public class TracerRegister {
         return password;
     }
 
-    public void createtracerAcc(ActionEvent event) {
-        int tracerInstance = checkUser();
+    public void creategovAcc(ActionEvent event) {
+        int govInstance = checkUser();
 
-        if (tracerInstance == 0){ // Account is already a Tracer
-            stringerror("Account is already a Tracer!");
-        } else if (tracerInstance == 1){ // Account Username exists but not a Tracer
-            newuser.setUsername(txtfieldUsername.getText());
-            db.newtracer(newuser);
+        if (govInstance == 0){ // Account is already an Official
+            stringerror("Account is already an Official!");
+        } else if (govInstance == 1){ // Account Username exists but not an Official
+            newgovacc.setUsername(txtfieldUsername.getText());
+            db.newgov(newgovacc);
             backtoGov(event);
-        } else if (tracerInstance == 2){ // Account Username unique
+        } else if (govInstance == 2){ // Account Username unique
             String newPass = randompass();
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -154,10 +155,10 @@ public class TracerRegister {
             alert.setContentText("User : " + txtfieldUsername.getText() + "'s new password is: " + newPass);
             alert.showAndWait();
 
-            newuser.setUsername(txtfieldUsername.getText());
-            newuser.setPassword(newPass);
+            newgovacc.setUsername(txtfieldUsername.getText());
+            newgovacc.setPassword(newPass);
 
-            registerTracer(event);
+            registerGov(event);
         }
     }
 
@@ -170,19 +171,19 @@ public class TracerRegister {
         Optional<ButtonType> result = alert1.showAndWait();
         if (result.get() == ButtonType.OK && checkuserinfo()) {
             // ... user chose OK
-            newuser.setFirstname(first.getText());
-            newuser.setMiddlename(middle.getText());
-            newuser.setLastname(last.getText());
-            newuser.setHomeadress(home.getText());
-            newuser.sethCity(txtCity.getText());
-            newuser.setWorkadress(work.getText());
-            newuser.setPhonenum(phone.getText());
-            newuser.setEmail(email.getText());
+            newgovacc.setFirstName(firstName.getText());
+            newgovacc.setMiddleName(middleName.getText());
+            newgovacc.setLastName(lastName.getText());
+            newgovacc.setHomeAdd(homeAdd.getText());
+            newgovacc.sethCity(txtCity.getText());
+            newgovacc.setWorkAdd(workAdd.getText());
+            newgovacc.setPhoneNumber(phoneNum.getText());
+            newgovacc.setEmailAdd(emailAdd.getText());
 
-            db.newacct(newuser);
+            db.newAcct(newgovacc);
             backtoGov(event);
         } else {
-            // ... user chose CANCEL or close the dialog
+
         }
     }
 

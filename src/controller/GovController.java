@@ -11,8 +11,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.Case;
 import model.Database;
-import model.Government;
-import model.Tracer;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -241,7 +239,7 @@ public class GovController {
 
                     //System.out.println("SUCCESSFULLY ASSIGNED!");
                     check = 1;
-                    db.savecases();
+                    db.saveCases();
                 } else {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setHeaderText(null);

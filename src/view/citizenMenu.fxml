@@ -12,19 +12,19 @@
             <Image url="@../images/citizenmenu.png" />
          </image>
       </ImageView>
-      <Button layoutX="170.0" layoutY="296.0" mnemonicParsing="false" onAction="#checkincode" prefHeight="40.0" prefWidth="271.0" style="-fx-background-color: #4499DD; -fx-background-radius: 15;" text="Check In" textFill="WHITE">
+      <Button layoutX="170.0" layoutY="302.0" mnemonicParsing="false" onAction="#openCheckIn" prefHeight="34.0" prefWidth="271.0" style="-fx-background-color: #4499DD; -fx-background-radius: 15;" text="Check In" textFill="WHITE">
          <font>
             <Font name="Arial" size="16.0" />
          </font></Button>
-      <Button fx:id="btnReport" layoutX="170.0" layoutY="347.0" mnemonicParsing="false" onAction="#openReport" prefHeight="40.0" prefWidth="271.0" style="-fx-background-color: #4499DD; -fx-background-radius: 15;" text="Report Positive" textFill="WHITE">
+      <Button fx:id="btnReport" layoutX="170.0" layoutY="348.0" mnemonicParsing="false" onAction="#openReport" prefHeight="34.0" prefWidth="271.0" style="-fx-background-color: #4499DD; -fx-background-radius: 15;" text="Report Positive" textFill="WHITE">
          <font>
             <Font name="Arial" size="16.0" />
          </font></Button>
-      <Button layoutX="170.0" layoutY="400.0" mnemonicParsing="false" onAction="#updatewindow" prefHeight="40.0" prefWidth="271.0" style="-fx-background-color: #4499DD; -fx-background-radius: 15;" text="Update Personal Information" textFill="WHITE">
+      <Button layoutX="170.0" layoutY="394.0" mnemonicParsing="false" onAction="#updateInfo" prefHeight="34.0" prefWidth="271.0" style="-fx-background-color: #4499DD; -fx-background-radius: 15;" text="Update Personal Information" textFill="WHITE">
          <font>
             <Font name="Arial" size="16.0" />
          </font></Button>
-      <Button layoutX="170.0" layoutY="453.0" mnemonicParsing="false" onAction="#mainMenu" prefHeight="40.0" prefWidth="271.0" style="-fx-background-color: #C82101;" text="Log Out" textFill="WHITE">
+      <Button layoutX="170.0" layoutY="440.0" mnemonicParsing="false" onAction="#mainMenu" prefHeight="34.0" prefWidth="271.0" style="-fx-background-color: #C82101; -fx-background-radius: 15;" text="Log Out" textFill="WHITE">
          <font>
             <Font name="Arial" size="16.0" />
          </font></Button>

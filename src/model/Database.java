@@ -16,14 +16,14 @@ import java.util.Scanner;
 
 public class Database {
 
-    private static final ArrayList<Profile> db = new ArrayList<>();
-    private static ArrayList<Visit> dbv = new ArrayList<>();
-    private static final ArrayList<Government> dgov = new ArrayList<>();
-    private static final ArrayList<Case> dcase = new ArrayList<>();
-    private static final ArrayList<Citizen> dcitizen = new ArrayList<>();
-    private static final ArrayList<Tracer> dtracer = new ArrayList<>();
-    private static int casenum = dcase.size();
-    private final Citizen newuser = new Citizen();
+    private static final ArrayList<Profile> profiles = new ArrayList<>();
+    private static ArrayList<Visit> visits = new ArrayList<>();
+    private static final ArrayList<Government> GOVERNMENTS = new ArrayList<>();
+    private static final ArrayList<Case> CASES = new ArrayList<>();
+    private static final ArrayList<Citizen> CITIZENS = new ArrayList<>();
+    private static final ArrayList<Tracer> TRACERS = new ArrayList<>();
+    private static int casenum = CASES.size();
+    private final Citizen citizen = new Citizen();
 
     public void increment() {
         casenum += 1;
@@ -31,11 +31,11 @@ public class Database {
 
     public void bootup() {
         System.out.println("@@@---BOOTING UP---@@@");
-        opentextfile();
-        openvisitfile();
-        opencases();
-        infoprint();
-        visitprint();
+        opentxt();
+        openVisitFile();
+        openCases();
+        printAllInfo();
+        printAllVisits();
         caseprint();
         System.out.println("@@@---END---@@@");
     }
@@ -43,15 +43,15 @@ public class Database {
     public void shutdown() {
         System.out.println("@@@---SHUTTING DOWN---@@@");
         updatetext();
-        updatevisitfile();
-        savecases();
-        infoprint();
-        visitprint();
+        updatevisits();
+        saveCases();
+        printAllInfo();
+        printAllVisits();
         caseprint();
         System.out.println("@@@---END---@@@");
     }
 
-    public void openvisitfile() {
+    public void openVisitFile() {
         try {
             FileWriter text = new FileWriter("estvisitrec.txt", true);
         } catch (IOException e) {
@@ -82,7 +82,7 @@ public class Database {
                     visit.setCode(temp[0]);
                     visit.setDate(temp[1]);
                     visit.setTime(temp[2]);
-                    dbv.add(visit);
+                    visits.add(visit);
                 }
             }
 
@@ -92,39 +92,39 @@ public class Database {
 
     }
 
-    public void sortvisitdb() {
+    public void sortingVisit() {
         ArrayList<String> users = new ArrayList<>();
-        ArrayList<Visit> dbvtemp = new ArrayList<>();
+        ArrayList<Visit> visittemp = new ArrayList<>();
 
-        for (int i = 0; i < dbv.size(); i++) {
+        for (int i = 0; i < visits.size(); i++) {
             if (i == 0) {
-                users.add(dbv.get(i).getUser());
+                users.add(visits.get(i).getUser());
             }
             for (int x = 0; x < users.size(); x++) {
-                if (dbv.get(i).getUser().equals(users.get(x))) {
+                if (visits.get(i).getUser().equals(users.get(x))) {
                     break;
                 }
                 if (users.size() == x + 1) {
-                    users.add(dbv.get(i).getUser());
+                    users.add(visits.get(i).getUser());
                 }
             }
         }
 
         for (int z = 0; z < users.size(); z++) {
-            for (int y = 0; y < dbv.size(); y++) {
-                if (users.get(z).equals(dbv.get(y).getUser())) {
-                    dbvtemp.add(dbv.get(y));
+            for (int y = 0; y < visits.size(); y++) {
+                if (users.get(z).equals(visits.get(y).getUser())) {
+                    visittemp.add(visits.get(y));
                 }
             }
         }
 
-        dbv = dbvtemp;
+        visits = visittemp;
 
         System.out.println(Arrays.toString(users.toArray()));
     }
 
-    public void updatevisitfile() {
-        sortvisitdb();
+    public void updatevisits() {
+        sortingVisit();
 
         try {
             FileWriter text = new FileWriter("estvisitrec.txt");
@@ -134,12 +134,12 @@ public class Database {
 
         String temp = "", temp1 = "";
 
-        for (int i = 0; i < dbv.size(); i++) {
+        for (int i = 0; i < visits.size(); i++) {
             if (i == 0) {
                 try {
                     FileWriter text = new FileWriter("estvisitrec.txt", true);
 
-                    text.write(dbv.get(i).getUser());
+                    text.write(visits.get(i).getUser());
                     text.write("\n");
 
                     text.close();
@@ -149,15 +149,15 @@ public class Database {
             }
 
             if (i > 0) {
-                temp = dbv.get(i).getUser();
-                temp1 = dbv.get(i - 1).getUser();
+                temp = visits.get(i).getUser();
+                temp1 = visits.get(i - 1).getUser();
 
                 if (!(temp.equals(temp1))) {
                     try {
                         FileWriter text = new FileWriter("estvisitrec.txt", true);
 
                         text.write("\n");
-                        text.write(dbv.get(i).getUser());
+                        text.write(visits.get(i).getUser());
                         text.write("\n");
 
                         text.close();
@@ -170,11 +170,11 @@ public class Database {
             try {
                 FileWriter text = new FileWriter("estvisitrec.txt", true);
 
-                text.write(dbv.get(i).getCode());
+                text.write(visits.get(i).getCode());
                 text.write(" ");
-                text.write(dbv.get(i).getDate());
+                text.write(visits.get(i).getDate());
                 text.write(" ");
-                text.write(dbv.get(i).getTime());
+                text.write(visits.get(i).getTime());
                 text.write("\n");
 
                 text.close();
@@ -184,7 +184,7 @@ public class Database {
         }
     }
 
-    public void opencases() {
+    public void openCases() {
         try {
             FileWriter text = new FileWriter("positivecases.txt", true);
         } catch (IOException e) {
@@ -209,14 +209,14 @@ public class Database {
                 cases.setTracerUsername(temparray[3]);
                 cases.setStatus(temparray[4]);
 
-                for (int i = 0; i < db.size(); i++) {
-                    if (db.get(i).getUsername().equals(cases.getUsername())) {
-                        db.get(i).setPositive();
-                        db.get(i).setDateReported(temparray[2]);
+                for (int i = 0; i < profiles.size(); i++) {
+                    if (profiles.get(i).getUsername().equals(cases.getUsername())) {
+                        profiles.get(i).setPositive();
+                        profiles.get(i).setDateReported(temparray[2]);
                     }
                 }
 
-                dcase.add(cases);
+                CASES.add(cases);
                 casenum++;
             }
         } catch (IOException e) {
@@ -224,7 +224,7 @@ public class Database {
         }
     }
 
-    public void savecases() {
+    public void saveCases() {
 
         System.out.println("\n\n\nENTERED HERE\n\n\n");
 
@@ -236,19 +236,19 @@ public class Database {
 
         String temp = "", temp1 = "";
 
-        for (int i = 0; i < dcase.size(); i++) {
+        for (int i = 0; i < CASES.size(); i++) {
             try {
                 FileWriter text = new FileWriter("positivecases.txt", true);
 
-                text.write(String.valueOf(dcase.get(i).getCasenum()));
+                text.write(String.valueOf(CASES.get(i).getCasenum()));
                 text.write(" ");
-                text.write(dcase.get(i).getUsername());
+                text.write(CASES.get(i).getUsername());
                 text.write(" ");
-                text.write(dcase.get(i).getDateReported());
+                text.write(CASES.get(i).getDateReported());
                 text.write(" ");
-                text.write(dcase.get(i).getTracerUsername());
+                text.write(CASES.get(i).getTracerUsername());
                 text.write(" ");
-                text.write(dcase.get(i).getStatus());
+                text.write(CASES.get(i).getStatus());
                 text.write("\n");
 
                 text.close();
@@ -258,129 +258,129 @@ public class Database {
         }
     }
 
-    public void opentextfile() {
+    public void opentxt() {
         try {
             FileWriter text = new FileWriter("masterlist.txt", true);
         } catch (IOException e) {
             System.out.println("Error occurred in opening MASTERLIST");
         }
 
-        String tmpstring, user, line;
+        String tempS, users, lines;
         String[] account;
 
         try {
             Scanner readtxt = new Scanner(new File("masterlist.txt"));
 
             while (readtxt.hasNextLine()) {
-                tmpstring = readtxt.nextLine();
-                account = tmpstring.trim().split("\\s+");
+                tempS = readtxt.nextLine();
+                account = tempS.trim().split("\\s+");
 
                 if (account[1].equals("citizen")) {
                     Citizen temp = new Citizen();
 
                     temp.setUsername(account[0]);
 
-                    user = "accounts/" + account[0] + ".act";
-                    Scanner readuser = new Scanner(new File(user));
+                    users = "accounts/" + account[0] + ".act";
+                    Scanner readuser = new Scanner(new File(users));
 
-                    line = readuser.nextLine();
-                    temp.setPassword(line);
+                    lines = readuser.nextLine();
+                    temp.setPassword(lines);
 
-                    tmpstring = readuser.nextLine();
-                    account = tmpstring.split(",");
-                    temp.setFirstname(account[0]);
-                    temp.setMiddlename(account[1]);
-                    temp.setLastname(account[2]);
+                    tempS = readuser.nextLine();
+                    account = tempS.split(",");
+                    temp.setFirstName(account[0]);
+                    temp.setMiddleName(account[1]);
+                    temp.setLastName(account[2]);
 
-                    tmpstring = readuser.nextLine();
-                    account = tmpstring.split(":");
-                    temp.setHomeadress(account[1]);
+                    tempS = readuser.nextLine();
+                    account = tempS.split(":");
+                    temp.setHomeAdd(account[1]);
 
-                    tmpstring = readuser.nextLine();
-                    account = tmpstring.split(":");
+                    tempS = readuser.nextLine();
+                    account = tempS.split(":");
                     temp.sethCity(account[1]);
 
-                    tmpstring = readuser.nextLine();
-                    account = tmpstring.split(":");
-                    temp.setWorkadress(account[1]);
+                    tempS = readuser.nextLine();
+                    account = tempS.split(":");
+                    temp.setWorkAdd(account[1]);
 
-                    tmpstring = readuser.nextLine();
-                    account = tmpstring.split(":");
-                    temp.setPhonenum(account[1]);
+                    tempS = readuser.nextLine();
+                    account = tempS.split(":");
+                    temp.setPhoneNumber(account[1]);
 
-                    tmpstring = readuser.nextLine();
-                    account = tmpstring.split(":");
-                    temp.setEmail(account[1]);
+                    tempS = readuser.nextLine();
+                    account = tempS.split(":");
+                    temp.setEmailAdd(account[1]);
 
-                    db.add(temp);
+                    profiles.add(temp);
                 } else if (account[1].equals("official")) {
                     Government temp1 = new Government();
 
                     temp1.setUsername(account[0]);
 
-                    user = "accounts/" + account[0] + ".act";
-                    Scanner readuser = new Scanner(new File(user));
+                    users = "accounts/" + account[0] + ".act";
+                    Scanner readuser = new Scanner(new File(users));
 
-                    line = readuser.nextLine();
-                    temp1.setPassword(line);
+                    lines = readuser.nextLine();
+                    temp1.setPassword(lines);
 
-                    tmpstring = readuser.nextLine();
-                    account = tmpstring.split(",");
-                    temp1.setFirstname(account[0]);
-                    temp1.setMiddlename(account[1]);
-                    temp1.setLastname(account[2]);
+                    tempS = readuser.nextLine();
+                    account = tempS.split(",");
+                    temp1.setFirstName(account[0]);
+                    temp1.setMiddleName(account[1]);
+                    temp1.setLastName(account[2]);
 
-                    tmpstring = readuser.nextLine();
-                    account = tmpstring.split(":");
-                    temp1.setHomeadress(account[1]);
+                    tempS = readuser.nextLine();
+                    account = tempS.split(":");
+                    temp1.setHomeAdd(account[1]);
 
-                    tmpstring = readuser.nextLine();
-                    account = tmpstring.split(":");
-                    temp1.setWorkadress(account[1]);
+                    tempS = readuser.nextLine();
+                    account = tempS.split(":");
+                    temp1.setWorkAdd(account[1]);
 
-                    tmpstring = readuser.nextLine();
-                    account = tmpstring.split(":");
-                    temp1.setPhonenum(account[1]);
+                    tempS = readuser.nextLine();
+                    account = tempS.split(":");
+                    temp1.setPhoneNumber(account[1]);
 
-                    tmpstring = readuser.nextLine();
-                    account = tmpstring.split(":");
-                    temp1.setEmail(account[1]);
+                    tempS = readuser.nextLine();
+                    account = tempS.split(":");
+                    temp1.setEmailAdd(account[1]);
 
-                    db.add(temp1);
+                    profiles.add(temp1);
                 } else if (account[1].equals("tracer")) {
                     Tracer temp2 = new Tracer();
 
                     temp2.setUsername(account[0]);
 
-                    user = "accounts/" + account[0] + ".act";
-                    Scanner readuser = new Scanner(new File(user));
+                    users = "accounts/" + account[0] + ".act";
+                    Scanner readuser = new Scanner(new File(users));
 
-                    line = readuser.nextLine();
-                    temp2.setPassword(line);
+                    lines = readuser.nextLine();
+                    temp2.setPassword(lines);
 
-                    tmpstring = readuser.nextLine();
-                    account = tmpstring.split(",");
-                    temp2.setFirstname(account[0]);
-                    temp2.setMiddlename(account[1]);
-                    temp2.setLastname(account[2]);
+                    tempS = readuser.nextLine();
+                    account = tempS.split(",");
+                    temp2.setFirstName(account[0]);
+                    temp2.setMiddleName(account[1]);
+                    temp2.setLastName(account[2]);
 
-                    tmpstring = readuser.nextLine();
-                    account = tmpstring.split(":");
-                    temp2.setHomeadress(account[1]);
+                    tempS = readuser.nextLine();
+                    account = tempS.split(":");
+                    temp2.setHomeAdd(account[1]);
 
-                    tmpstring = readuser.nextLine();
-                    account = tmpstring.split(":");
-                    temp2.setWorkadress(account[1]);
+                    tempS = readuser.nextLine();
+                    account = tempS.split(":");
+                    temp2.setWorkAdd(account[1]);
 
-                    tmpstring = readuser.nextLine();
-                    account = tmpstring.split(":");
-                    temp2.setPhonenum(account[1]);
+                    tempS = readuser.nextLine();
+                    account = tempS.split(":");
+                    temp2.setPhoneNumber(account[1]);
 
-                    tmpstring = readuser.nextLine();
-                    account = tmpstring.split(":");
-                    temp2.setEmail(account[1]);
+                    tempS = readuser.nextLine();
+                    account = tempS.split(":");
+                    temp2.setEmailAdd(account[1]);
 
-                    db.add(temp2);
+                    profiles.add(temp2);
                 }
             }
         } catch (FileNotFoundException e) {
@@ -395,42 +395,42 @@ public class Database {
             System.out.println("Error occurred in opening MASTERLIST");
         }
 
-        for (int i = 0; i < db.size(); i++) {
+        for (int i = 0; i < profiles.size(); i++) {
             try {
                 FileWriter text = new FileWriter("masterlist.txt", true);
 
-                text.write(db.get(i).getUsername());
+                text.write(profiles.get(i).getUsername());
                 text.write(" ");
 
 
-                if (db.get(i) instanceof Government) {
+                if (profiles.get(i) instanceof Government) {
                     text.write("official");
                     text.write("\n");
-                } else if (db.get(i) instanceof Tracer) {
+                } else if (profiles.get(i) instanceof Tracer) {
                     text.write("tracer");
                     text.write("\n");
-                } else if (db.get(i) instanceof Citizen) {
+                } else if (profiles.get(i) instanceof Citizen) {
                     text.write("citizen");
                     text.write("\n");
                 }
 
                 try {
-                    String user = "accounts/" + db.get(i).getUsername() + ".act";
+                    String user = "accounts/" + profiles.get(i).getUsername() + ".act";
                     FileWriter text1 = new FileWriter(user);
 
-                    text1.write(db.get(i).getPassword());
+                    text1.write(profiles.get(i).getPassword());
                     text1.write("\n");
-                    text1.write(db.get(i).getFirstname() + "," + db.get(i).getMiddlename() + "," + db.get(i).getLastname());
+                    text1.write(profiles.get(i).getFirstName() + "," + profiles.get(i).getMiddleName() + "," + profiles.get(i).getLastName());
                     text1.write("\n");
-                    text1.write("HOME:" + db.get(i).getHomeadress());
+                    text1.write("HOME:" + profiles.get(i).getHomeAdd());
                     text1.write("\n");
-                    text1.write("CITY:" + db.get(i).gethCity());
+                    text1.write("CITY:" + profiles.get(i).gethCity());
                     text1.write("\n");
-                    text1.write("OFFICE:" + db.get(i).getWorkadress());
+                    text1.write("OFFICE:" + profiles.get(i).getWorkAdd());
                     text1.write("\n");
-                    text1.write("PHONE:" + db.get(i).getPhonenum());
+                    text1.write("PHONE:" + profiles.get(i).getPhoneNumber());
                     text1.write("\n");
-                    text1.write("EMAIL:" + db.get(i).getEmail());
+                    text1.write("EMAIL:" + profiles.get(i).getEmailAdd());
                     text1.write("\n");
 
                     text1.close();
@@ -444,41 +444,41 @@ public class Database {
         }
     }
 
-    public void infoprint() {
-        for (int i = 0; i < db.size(); i++) {
-            System.out.println("First name: " + db.get(i).getFirstname());
-            System.out.println("Middle name: " + db.get(i).getMiddlename());
-            System.out.println("Last name: " + db.get(i).getLastname());
-            System.out.println("Username: " + db.get(i).getUsername());
-            System.out.println("Password: " + db.get(i).getPassword());
-            System.out.println("STATUS: " + db.get(i).isPositive());
+    public void printAllInfo() {
+        for (int i = 0; i < profiles.size(); i++) {
+            System.out.println("First name: " + profiles.get(i).getFirstName());
+            System.out.println("Middle name: " + profiles.get(i).getMiddleName());
+            System.out.println("Last name: " + profiles.get(i).getLastName());
+            System.out.println("Username: " + profiles.get(i).getUsername());
+            System.out.println("Password: " + profiles.get(i).getPassword());
+            System.out.println("STATUS: " + profiles.get(i).isPositive());
             System.out.print("Role: ");
 
-            if (db.get(i) instanceof Government) {
+            if (profiles.get(i) instanceof Government) {
                 System.out.println("Official");
-            } else if (db.get(i) instanceof Tracer) {
+            } else if (profiles.get(i) instanceof Tracer) {
                 System.out.println("Tracer");
-            } else if (db.get(i) instanceof Citizen) {
+            } else if (profiles.get(i) instanceof Citizen) {
                 System.out.println("Citizen");
             }
             System.out.println("-------------------ACCT--------------------------");
         }
     }
 
-    public void visitprint() {
-        for (int i = 0; i < dbv.size(); i++) {
-            System.out.println("Username: " + dbv.get(i).getUser());
-            System.out.println("Visit: " + dbv.get(i).getCode());
-            System.out.println("Date: " + dbv.get(i).getDate());
-            System.out.println("Time: " + dbv.get(i).getTime());
+    public void printAllVisits() {
+        for (int i = 0; i < visits.size(); i++) {
+            System.out.println("Username: " + visits.get(i).getUser());
+            System.out.println("Visit: " + visits.get(i).getCode());
+            System.out.println("Date: " + visits.get(i).getDate());
+            System.out.println("Time: " + visits.get(i).getTime());
             System.out.println("-------------------VISIT-------------------------");
         }
 
     }
 
     public boolean checkusername(String userinput) {
-        for (int i = 0; i < db.size(); i++) {
-            if (userinput.equals(db.get(i).getUsername())) {
+        for (int i = 0; i < profiles.size(); i++) {
+            if (userinput.equals(profiles.get(i).getUsername())) {
                 return true;
             }
         }
@@ -486,17 +486,17 @@ public class Database {
     }
 
     public boolean confirmpass(String user, String pass) {
-        for (int i = 0; i < db.size(); i++) {
-            if (db.get(i).getUsername().equals(user)) {
-                return db.get(i).getPassword().equals(pass);
+        for (int i = 0; i < profiles.size(); i++) {
+            if (profiles.get(i).getUsername().equals(user)) {
+                return profiles.get(i).getPassword().equals(pass);
             }
         }
         return false;
     }
 
     public boolean regusername(String userinput) {
-        for (int i = 0; i < db.size(); i++) {
-            if (userinput.equals(db.get(i).getUsername())) {
+        for (int i = 0; i < profiles.size(); i++) {
+            if (userinput.equals(profiles.get(i).getUsername())) {
                 return false;
             }
         }
@@ -511,17 +511,17 @@ public class Database {
     public int checkRole(String username) {
         int role = -99;
 
-        for (int i = 0; i < db.size(); i++) {
-            if (username.equals(db.get(i).getUsername())) {
+        for (int i = 0; i < profiles.size(); i++) {
+            if (username.equals(profiles.get(i).getUsername())) {
 
-                if (db.get(i) instanceof Government) {
+                if (profiles.get(i) instanceof Government) {
                     role = 1;
                     return role;
 
-                } else if (db.get(i) instanceof Tracer) {
+                } else if (profiles.get(i) instanceof Tracer) {
                     role = 2;
                     return role;
-                } else if (db.get(i) instanceof Citizen || db.get(i) instanceof Profile) {
+                } else if (profiles.get(i) instanceof Citizen || profiles.get(i) instanceof Profile) {
                     role = 0;
                     return role;
                 }
@@ -530,77 +530,77 @@ public class Database {
         return role;
     }
 
-    public void newvisit(Visit temp) {
-        dbv.add(temp);
-        updatevisitfile();
+    public void newVisit(Visit temp) {
+        visits.add(temp);
+        updatevisits();
     }
 
-    public void newacct(Citizen temp) {
-        db.add(temp);
+    public void newAcct(Citizen temp) {
+        profiles.add(temp);
         updatetext();
     }
 
     public void newgov(Government temp) {
-        for (int i = 0; i < db.size(); i++){
-            if (temp.getUsername().equals(db.get(i).getUsername())){
-                temp.setFirstname(db.get(i).getFirstname());
-                temp.setMiddlename(db.get(i).getMiddlename());
-                temp.setLastname(db.get(i).getLastname());
-                temp.setHomeadress(db.get(i).getHomeadress());
-                temp.sethCity(db.get(i).gethCity());
-                temp.setWorkadress(db.get(i).getWorkadress());
-                temp.setPhonenum(db.get(i).getPhonenum());
-                temp.setEmail(db.get(i).getEmail());
-                temp.setUsername(db.get(i).getUsername());
-                temp.setPassword(db.get(i).getPassword());
-                temp.setDateReported(db.get(i).getDateReported());
-                temp.setNotifyUser(db.get(i).getNotifyUser());
-                temp.setWarningCode(db.get(i).getWarningCode());
-                temp.setWarningDate(db.get(i).getWarningDate());
-                db.remove(i);
+        for (int i = 0; i < profiles.size(); i++){
+            if (temp.getUsername().equals(profiles.get(i).getUsername())){
+                temp.setFirstName(profiles.get(i).getFirstName());
+                temp.setMiddleName(profiles.get(i).getMiddleName());
+                temp.setLastName(profiles.get(i).getLastName());
+                temp.setHomeAdd(profiles.get(i).getHomeAdd());
+                temp.sethCity(profiles.get(i).gethCity());
+                temp.setWorkAdd(profiles.get(i).getWorkAdd());
+                temp.setPhoneNumber(profiles.get(i).getPhoneNumber());
+                temp.setEmailAdd(profiles.get(i).getEmailAdd());
+                temp.setUsername(profiles.get(i).getUsername());
+                temp.setPassword(profiles.get(i).getPassword());
+                temp.setDateReported(profiles.get(i).getDateReported());
+                temp.setNotifyUser(profiles.get(i).getNotifyUser());
+                temp.setWarningCode(profiles.get(i).getWarningCode());
+                temp.setWarningDate(profiles.get(i).getWarningDate());
+                profiles.remove(i);
             }
         }
 
-        db.add(temp);
+        profiles.add(temp);
         updatetext();
     }
 
     public void newtracer(Tracer temp) {
-        for (int i = 0; i < db.size(); i++){
-            if (temp.getUsername().equals(db.get(i).getUsername())){
-                temp.setFirstname(db.get(i).getFirstname());
-                temp.setMiddlename(db.get(i).getMiddlename());
-                temp.setLastname(db.get(i).getLastname());
-                temp.setHomeadress(db.get(i).getHomeadress());
-                temp.sethCity(db.get(i).gethCity());
-                temp.setWorkadress(db.get(i).getWorkadress());
-                temp.setPhonenum(db.get(i).getPhonenum());
-                temp.setEmail(db.get(i).getEmail());
-                temp.setUsername(db.get(i).getUsername());
-                temp.setPassword(db.get(i).getPassword());
-                temp.setDateReported(db.get(i).getDateReported());
-                temp.setNotifyUser(db.get(i).getNotifyUser());
-                temp.setWarningCode(db.get(i).getWarningCode());
-                temp.setWarningDate(db.get(i).getWarningDate());
-                db.remove(i);
+        for (int i = 0; i < profiles.size(); i++){
+            if (temp.getUsername().equals(profiles.get(i).getUsername())){
+                temp.setFirstName(profiles.get(i).getFirstName());
+                temp.setMiddleName(profiles.get(i).getMiddleName());
+                temp.setLastName(profiles.get(i).getLastName());
+                temp.setHomeAdd(profiles.get(i).getHomeAdd());
+                temp.sethCity(profiles.get(i).gethCity());
+                temp.setWorkAdd(profiles.get(i).getWorkAdd());
+                temp.setPhoneNumber(profiles.get(i).getPhoneNumber());
+                temp.setEmailAdd(profiles.get(i).getEmailAdd());
+                temp.setUsername(profiles.get(i).getUsername());
+                temp.setPassword(profiles.get(i).getPassword());
+                temp.setDateReported(profiles.get(i).getDateReported());
+                temp.setNotifyUser(profiles.get(i).getNotifyUser());
+                temp.setWarningCode(profiles.get(i).getWarningCode());
+                temp.setWarningDate(profiles.get(i).getWarningDate());
+                profiles.remove(i);
             }
         }
 
-        db.add(temp);
+        profiles.add(temp);
         updatetext();
     }
 
     public void updateacct(String user, String pass, String first, String middle, String last, String home, String work, String phone, String email) {
-        for (int i = 0; i < db.size(); i++) {
-            if (db.get(i).getUsername().equals(user)) {
-                db.get(i).setPassword(pass);
-                db.get(i).setFirstname(first);
-                db.get(i).setMiddlename(middle);
-                db.get(i).setLastname(last);
-                db.get(i).setHomeadress(home);
-                db.get(i).setWorkadress(work);
-                db.get(i).setPhonenum(phone);
-                db.get(i).setEmail(email);
+        for (int i = 0; i < profiles.size(); i++) {
+            if (profiles.get(i).getUsername().equals(user)) {
+                profiles.get(i).setPassword(pass);
+                profiles.get(i).setFirstName(first);
+                profiles.get(i).setMiddleName(middle);
+                profiles.get(i).setLastName(last);
+                profiles.get(i).setHomeAdd(home);
+                profiles.get(i).setWorkAdd(work);
+                profiles.get(i).setPhoneNumber(phone);
+                profiles.get(i).setEmailAdd(email);
 
                 updatetext();
                 break;
@@ -609,9 +609,9 @@ public class Database {
     }
 
     public boolean getPositive(String user) {
-        for (int i = 0; i < db.size(); i++) {
-            if (db.get(i).getUsername().equals(user)) {
-                return db.get(i).isPositive();
+        for (int i = 0; i < profiles.size(); i++) {
+            if (profiles.get(i).getUsername().equals(user)) {
+                return profiles.get(i).isPositive();
             }
         }
         return false;
@@ -620,15 +620,15 @@ public class Database {
     public void setPositive(String user) {
         increment();
 
-        for (int i = 0; i < db.size(); i++) {
-            if (db.get(i).getUsername().equals(user)) {
-                db.get(i).setPositive();
+        for (int i = 0; i < profiles.size(); i++) {
+            if (profiles.get(i).getUsername().equals(user)) {
+                profiles.get(i).setPositive();
             }
         }
 
-        for (int i = 0; i < dcase.size(); i++) {
-            if (dcase.get(i).getUsername().equals(user)) {
-                dcase.get(i).setCasenum(casenum);
+        for (int i = 0; i < CASES.size(); i++) {
+            if (CASES.get(i).getUsername().equals(user)) {
+                CASES.get(i).setCasenum(casenum);
 
             }
         }
@@ -636,9 +636,9 @@ public class Database {
 
     public String getDateReported(String user) {
         String datereported = "empty";
-        for (int i = 0; i < dcase.size(); i++) {
-            if (dcase.get(i).getUsername().equals(user)) {
-                datereported = dcase.get(i).getDateReported();
+        for (int i = 0; i < CASES.size(); i++) {
+            if (CASES.get(i).getUsername().equals(user)) {
+                datereported = CASES.get(i).getDateReported();
                 return datereported;
             }
         }
@@ -648,9 +648,9 @@ public class Database {
     public int getCaseNum(String user) {
 
         int cNum = 0;
-        for (int i = 0; i < dcase.size(); i++) {
-            if (dcase.get(i).getUsername().equals(user)) {
-                cNum = dcase.get(i).getCasenum();
+        for (int i = 0; i < CASES.size(); i++) {
+            if (CASES.get(i).getUsername().equals(user)) {
+                cNum = CASES.get(i).getCasenum();
                 return cNum;
             }
         }
@@ -658,29 +658,29 @@ public class Database {
     }
 
     public void caseprint() {
-        for (int i = 0; i < dcase.size(); i++) {
-            System.out.println("Username: " + dcase.get(i).getUsername());
-            System.out.println("Case Num: " + dcase.get(i).getCasenum());
-            System.out.println("Date: " + dcase.get(i).getDateReported());
+        for (int i = 0; i < CASES.size(); i++) {
+            System.out.println("Username: " + CASES.get(i).getUsername());
+            System.out.println("Case Num: " + CASES.get(i).getCasenum());
+            System.out.println("Date: " + CASES.get(i).getDateReported());
             System.out.println("-------------------CASE-------------------------");
         }
     }
 
     public void newcase(Case temp) {
-        dcase.add(temp);
-        savecases();
+        CASES.add(temp);
+        saveCases();
     }
 
     public ArrayList<Case> positivefromdaterange(DatePicker start, DatePicker end) {
         ArrayList<Case> cases = new ArrayList<>();
-        infoprint();
-        for (int i = 0; i < db.size(); i++) {
-            if (db.get(i).isPositive()) {
-                if (checkDuration(start, end, db.get(i).getDateReported())) {
-                    for (int j = 0; j < dcase.size(); j++) {
-                        if (db.get(i).getUsername().equals(dcase.get(j).getUsername())) {
+        printAllInfo();
+        for (int i = 0; i < profiles.size(); i++) {
+            if (profiles.get(i).isPositive()) {
+                if (checkDuration(start, end, profiles.get(i).getDateReported())) {
+                    for (int j = 0; j < CASES.size(); j++) {
+                        if (profiles.get(i).getUsername().equals(CASES.get(j).getUsername())) {
                             System.out.println("\n\nREACHED HERE\n\n");
-                            cases.add(dcase.get(j));
+                            cases.add(CASES.get(j));
                         }
                     }
                 }
@@ -694,7 +694,7 @@ public class Database {
         String startdate = StartDate.getValue().format(DateTimeFormatter.ofPattern("MM,dd,YYYY"));
         String enddate = EndDate.getValue().format(DateTimeFormatter.ofPattern("MM,dd,YYYY"));
 
-        for (int i = 0; i < dcase.size(); i++) {
+        for (int i = 0; i < CASES.size(); i++) {
             if ((date.compareTo(startdate) >= 0) && (date.compareTo(enddate) <= 0)) {
                 return true;
             }
@@ -707,11 +707,11 @@ public class Database {
         String startdate = StartDate.getValue().format(DateTimeFormatter.ofPattern("MM,dd,YYYY"));
         String enddate = EndDate.getValue().format(DateTimeFormatter.ofPattern("MM,dd,YYYY"));
 
-        for (int i = 0; i < db.size(); i++) {
-            if (db.get(i).gethCity().equalsIgnoreCase(City)) {
-                for (int j = 0; j < dcase.size(); j++) {
-                    if (db.get(i).getUsername().equalsIgnoreCase(dcase.get(j).getUsername())) {
-                        if ((dcase.get(j).getDateReported().compareTo(startdate) >= 0) && (dcase.get(j).getDateReported().compareTo(enddate) <= 0)) {
+        for (int i = 0; i < profiles.size(); i++) {
+            if (profiles.get(i).gethCity().equalsIgnoreCase(City)) {
+                for (int j = 0; j < CASES.size(); j++) {
+                    if (profiles.get(i).getUsername().equalsIgnoreCase(CASES.get(j).getUsername())) {
+                        if ((CASES.get(j).getDateReported().compareTo(startdate) >= 0) && (CASES.get(j).getDateReported().compareTo(enddate) <= 0)) {
                             numCases++;
                         }
                     }
@@ -727,8 +727,8 @@ public class Database {
         String startdate = StartDate.getValue().format(DateTimeFormatter.ofPattern("MM,dd,YYYY"));
         String enddate = EndDate.getValue().format(DateTimeFormatter.ofPattern("MM,dd,YYYY"));
 
-        for (int i = 0; i < dcase.size(); i++) {
-            if ((dcase.get(i).getDateReported().compareTo(startdate) >= 0) && (dcase.get(i).getDateReported().compareTo(enddate) <= 0)) {
+        for (int i = 0; i < CASES.size(); i++) {
+            if ((CASES.get(i).getDateReported().compareTo(startdate) >= 0) && (CASES.get(i).getDateReported().compareTo(enddate) <= 0)) {
                 numCases++;
             }
         }
@@ -738,14 +738,14 @@ public class Database {
     public int CityCases(String City) {
         int numCases = 0;
 
-        for (int i = 0; i < db.size(); i++) {
+        for (int i = 0; i < profiles.size(); i++) {
 
-            System.out.println(db.get(i).gethCity());
+            System.out.println(profiles.get(i).gethCity());
 
-            if (db.get(i).gethCity().equalsIgnoreCase(City)) {
-                for (int j = 0; j < dcase.size(); j++) {
+            if (profiles.get(i).gethCity().equalsIgnoreCase(City)) {
+                for (int j = 0; j < CASES.size(); j++) {
 
-                    if (db.get(i).getUsername().equalsIgnoreCase(dcase.get(j).getUsername())) {
+                    if (profiles.get(i).getUsername().equalsIgnoreCase(CASES.get(j).getUsername())) {
                         numCases += 1;
 
                     }
@@ -760,26 +760,26 @@ public class Database {
         int check = 0, role = checkRole(username);
         Citizen temp = new Citizen();
 
-        for (int i = 0; i < db.size(); i++){
-            if (username.equals(db.get(i).getUsername())){
+        for (int i = 0; i < profiles.size(); i++){
+            if (username.equals(profiles.get(i).getUsername())){
                 if (role == 1 || role == 2){
-                    temp.setFirstname(db.get(i).getFirstname());
-                    temp.setMiddlename(db.get(i).getMiddlename());
-                    temp.setLastname(db.get(i).getLastname());
-                    temp.setHomeadress(db.get(i).getHomeadress());
-                    temp.sethCity(db.get(i).gethCity());
-                    temp.setWorkadress(db.get(i).getWorkadress());
-                    temp.setPhonenum(db.get(i).getPhonenum());
-                    temp.setEmail(db.get(i).getEmail());
-                    temp.setUsername(db.get(i).getUsername());
-                    temp.setPassword(db.get(i).getPassword());
-                    temp.setDateReported(db.get(i).getDateReported());
-                    temp.setNotifyUser(db.get(i).getNotifyUser());
-                    temp.setWarningCode(db.get(i).getWarningCode());
-                    temp.setWarningDate(db.get(i).getWarningDate());
+                    temp.setFirstName(profiles.get(i).getFirstName());
+                    temp.setMiddleName(profiles.get(i).getMiddleName());
+                    temp.setLastName(profiles.get(i).getLastName());
+                    temp.setHomeAdd(profiles.get(i).getHomeAdd());
+                    temp.sethCity(profiles.get(i).gethCity());
+                    temp.setWorkAdd(profiles.get(i).getWorkAdd());
+                    temp.setPhoneNumber(profiles.get(i).getPhoneNumber());
+                    temp.setEmailAdd(profiles.get(i).getEmailAdd());
+                    temp.setUsername(profiles.get(i).getUsername());
+                    temp.setPassword(profiles.get(i).getPassword());
+                    temp.setDateReported(profiles.get(i).getDateReported());
+                    temp.setNotifyUser(profiles.get(i).getNotifyUser());
+                    temp.setWarningCode(profiles.get(i).getWarningCode());
+                    temp.setWarningDate(profiles.get(i).getWarningDate());
 
-                    db.remove(i);
-                    db.add(temp);
+                    profiles.remove(i);
+                    profiles.add(temp);
                     return 1;
                 }
             }
@@ -789,9 +789,9 @@ public class Database {
     }
 
     public void setTraced(String casenum) {
-        for (int i = 0; i < dcase.size(); i++) {
-            if (casenum.equals(Integer.toString(dcase.get(i).getCasenum()))) {
-                dcase.get(i).setStatus("Traced");
+        for (int i = 0; i < CASES.size(); i++) {
+            if (casenum.equals(Integer.toString(CASES.get(i).getCasenum()))) {
+                CASES.get(i).setStatus("Traced");
             }
         }
     }
@@ -799,10 +799,10 @@ public class Database {
     public ArrayList<Case> getCasesAssignedToTracer(String tracerUN) {
         ArrayList<Case> cases = new ArrayList<>();
 
-        for (int i = 0; i < dcase.size(); i++) {
-            if (dcase.get(i).getTracerUsername().equals(tracerUN)) {
-                if (dcase.get(i).getStatus().equals("NotTraced")) {
-                    cases.add(dcase.get(i));
+        for (int i = 0; i < CASES.size(); i++) {
+            if (CASES.get(i).getTracerUsername().equals(tracerUN)) {
+                if (CASES.get(i).getStatus().equals("NotTraced")) {
+                    cases.add(CASES.get(i));
                 }
             }
         }
@@ -813,9 +813,9 @@ public class Database {
     public ArrayList<Case> unassignedCases() {
         ArrayList<Case> cases = new ArrayList<>();
 
-        for (int i = 0; i < dcase.size(); i++) {
-            if (dcase.get(i).getTracerUsername().equals("000")) {
-                cases.add(dcase.get(i));
+        for (int i = 0; i < CASES.size(); i++) {
+            if (CASES.get(i).getTracerUsername().equals("000")) {
+                cases.add(CASES.get(i));
             }
         }
 
@@ -824,21 +824,21 @@ public class Database {
 
     public int checkNotify(String username) {
         int notify = 0;
-        for (int i = 0; i < db.size(); i++) {
-            if (db.get(i).getUsername().equalsIgnoreCase(username)) {
+        for (int i = 0; i < profiles.size(); i++) {
+            if (profiles.get(i).getUsername().equalsIgnoreCase(username)) {
 
-                if (db.get(i).getDateReported() != "Empty") {
+                if (profiles.get(i).getDateReported() != "Empty") {
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM,dd,yyyy");
-                    String ndate = db.get(i).getDateReported();
+                    String ndate = profiles.get(i).getDateReported();
 
                     LocalDate localDate = LocalDate.parse(ndate, formatter);
 
                     if (ChronoUnit.DAYS.between(localDate, LocalDateTime.now()) >= 14) {
-                        db.get(i).setNotifyUser(2);
+                        profiles.get(i).setNotifyUser(2);
                     }
                 }
 
-                notify = db.get(i).getNotifyUser();
+                notify = profiles.get(i).getNotifyUser();
             }
         }
         return notify;
@@ -849,9 +849,9 @@ public class Database {
         Case positiveUser = new Case();
 
         // Get Reported Case of Positive Person
-        for (int i = 0; i < dcase.size(); i++) {
-            if (Integer.toString(dcase.get(i).getCasenum()).equals(caseNum)) {
-                positiveUser = dcase.get(i);
+        for (int i = 0; i < CASES.size(); i++) {
+            if (Integer.toString(CASES.get(i).getCasenum()).equals(caseNum)) {
+                positiveUser = CASES.get(i);
             }
         }
 
@@ -861,12 +861,12 @@ public class Database {
         ArrayList<Visit> positiveRecords = new ArrayList<>();
 
         // Store CheckIns of Positive Person that is within xNum Days
-        for (int j = 0; j < dbv.size(); j++) {
-            LocalDate tempdate = LocalDate.parse(dbv.get(j).getDate(), formatter);
+        for (int j = 0; j < visits.size(); j++) {
+            LocalDate tempdate = LocalDate.parse(visits.get(j).getDate(), formatter);
 
-            if (dbv.get(j).getUser().equals(positiveUser.getUsername())) {
+            if (visits.get(j).getUser().equals(positiveUser.getUsername())) {
                 if (reportdate.compareTo(tempdate) <= 0) {
-                    positiveRecords.add(dbv.get(j));
+                    positiveRecords.add(visits.get(j));
                 }
             }
         }
@@ -874,15 +874,15 @@ public class Database {
         ArrayList<Visit> records = new ArrayList<>();
 
         // Compare All Visit Records to the Visit Records of the Positive
-        for (int k = 0; k < dbv.size(); k++) {
-            if (!dbv.get(k).getUser().equals(positiveUser.getUsername())) { // Check if Record Username is not Equal to the Positive User's Record Username
-                LocalDate citizenDate = LocalDate.parse(dbv.get(k).getDate(), formatter);
+        for (int k = 0; k < visits.size(); k++) {
+            if (!visits.get(k).getUser().equals(positiveUser.getUsername())) { // Check if Record Username is not Equal to the Positive User's Record Username
+                LocalDate citizenDate = LocalDate.parse(visits.get(k).getDate(), formatter);
                 for (int l = 0; l < positiveRecords.size(); l++) {
                     LocalDate positiveDate = LocalDate.parse(positiveRecords.get(l).getDate(), formatter);
                     if (positiveDate.compareTo(citizenDate) == 0) { // Check if Two Record Dates Match
-                        if (Integer.parseInt(dbv.get(k).getTime()) >= Integer.parseInt(positiveRecords.get(l).getTime())) { // Check if Two Times Overlap
-                            if (positiveRecords.get(l).getCode().equals(dbv.get(k).getCode())) { // Check if Two Establishment Codes Match
-                                records.add(dbv.get(k));
+                        if (Integer.parseInt(visits.get(k).getTime()) >= Integer.parseInt(positiveRecords.get(l).getTime())) { // Check if Two Times Overlap
+                            if (positiveRecords.get(l).getCode().equals(visits.get(k).getCode())) { // Check if Two Establishment Codes Match
+                                records.add(visits.get(k));
                             }
                         }
                     }
@@ -894,21 +894,21 @@ public class Database {
     }
 
     public void setNotify(String exposedName, String code, String date) {
-        for (int i = 0; i < db.size(); i++) {
-            if (exposedName.equals(db.get(i).getUsername())) {
-                db.get(i).setNotifyUser(1);
-                db.get(i).setWarningCode(code);
-                db.get(i).setWarningDate(date);
+        for (int i = 0; i < profiles.size(); i++) {
+            if (exposedName.equals(profiles.get(i).getUsername())) {
+                profiles.get(i).setNotifyUser(1);
+                profiles.get(i).setWarningCode(code);
+                profiles.get(i).setWarningDate(date);
             }
         }
     }
 
     public String getwarningDate(String username) {
         String date = "00/00/0000";
-        for (int i = 0; i < db.size(); i++) {
-            if (db.get(i).getUsername().equalsIgnoreCase(username)) {
-                if (db.get(i).getWarningDate() != "Empty") {
-                    date = db.get(i).getWarningDate();
+        for (int i = 0; i < profiles.size(); i++) {
+            if (profiles.get(i).getUsername().equalsIgnoreCase(username)) {
+                if (profiles.get(i).getWarningDate() != "Empty") {
+                    date = profiles.get(i).getWarningDate();
                 }
 
             }
@@ -918,10 +918,10 @@ public class Database {
 
     public String getwarningEst(String username) {
         String est = "Empty";
-        for (int i = 0; i < db.size(); i++) {
-            if (db.get(i).getUsername().equalsIgnoreCase(username)) {
-                if (db.get(i).getWarningCode() != "Empty") {
-                    est = db.get(i).getWarningCode();
+        for (int i = 0; i < profiles.size(); i++) {
+            if (profiles.get(i).getUsername().equalsIgnoreCase(username)) {
+                if (profiles.get(i).getWarningCode() != "Empty") {
+                    est = profiles.get(i).getWarningCode();
                 }
             }
         }
