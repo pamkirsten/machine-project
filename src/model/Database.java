@@ -822,6 +822,19 @@ public class Database {
         return cases;
     }
 
+    public int checkifReported(String user){
+        int report=0;
+        for (int i = 0; i < profiles.size(); i++) {
+            if (profiles.get(i).getUsername().equalsIgnoreCase(user)) {
+                if(profiles.get(i).isPositive()){
+                    report = 1;
+                }
+            }
+        }
+
+        return report;
+    }
+
     public int checkNotify(String username) {
         int notify = 0;
         for (int i = 0; i < profiles.size(); i++) {

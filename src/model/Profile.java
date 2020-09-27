@@ -19,6 +19,7 @@ public class Profile {
     private int notifyUser = 0;
     private String warningCode = "Empty";
     private String warningDate = "Empty";
+    private boolean isPositive = false;
 
     public String getWarningCode() { return warningCode; }
 
@@ -36,7 +37,7 @@ public class Profile {
         this.notifyUser = notifyUser;
     }
 
-    private boolean isPositive = false;
+
 
     public String gethCity() {
         return hCity;

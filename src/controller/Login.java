@@ -23,7 +23,7 @@ public class Login {
     private PasswordField passwordInput;
 
     Database database = new Database();
-    User newUser = new User();
+    citizenController newCitizenController = new citizenController();
     TracerController tracer = new TracerController();
     GovController official = new GovController();
 
@@ -67,20 +67,20 @@ public class Login {
                 notify = database.checkNotify(usernameInput.getText());
 
                 if (check == 0) {
-                    newUser.setusername(usernameInput.getText());
+                    newCitizenController.setusername(usernameInput.getText());
                     showAlert(notify);
                     citizenMenu(event);
 
                 }
                 if (check == 1) {
-                    newUser.setusername(usernameInput.getText());
+                    newCitizenController.setusername(usernameInput.getText());
                     GovController.setusername(usernameInput.getText());
                     showAlert(notify);
                     citizenMenu(event);
                     governmentMenu(event);
                 }
                 if (check == 2) {
-                    newUser.setusername(usernameInput.getText());
+                    newCitizenController.setusername(usernameInput.getText());
                     TracerController.setusername(usernameInput.getText());
                     showAlert(notify);
                     citizenMenu(event);

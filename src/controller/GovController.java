@@ -23,20 +23,32 @@ public class GovController {
 
     private static String username;
 
-    @FXML private TextField usernameTerminate;
-    @FXML private TextField fieldCity;
-    @FXML private DatePicker dateStart;
-    @FXML private DatePicker dateEnd;
-    @FXML private DatePicker tuStart;
-    @FXML private DatePicker tuEnd;
-    @FXML private TextField txtCase;
-    @FXML private TextField txtTracerUN;
-    @FXML private ListView<Integer> listUnassigned;
-    @FXML private ListView<Integer> tuNum;
-    @FXML private ListView<String> tuUser;
-    @FXML private ListView<String> tuStatus;
+    @FXML
+    private TextField usernameTerminate;
+    @FXML
+    private TextField fieldCity;
+    @FXML
+    private DatePicker dateStart;
+    @FXML
+    private DatePicker dateEnd;
+    @FXML
+    private DatePicker tuStart;
+    @FXML
+    private DatePicker tuEnd;
+    @FXML
+    private TextField txtCase;
+    @FXML
+    private TextField txtTracerUN;
+    @FXML
+    private ListView<Integer> listUnassigned;
+    @FXML
+    private ListView<Integer> tuNum;
+    @FXML
+    private ListView<String> tuUser;
+    @FXML
+    private ListView<String> tuStatus;
 
-    public static void setusername(String user){
+    public static void setusername(String user) {
         username = user;
     }
 
@@ -316,12 +328,10 @@ public class GovController {
 
     public void confirmTermination(ActionEvent event) {
         int check = 0;
-
-        if (usernameTerminate.getText().equals(username)){
+        if (usernameTerminate.getText().equals(username)) {
             alertmessage("Cannot Terminate own Account!");
         } else {
             check = db.removeAccount(usernameTerminate.getText());
-
             if (check == 0) {
                 alertmessage("Account has NOT been Terminated!");
             }
