@@ -2,6 +2,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.Database;
@@ -9,13 +10,14 @@ import model.Database;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("view/mainMenu.fxml"));
-        primaryStage.setTitle("COVID Tracker");
-        primaryStage.setScene(new Scene(root, 600, 600));
-        primaryStage.setResizable(false);
-        primaryStage.initStyle(StageStyle.UNDECORATED);
-        primaryStage.show();
+        stage.setTitle("COVID Tracker");
+        stage.setScene(new Scene(root, 600, 600));
+        stage.getIcons().add(new Image("/icon.png"));
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.show();
     }
 
     public static void main(String[] args) {
