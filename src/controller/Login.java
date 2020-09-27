@@ -88,7 +88,7 @@ public class Login {
 
                 String wEst = database.getWarningEst(usernameInput.getText());
 
-                System.out.println(usernameInput.getText() + " " + notify + " " + wEst);
+               // System.out.println(usernameInput.getText() + " " + notify + " " + wEst);
 
                 if (check == 0) {
                     newCitizenController.setusername(usernameInput.getText());

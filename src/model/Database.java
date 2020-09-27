@@ -687,9 +687,8 @@ public class Database {
 
     public int checkNotify(String username) {
         int notify = 0;
-        int notify1 = 0;
         int caseIndex = 0;
-        System.out.println("first = " + notify);
+        //System.out.println("first = " + notify);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM,dd,yyyy");
         String ndate = "Empty";
 
