@@ -330,7 +330,6 @@ public class CitizenController {
         cases.setCasenum(casenum);
         cases.setDateReported(temp);
         database.createCase(cases);
-
         database.setPositive(username);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -340,7 +339,6 @@ public class CitizenController {
         alert.showAndWait();
 
         database.updateCasesFile();
-
         if (database.checkNotify(username) != 0) {
             reportPositive.setDisable(false);
         }

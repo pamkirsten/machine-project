@@ -2,10 +2,12 @@ package model;
 
 import javafx.scene.control.DatePicker;
 
+import javax.xml.transform.Source;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -682,28 +684,36 @@ public class Database {
      * @param username the username
      * @return the int
      */
+
     public int checkNotify(String username) {
         int notify = 0;
-        for (int i = 0; i < accounts.size(); i++) {
-            if (accounts.get(i).getUsername().equalsIgnoreCase(username)) {
-                if (accounts.get(i).getNotifyUser() != 1) {
-                    if (accounts.get(i).getDateReported() != "Empty") {
-                        for (int j = accounts.size(); i < 0; i--) {
-                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM,dd,yyyy");
-                            String ndate = accounts.get(j).getDateReported();
+        int notify1 = 0;
+        int caseIndex = 0;
+        System.out.println("first = " + notify);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM,dd,yyyy");
+        String ndate = "Empty";
 
-                            LocalDate localDate = LocalDate.parse(ndate, formatter);
-
-                            if (ChronoUnit.DAYS.between(localDate, LocalDateTime.now()) >= 14) {
-                                accounts.get(i).setNotifyUser(2);
-                            }
-                        }
-                    }
+        for (int k = 0; k < cases.size(); k++) {
+            if (cases.get(k).getDateReported() != "Empty") {
+                ndate = cases.get(k).getDateReported();
+                caseIndex = k;
+            }
+        }
+        LocalDate localDate = LocalDate.parse(ndate, formatter);
+        if (ChronoUnit.DAYS.between(localDate, LocalDateTime.now()) >= 14) {
+            for (int ctr = 0; ctr < accounts.size(); ctr++) {
+                if (cases.get(caseIndex).getUsername().equalsIgnoreCase(accounts.get(ctr).getUsername())) {
+                    accounts.get(ctr).setNotifyUser(2);
+                    accounts.get(ctr).setNotifyUser(2);
                 }
-                notify = accounts.get(i).getNotifyUser();
             }
         }
 
+        for (int i = 0; i < accounts.size(); i++) {
+            if (accounts.get(i).getUsername().equalsIgnoreCase(username)) {
+                notify = accounts.get(i).getNotifyUser();
+            }
+        }
         return notify;
     }
 
@@ -772,9 +782,9 @@ public class Database {
         for (int i = 0; i < cases.size(); i++) {
             if (cases.get(i).getUsername().equals(user)) {
                 datereported = cases.get(i).getDateReported();
-                return datereported;
             }
         }
+
         return datereported;
     }
 
@@ -843,23 +853,20 @@ public class Database {
             if (accounts.get(i).getUsername().equals(user)) {
                 accounts.get(i).setPositive();
                 accounts.get(i).setNotifyUser(0);
+                System.out.println("notify user = " + accounts.get(i).getNotifyUser());
+
             }
         }
 
-        /*for (int i = 0; i < cases.size(); i++) {
-            if (cases.get(i).getUsername().equals(user)) {
-                cases.get(i).setCasenum(casenum);
-            }
-        }*/
 
     }
 
-    public int getAssignedCaseNum(){
+    public int getAssignedCaseNum() {
         increment();
         return casenum;
     }
 
-    public int getTotalCases(){
+    public int getTotalCases() {
         return cases.size();
     }
 
