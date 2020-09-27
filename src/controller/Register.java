@@ -22,7 +22,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * The type Register.
+ * The Register Controller
  */
 public class Register {
 
@@ -57,7 +57,7 @@ public class Register {
 
 
     /**
-     * Stringerror.
+     * Displays an Error Prompt if the input contains invalid characters
      */
     public void stringerror() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -68,10 +68,10 @@ public class Register {
     }
 
     /**
-     * Findspace boolean.
+     * Checks if a String contains a space character
      *
-     * @param s the s
-     * @return the boolean
+     * @param s the String
+     * @return the result if the String contains a space
      */
     public boolean findspace(String s) {
         Pattern pattern = Pattern.compile("\\s");
@@ -81,9 +81,9 @@ public class Register {
     }
 
     /**
-     * Check information boolean.
+     * Checks all the User Input's validity
      *
-     * @return the boolean
+     * @return the result based on the input
      */
     public boolean checkInformation() {
         if (firstName.getText().contains(":") || firstName.getText().contains(",") ||
@@ -101,7 +101,8 @@ public class Register {
     }
 
     /**
-     * Check username.
+     * Checks if the Username contains an invalid character and is unique
+     * and sets the labelUserChecker based on the result
      */
     public void checkUsername() {
         if (findspace(user.getText()) || user.getText().contains(":") || user.getText().contains(",")) {
@@ -113,13 +114,12 @@ public class Register {
         }
     }
 
-
     /**
-     * Check valid pass boolean.
+     * Checks if the Password contains a special character
      *
-     * @return the boolean
+     * @return the result
      */
-    public boolean checkValidPass() {
+    public boolean checkSpChar() {
         Pattern pass = Pattern.compile("[$&+;=\\\\?@#|/'<>^*()%!-]");
         Matcher m = pass.matcher(password1.getText());
         boolean result = m.find();
@@ -132,12 +132,14 @@ public class Register {
     }
 
     /**
-     * Check password.
+     * Checks if the Password is at least 6 characters, contains a numerical value
+     * or a special character, does not contain an invalid character, and matches
+     * with the second password field.
      */
     public void checkPassword() {
         if (password1.getText().length() < 6) {
             labelPasswordChecker.setText("Password must be at least 6 characters!");
-        } else if (!checkValidPass()) {
+        } else if (!checkSpChar()) {
             labelPasswordChecker.setText("Password must contain a digit or a spchar!");
         } else if (findspace(password1.getText()) || password1.getText().contains(":") || password1.getText().contains(",")) {
             labelPasswordChecker.setText("Password contains invalid char!");
@@ -149,7 +151,8 @@ public class Register {
     }
 
     /**
-     * Enter user info.
+     * Checks the Username and Password's validity and proceeds to entering
+     * personal information if valid.
      *
      * @param event the event
      */
@@ -190,7 +193,7 @@ public class Register {
     }
 
     /**
-     * Show register input.
+     * Displays User Information Input
      */
     public void showRegisterInput() {
         Parent root;
@@ -209,7 +212,8 @@ public class Register {
     }
 
     /**
-     * Saving infos.
+     * Checks for the validity of the user inputs and if valid,
+     * creates a new account with the given information
      *
      * @param event the event
      */
@@ -237,7 +241,7 @@ public class Register {
     }
 
     /**
-     * Cancel.
+     * Displays an alert to cancel the Registration
      *
      * @param event the event
      */
@@ -254,7 +258,7 @@ public class Register {
     }
 
     /**
-     * Main menu.
+     * Displays the Main Menu of the Program
      *
      * @param event the event
      */
@@ -277,7 +281,7 @@ public class Register {
     }
 
     /**
-     * Close.
+     * Closes the Event
      *
      * @param event the event
      */

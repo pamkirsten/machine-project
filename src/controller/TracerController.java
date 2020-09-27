@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * The type Tracer controller.
+ * The Tracer Controller
  */
 public class TracerController {
 
@@ -43,16 +43,16 @@ public class TracerController {
     private ListView<String> tsTime;
 
     /**
-     * Sets .
+     * Sets the username variable into the username of the logged in.
      *
-     * @param user the user
+     * @param user the username
      */
     public static void setusername(String user) {
         username = user;
     }
 
     /**
-     * View show cases.
+     * Displays the Show Cases Menu
      *
      * @param event the event
      */
@@ -73,7 +73,7 @@ public class TracerController {
     }
 
     /**
-     * Show cases.
+     * Displays all the Cases assigned to the logged in Contact Tracer
      */
     public void showCases() {
         listCases.getItems().clear();
@@ -86,7 +86,8 @@ public class TracerController {
     }
 
     /**
-     * Trace specific.
+     * Displays a listing of all Citizens who have been in contact
+     * with the given Case Number
      */
     public void traceSpecific() {
         tsUser.getItems().clear();
@@ -149,7 +150,7 @@ public class TracerController {
     }
 
     /**
-     * View trace specific.
+     * Displays the Trace Specific Menu
      *
      * @param event the event
      */
@@ -170,7 +171,7 @@ public class TracerController {
     }
 
     /**
-     * Inform citizens.
+     * Inform all citizens who have been in contact with the Positive Case
      */
     public void informCitizens() {
         for (int i = 0; i < exposed.size(); i++) {
@@ -187,7 +188,7 @@ public class TracerController {
     }
 
     /**
-     * Main menu.
+     * Displays the Main Menu of the Program
      *
      * @param event the event
      */
@@ -210,7 +211,7 @@ public class TracerController {
     }
 
     /**
-     * Back tracer menu.
+     * Returns the User to the Tracer Menu
      *
      * @param event the event
      */
@@ -233,7 +234,7 @@ public class TracerController {
     }
 
     /**
-     * Close.
+     * Closes the event
      *
      * @param event the event
      */
