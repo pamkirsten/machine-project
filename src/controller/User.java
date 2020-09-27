@@ -25,8 +25,6 @@ import javafx.scene.control.Button;
 public class User {
 
     @FXML private PasswordField regpass1;
-    @FXML private PasswordField regpass2;
-    @FXML private PasswordField oldpass;
     @FXML private TextField first;
     @FXML private TextField middle;
     @FXML private TextField last;
@@ -35,11 +33,10 @@ public class User {
     @FXML private TextField phone;
     @FXML private TextField email;
     @FXML private Button reportPositive;
-
-
     @FXML private DatePicker date;
     @FXML private DatePicker dateReported;
     @FXML private TextField code;
+
     private static int casenum;
 
     private Database db = new Database();
@@ -52,7 +49,7 @@ public class User {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(null);
         alert.setTitle("User Input Error");
-        alert.setContentText("Input cannot contain a space, colon, or comma!");
+        alert.setContentText("Input contains invalid characters!");
         alert.showAndWait();
     }
 
@@ -104,9 +101,9 @@ public class User {
                 last.getText().contains(":") || last.getText().contains(",") ||
                 home.getText().contains(":") ||
                 work.getText().contains(":") ||
-                findspace(phone.getText()) || phone.getText().contains(":") || phone.getText().contains(",") ||
+                findspace(phone.getText()) || phone.getText().contains(":") || phone.getText().contains(",") || (!phone.getText().matches("[0-9]+")) ||
                 findspace(email.getText()) || email.getText().contains(":") || email.getText().contains(",") ||
-                findspace(regpass1.getText()) || regpass1.getText().contains(":") || regpass1.getText().contains(",") || checkpassword()){
+                findspace(regpass1.getText()) || regpass1.getText().contains(":") || regpass1.getText().contains(",") || !checkpassword()){
             stringerror();
             return false;
         }
@@ -119,36 +116,18 @@ public class User {
 
     public void saveaction(ActionEvent event){
         if (checkuserinfo()) {
-            if (db.confirmpass(username, oldpass.getText())) {
-                if (db.regpassword(regpass1.getText(), regpass2.getText())) {
-                    Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
-                    alert1.setHeaderText(null);
-                    alert1.setTitle("Confirmation Dialog");
-                    alert1.setContentText("Are you ok with this?");
+            Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+            alert1.setHeaderText(null);
+            alert1.setTitle("Confirmation Dialog");
+            alert1.setContentText("Are you ok with this?");
 
-                    Optional<ButtonType> result = alert1.showAndWait();
-                    if (result.get() == ButtonType.OK) {
-                        // ... user chose OK
-                        db.updateacct(username, regpass1.getText(), first.getText(), middle.getText(), last.getText(), home.getText(), work.getText(), phone.getText(), email.getText());
-                        closewindow(event);
-                    } else {
-                        // ... user chose CANCEL or closed the dialog
-                    }
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setHeaderText(null);
-                    alert.setTitle("Update Error");
-                    alert.setContentText("Password not matched!");
-
-                    alert.showAndWait();
-                }
+            Optional<ButtonType> result = alert1.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                // ... user chose OK
+                db.updateacct(username, regpass1.getText(), first.getText(), middle.getText(), last.getText(), home.getText(), work.getText(), phone.getText(), email.getText());
+                closewindow(event);
             } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText(null);
-                alert.setTitle("Update Error");
-                alert.setContentText("Incorrect Password!");
-
-                alert.showAndWait();
+                // ... user chose CANCEL or closed the dialog
             }
         }
     }

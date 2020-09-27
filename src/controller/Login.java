@@ -25,6 +25,7 @@ public class Login {
     Database db = new Database();
     User user = new User();
     tracerController tracer = new tracerController();
+    govController official = new govController();
 
 
     public void showAlert(int check) {
@@ -72,6 +73,7 @@ public class Login {
                 }
                 if (check == 1) {
                     user.setusername(inputuser.getText());
+                    govController.setusername(inputuser.getText());
                     showAlert(notify);
                     citizenMenu(event);
                     governmentMenu(event);

@@ -12,7 +12,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javafx.stage.StageStyle;
 import model.Case;
 import model.Government;
@@ -185,7 +184,6 @@ public class tracerController {
             e.printStackTrace();
         }
     }
-
 
     public void closewindow(ActionEvent event) {
         ((Node) (event.getSource())).getScene().getWindow().hide();

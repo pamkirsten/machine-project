@@ -20,8 +20,7 @@ public class govController {
     private final Database db = new Database();
     private final Government dgov = new Government();
 
-    @FXML private TextField txtfieldUsername;
-    @FXML private Label labelcheckUser;
+    private static String username;
 
     @FXML private TextField usernameTerminate;
     @FXML private TextField fieldCity;
@@ -31,41 +30,13 @@ public class govController {
     @FXML private DatePicker tuEnd;
     @FXML private TextField txtCase;
     @FXML private TextField txtTracerUN;
+    @FXML private ListView<Integer> listUnassigned;
+    @FXML private ListView<Integer> tuNum;
+    @FXML private ListView<String> tuUser;
+    @FXML private ListView<String> tuStatus;
 
-    @FXML private ListView listUnassigned;
-
-    @FXML private ListView tuNum;
-    @FXML private ListView tuUser;
-    @FXML private ListView tuStatus;
-
-    // private String username = txtfieldUsername.getText();
-    private int check;
-
-    public void checkUser() {
-        if (db.regusername(txtfieldUsername.getText())) {
-            labelcheckUser.setText("Username unique!");
-            check = 1;
-        } else {
-            labelcheckUser.setText("Username not unique!");
-        }
-    }
-
-    public String randompass() {
-        return "passwordtest";
-    }
-
-    public void creategovAcc(ActionEvent event) {
-        String newpass = "empty";
-        if (check == 1) {
-
-            dgov.setUsername(txtfieldUsername.getText());
-            dgov.setPassword(randompass());
-            if (db.checkRole(txtfieldUsername.getText()) != 0) {
-                db.newgov(dgov);
-            } else if (db.checkRole(txtfieldUsername.getText()) == 0) {
-                registerGov(event);
-            }
-        }
+    public static void setusername(String user){
+        username = user;
     }
 
     public void mainmenu(ActionEvent event) {
@@ -97,21 +68,6 @@ public class govController {
             stage.show();
 
             closewindow(event);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void registerGov(ActionEvent event) {
-        Parent root;
-        try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/registerGov.fxml"));
-            javafx.stage.Stage stage = new Stage();
-            stage.setTitle("User Menu");
-            stage.setScene(new Scene(root, 600, 600));
-            stage.setResizable(false);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -246,7 +202,6 @@ public class govController {
         }
     }
 
-
     public void showUnassigned() {
         listUnassigned.getItems().clear();
 
@@ -262,11 +217,10 @@ public class govController {
     }
 
     public void assignCase() {
-
         ArrayList<Case> unassigned = new ArrayList<>();
 
         unassigned = db.unassignedCases();
-        check = 0;
+        int check = 0;
 
         int caseNum = Integer.parseInt(txtCase.getText());
 
@@ -349,30 +303,27 @@ public class govController {
 
     }
 
+    public void alertmessage(String s) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("Confirmation");
+        alert.setContentText(s);
+        alert.showAndWait();
+    }
+
     public void confirmTermination(ActionEvent event) {
-        int check;
+        int check = 0;
 
-        check = db.removeAccount(usernameTerminate.getText());
-
-        //updatefiles
-
-        if (check == 1) {
-
+        if (usernameTerminate.getText().equals(username)){
+            alertmessage("Cannot Terminate own Account!");
         } else {
+            check = db.removeAccount(usernameTerminate.getText());
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(null);
-            alert.setTitle("Confirmation");
-            alert.setContentText("Account has not been Sucessfully Terminated");
-            alert.showAndWait();
+            if (check == 0) {
+                alertmessage("Account has NOT been Terminated!");
+            }
         }
 
         closewindow(event);
-
     }
-
-
 }
-
-
-
