@@ -3,6 +3,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.Database;
 
 public class Main extends Application {
@@ -13,6 +14,7 @@ public class Main extends Application {
         primaryStage.setTitle("COVID Tracker");
         primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.setResizable(false);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
     }
 
