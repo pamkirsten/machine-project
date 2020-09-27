@@ -42,7 +42,24 @@ public class govController {
     public void mainmenu(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/mainmenu.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/mainMenu.fxml"));
+            javafx.stage.Stage stage = new Stage();
+            stage.setTitle("COVID Tracker");
+            stage.setScene(new Scene(root, 600, 600));
+            stage.setResizable(false);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.show();
+
+            closewindow(event);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void goback(ActionEvent event) {
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/govMenu.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("COVID Tracker");
             stage.setScene(new Scene(root, 600, 600));

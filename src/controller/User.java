@@ -149,7 +149,7 @@ public class User {
     public void checkincode(ActionEvent event) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/codeview.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/checkIn.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("Check-In");
             stage.setScene(new Scene(root, 600, 600));
@@ -183,7 +183,7 @@ public class User {
     public void goback(ActionEvent event){
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/mainmenu.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/mainMenu.fxml"));
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("COVID Tracker");
             stage.setScene(new Scene(root, 600, 600));

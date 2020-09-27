@@ -4,28 +4,35 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Login">
    <children>
-      <Label layoutX="171.0" layoutY="192.0" text="Username:">
+      <ImageView fitHeight="600.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/5.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="171.0" layoutY="199.0" text="Username:">
          <font>
-            <Font name="Arial Bold" size="15.0" />
+            <Font name="Arial" size="15.0" />
          </font></Label>
-      <Label layoutX="171.0" layoutY="237.0" text="Password:">
+      <Label layoutX="171.0" layoutY="244.0" text="Password:">
          <font>
-            <Font name="Arial Bold" size="15.0" />
+            <Font name="Arial" size="15.0" />
          </font></Label>
-      <TextField fx:id="inputuser" layoutX="263.0" layoutY="189.0" />
-      <PasswordField fx:id="inputpass" layoutX="262.0" layoutY="234.0" />
-      <Button layoutX="150.0" layoutY="287.0" mnemonicParsing="false" onAction="#loginuser" prefHeight="33.0" prefWidth="137.0" text="Login">
+      <TextField fx:id="inputuser" layoutX="263.0" layoutY="196.0" />
+      <PasswordField fx:id="inputpass" layoutX="262.0" layoutY="241.0" />
+      <Button layoutX="170.0" layoutY="294.0" mnemonicParsing="false" onAction="#loginuser" prefHeight="33.0" prefWidth="124.0" style="-fx-background-color: #004AAD#004AAD;" text="Login" textFill="#fcfcfc">
          <font>
-            <Font name="Arial Bold" size="13.0" />
+            <Font name="Arial" size="13.0" />
          </font></Button>
-      <Button layoutX="314.0" layoutY="287.0" mnemonicParsing="false" onAction="#goback" prefHeight="33.0" prefWidth="137.0" text="Cancel">
+      <Button layoutX="306.0" layoutY="294.0" mnemonicParsing="false" onAction="#goback" prefHeight="33.0" prefWidth="117.0" style="-fx-background-color: #BC1823#BC1823;" text="Cancel" textFill="WHITE">
          <font>
-            <Font name="Arial Bold" size="13.0" />
+            <Font name="Arial" size="13.0" />
          </font></Button>
    </children>
 </Pane>
