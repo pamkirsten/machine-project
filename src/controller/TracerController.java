@@ -70,10 +70,17 @@ public class TracerController {
         tsDate.getItems().clear();
         tsTime.getItems().clear();
 
-        int xNum = Integer.parseInt(tsX.getText().trim());
+        int xNum = 8;
 
+        // Check if User has already been Traced
         // Check if X is at least 0, if false, using 8 as default.
-        if (tsX.getText().isEmpty() || xNum < 0){
+        if (government.checkIfTraced(Integer.parseInt(tsNum.getText()))){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Case Error");
+            alert.setContentText("Case has already been traced!");
+            alert.showAndWait();
+        } else if (tsX.getText() == null || tsX.getText().trim().isEmpty() || Integer.parseInt(tsX.getText().trim()) < 0){
             xNum = 8;
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -81,6 +88,8 @@ public class TracerController {
             alert.setTitle("Input Error");
             alert.setContentText("Error. Using 8 as default!");
             alert.showAndWait();
+        } else {
+            xNum = Integer.parseInt(tsX.getText().trim());
         }
 
         int casenumChk = 0;

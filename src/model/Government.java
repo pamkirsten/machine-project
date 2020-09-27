@@ -21,6 +21,10 @@ public class Government extends Citizen {
         return cases;
     }
 
+    public boolean checkIfTraced(int casenum){
+        return database.checkTraced(casenum);
+    }
+
     public void setTraced(String casenum){
         database.setTraced(casenum);
     }

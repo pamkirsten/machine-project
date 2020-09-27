@@ -96,10 +96,11 @@ public class GovRegister {
         } else if (txtfieldUsername.getText().equals(username)) {
             labelcheckUser.setText("Username cannot use own!");
         } else { // Existing - Check if Already a Gov or Not
-            labelcheckUser.setText("Username will be used to create new Official!");
             if (db.checkRole(txtfieldUsername.getText()) == 1){ // Return 0 if Account Username is already an Official
+                labelcheckUser.setText("Username is already an Official account!");
                 return 0;
             } else {
+                labelcheckUser.setText("Username will be used to create new Official!");
                 return 1; // Return 1 if Account Username exist but is not an Official
             }
         }

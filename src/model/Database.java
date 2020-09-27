@@ -909,6 +909,17 @@ public class Database {
         return records;
     }
 
+    public boolean checkTraced(int casenum){
+        for (int i = 0; i < CASES.size(); i++){
+            if (casenum == CASES.get(i).getCasenum()){
+                if (CASES.get(i).getStatus().equals("Traced")){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public void setNotify(String exposedName, String code, String date) {
         for (int i = 0; i < profiles.size(); i++) {
             if (exposedName.equals(profiles.get(i).getUsername())) {
@@ -926,7 +937,6 @@ public class Database {
                 if (profiles.get(i).getWarningDate() != "Empty") {
                     date = profiles.get(i).getWarningDate();
                 }
-
             }
         }
         return date;

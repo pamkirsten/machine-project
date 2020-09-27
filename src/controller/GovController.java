@@ -334,9 +334,9 @@ public class GovController {
             check = db.removeAccount(usernameTerminate.getText());
             if (check == 0) {
                 alertmessage("Account has NOT been Terminated!");
+            } else {
+                alertmessage("Account has been successfully Terminated!");
             }
         }
-
-        closewindow(event);
     }
 }

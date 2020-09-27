@@ -44,6 +44,7 @@
       <TextField fx:id="middleName" layoutX="291.0" layoutY="244.0" />
       <TextField fx:id="lastName" layoutX="291.0" layoutY="284.0" />
       <TextField fx:id="homeAdd" layoutX="291.0" layoutY="324.0" />
+      <TextField fx:id="txtCity" layoutX="291.0" layoutY="362.0" />
       <TextField fx:id="workAdd" layoutX="291.0" layoutY="401.0" />
       <TextField fx:id="phoneAdd" layoutX="291.0" layoutY="438.0" />
       <TextField fx:id="Email" layoutX="291.0" layoutY="476.0" />
@@ -59,6 +60,5 @@
          <font>
             <Font name="Arial" size="13.0" />
          </font></Label>
-      <TextField fx:id="txtCity" layoutX="291.0" layoutY="362.0" />
    </children>
 </Pane>

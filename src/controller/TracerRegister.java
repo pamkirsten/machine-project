@@ -95,10 +95,11 @@ public class TracerRegister {
         } else if (txtfieldUsername.getText().equals(username)) {
             labelcheckUser.setText("Username cannot use own!");
         } else { // Existing - Check if Already a Tracer or Not
-            labelcheckUser.setText("Username will be used to create new Tracer!");
-            if (db.checkRole(txtfieldUsername.getText()) == 1){ // Return 0 if Account Username is already a Tracer
+            if (db.checkRole(txtfieldUsername.getText()) == 2){ // Return 0 if Account Username is already a Tracer
+                labelcheckUser.setText("Username is already a Tracer account!");
                 return 0;
             } else {
+                labelcheckUser.setText("Username will be used to create new Tracer!");
                 return 1; // Return 1 if Account Username exist but is not a Tracer
             }
         }

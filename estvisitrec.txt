@@ -14,3 +14,6 @@ dlsu 09,10,2020 2250
 citizen
 jolibee 09,02,2020 2353
 dlsu 08,30,2020 2353
+
+newcitizenacc
+dlsu 09,01,2020 0044
