@@ -54,16 +54,16 @@ public class GovController {
     private ListView<String> tuStatus;
 
     /**
-     * Sets .
+     * Sets the username variable into the username of the logged in.
      *
-     * @param user the user
+     * @param user the username
      */
     public static void setusername(String user) {
         username = user;
     }
 
     /**
-     * Mainmenu.
+     * Displays the Main Menu of the Program
      *
      * @param event the event
      */
@@ -85,7 +85,7 @@ public class GovController {
     }
 
     /**
-     * Backto gov.
+     * Returns the User to the Government Menu
      *
      * @param event the event
      */
@@ -107,7 +107,7 @@ public class GovController {
     }
 
     /**
-     * Opencreate gov.
+     * Displays the Government Menu
      *
      * @param event the event
      */
@@ -128,7 +128,7 @@ public class GovController {
     }
 
     /**
-     * Opencreate tracer.
+     * Displays the Create Tracer Menu
      */
     public void opencreateTracer() {
         Parent root;
@@ -147,7 +147,7 @@ public class GovController {
     }
 
     /**
-     * Open terminate.
+     * Displays the Terminate Accounts Menu
      *
      * @param event the event
      */
@@ -170,7 +170,7 @@ public class GovController {
     }
 
     /**
-     * Close.
+     * Closes the event
      *
      * @param event the event
      */
@@ -179,7 +179,7 @@ public class GovController {
     }
 
     /**
-     * Open tracing updates.
+     * Displays the Contact Tracing Updates Menu
      *
      * @param event the event
      */
@@ -202,7 +202,7 @@ public class GovController {
     }
 
     /**
-     * Open analytics.
+     * Displays Analytics Menu
      *
      * @param event the event
      */
@@ -225,7 +225,7 @@ public class GovController {
     }
 
     /**
-     * Tracing updates.
+     * Displays all the Positive Cases from a given date range
      */
     public void tracingUpdates() {
         tuNum.getItems().clear();
@@ -243,7 +243,7 @@ public class GovController {
     }
 
     /**
-     * Open unassigned.
+     * Displays the Unassigned Cases Menu
      *
      * @param event the event
      */
@@ -265,6 +265,10 @@ public class GovController {
         }
     }
 
+    /**
+     * Displays the list of all the positive cases who have not been
+     * assigned to a Contact Tracer
+     */
     public void showUnassigned() {
         listUnassigned.getItems().clear();
 
@@ -277,6 +281,10 @@ public class GovController {
         }
     }
 
+    /**
+     * Assigns a Positive Case to a Contact Tracer
+     *
+     */
     public void assignCase() {
         ArrayList<Case> unassigned;
 
@@ -317,6 +325,9 @@ public class GovController {
         }
     }
 
+    /**
+     * Displays the Analytics based on the given Duration and City
+     */
     public void durandCity() {
         int numofCases = 0;
         numofCases = db.checkDurAndCity(fieldCity.getText(), dateStart, dateEnd);
@@ -330,6 +341,10 @@ public class GovController {
 
     }
 
+    /**
+     * Open unassigned.
+     *
+     */
     public void cityCases() {
         int numofCases = 0;
         numofCases = db.checkCityCases(fieldCity.getText());
@@ -343,6 +358,10 @@ public class GovController {
 
     }
 
+    /**
+     * Open unassigned.
+     *
+     */
     public void durationCases() {
         int numofCases = 0;
         numofCases = db.givenDuration(dateStart, dateEnd);
@@ -355,6 +374,10 @@ public class GovController {
         alert.showAndWait();
     }
 
+    /**
+     * Open unassigned.
+     *
+     */
     public void alertmessage(String s) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
@@ -363,6 +386,10 @@ public class GovController {
         alert.showAndWait();
     }
 
+    /**
+     * Open unassigned.
+     *
+     */
     public void confirmTermination(ActionEvent event) {
         int check = 0;
         if (usernameTerminate.getText().equals(username)) {

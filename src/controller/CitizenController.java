@@ -54,7 +54,7 @@ public class CitizenController {
     private TextField code;
 
     /**
-     * Close.
+     * Closes the Citizen Menu Event
      *
      * @param event the event
      */
@@ -63,7 +63,7 @@ public class CitizenController {
     }
 
     /**
-     * Stringerror.
+     *  Displays an Error Prompt if the User Input contains Invalid Characters
      */
     public void stringerror() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -74,9 +74,9 @@ public class CitizenController {
     }
 
     /**
-     * Passworderror.
+     * Displays an Error Prompt if the Password Input is Invalid
      *
-     * @param s the s
+     * @param s the String to be prompted
      */
     public void passworderror(String s) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -87,10 +87,10 @@ public class CitizenController {
     }
 
     /**
-     * Findspace boolean.
+     * Checks if a String contains a space character
      *
-     * @param s the s
-     * @return the boolean
+     * @param s the String
+     * @return the result if the String contains a space
      */
     public boolean findspace(String s) {
         Pattern pattern = Pattern.compile("\\s");
@@ -100,9 +100,10 @@ public class CitizenController {
     }
 
     /**
-     * Checkpassword boolean.
+     * Checks if the Password contains at least 6 characters, a digit or
+     * a special char, and if it contains an invalid character
      *
-     * @return the boolean
+     * @return the result based on the input
      */
     public boolean checkpassword() {
         if (regpass1.getText().length() < 6) {
@@ -119,9 +120,9 @@ public class CitizenController {
     }
 
     /**
-     * Checkpassvalid boolean.
+     * Check if the Password contains a special character
      *
-     * @return the boolean
+     * @return the result based on the input
      */
     public boolean checkpassvalid() {
         Pattern pass = Pattern.compile("[$&+;=\\\\?@#|/'<>^*()%!-]");
@@ -134,9 +135,9 @@ public class CitizenController {
     }
 
     /**
-     * Checkuserinfo boolean.
+     * Checks all the User Input's validity
      *
-     * @return the boolean
+     * @return the result based on the input
      */
     public boolean checkuserinfo() {
         if (firstName.getText().contains(":") || firstName.getText().contains(",") ||
@@ -154,18 +155,18 @@ public class CitizenController {
     }
 
     /**
-     * Sets .
+     * Sets the username variable into the username of the logged in.
      *
-     * @param user the user
+     * @param user the username
      */
     public void setusername(String user) {
         username = user;
     }
 
     /**
-     * Save user info.
+     * Displays a Confirmation Prompt
      *
-     * @param event the event
+     * @param event the confirmation prompt
      */
     public void saveUserInfo(ActionEvent event) {
         if (checkuserinfo()) {
@@ -183,7 +184,7 @@ public class CitizenController {
     }
 
     /**
-     * Update info.
+     * Displays the Citizen Update Information Event
      *
      * @param event the event
      */
@@ -202,7 +203,7 @@ public class CitizenController {
     }
 
     /**
-     * Open check in.
+     * Displays the Check In Event
      *
      * @param event the event
      */
@@ -221,7 +222,8 @@ public class CitizenController {
     }
 
     /**
-     * Check in.
+     * Gets the User Input for Date and Establishment Code and time from
+     * the machine and adds it to the Establishments Records
      *
      * @param event the event
      */
@@ -245,7 +247,7 @@ public class CitizenController {
     }
 
     /**
-     * Main menu.
+     * Displays the Main Menu of the Program
      *
      * @param event the event
      */
@@ -267,7 +269,7 @@ public class CitizenController {
     }
 
     /**
-     * Back user.
+     * Returns the User to the Citizen Menu
      *
      * @param event the event
      */
@@ -289,7 +291,7 @@ public class CitizenController {
     }
 
     /**
-     * Open report.
+     * Displays the Report Positive Event of the Citizen Menu
      *
      * @param event the event
      */
@@ -310,7 +312,8 @@ public class CitizenController {
     }
 
     /**
-     * Report positive.
+     * Sets the User to Positive and assigns a case number to
+     * the Person while the Date User Input will be stored
      *
      * @param event the event
      */
