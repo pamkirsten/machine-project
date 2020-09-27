@@ -217,22 +217,18 @@ public class CitizenController {
     }
 
     public void openReport(ActionEvent event) {
-        int checkNotify = database.checkNotify(username);
-
-        if (checkNotify != 0) {
-            Parent root;
-            try {
-                root = FXMLLoader.load(getClass().getClassLoader().getResource("view/citizenReport.fxml"));
-                javafx.stage.Stage stage = new Stage();
-                stage.setTitle("COVID Tracker");
-                stage.setScene(new Scene(root, 600, 600));
-                stage.setResizable(false);
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.show();
-                close(event);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/citizenReport.fxml"));
+            javafx.stage.Stage stage = new Stage();
+            stage.setTitle("COVID Tracker");
+            stage.setScene(new Scene(root, 600, 600));
+            stage.setResizable(false);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.show();
+            close(event);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
