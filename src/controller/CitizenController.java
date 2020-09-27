@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.Case;
@@ -194,6 +195,8 @@ public class CitizenController {
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("Update User Information");
             stage.setScene(new Scene(root, 600, 600));
+            stage.getIcons().add(new Image("/icon.png"));
+            stage.getIcons().add(new Image("/icon.png"));
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
@@ -213,6 +216,7 @@ public class CitizenController {
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("Check-In");
             stage.setScene(new Scene(root, 600, 600));
+            stage.getIcons().add(new Image("/icon.png"));
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
@@ -257,6 +261,7 @@ public class CitizenController {
             stage.setTitle("COVID Tracker");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.getIcons().add(new Image("/icon.png"));
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
@@ -279,6 +284,7 @@ public class CitizenController {
             stage.setTitle("COVID Tracker");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.getIcons().add(new Image("/icon.png"));
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
@@ -301,6 +307,7 @@ public class CitizenController {
             stage.setTitle("COVID Tracker");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.getIcons().add(new Image("/icon.png"));
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
             close(event);

@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.Database;
@@ -139,6 +140,7 @@ public class Login {
             javafx.stage.Stage stage = new Stage();
             stage.setTitle("User Menu");
             stage.setScene(new Scene(root, 600, 600));
+            stage.getIcons().add(new Image("/icon.png"));
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
@@ -159,6 +161,7 @@ public class Login {
             stage.setTitle("Government Menu");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.getIcons().add(new Image("/icon.png"));
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
         } catch (IOException e) {
@@ -179,6 +182,7 @@ public class Login {
             stage.setTitle("Contact Tracer Menu");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.getIcons().add(new Image("/icon.png"));
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
         } catch (IOException e) {
@@ -199,6 +203,7 @@ public class Login {
             stage.setTitle("COVID-19 Tracker");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.getIcons().add(new Image("/icon.png"));
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 

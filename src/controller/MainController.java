@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.Database;
@@ -40,6 +41,7 @@ public class MainController {
             stage.setTitle("Register User");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.getIcons().add(new Image("/icon.png"));
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
@@ -62,6 +64,7 @@ public class MainController {
             stage.setTitle("Login User");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.getIcons().add(new Image("/icon.png"));
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 

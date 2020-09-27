@@ -10,6 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.Case;
@@ -75,6 +76,7 @@ public class GovController {
             stage.setTitle("COVID Tracker");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.getIcons().add(new Image("/icon.png"));
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
@@ -94,9 +96,10 @@ public class GovController {
         try {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("view/govMenu.fxml"));
             javafx.stage.Stage stage = new Stage();
-            stage.setTitle("COVID Tracker");
+            stage.setTitle("Government Menu");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.getIcons().add(new Image("/icon.png"));
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
@@ -116,9 +119,10 @@ public class GovController {
         try {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("view/govCreateGov.fxml"));
             javafx.stage.Stage stage = new Stage();
-            stage.setTitle("User Menu");
+            stage.setTitle("Create Official");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.getIcons().add(new Image("/icon.png"));
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
             temp.setUsernameRegister(username);
@@ -135,9 +139,10 @@ public class GovController {
         try {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("view/govCreateTracer.fxml"));
             javafx.stage.Stage stage = new Stage();
-            stage.setTitle("User Menu");
+            stage.setTitle("Create Tracer");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.getIcons().add(new Image("/icon.png"));
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
             temp1.setUsernameRegister(username);
@@ -156,9 +161,10 @@ public class GovController {
         try {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("view/govTerminate.fxml"));
             javafx.stage.Stage stage = new Stage();
-            stage.setTitle("Register User");
+            stage.setTitle("Terminate Account");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.getIcons().add(new Image("/icon.png"));
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
@@ -191,6 +197,7 @@ public class GovController {
             stage.setTitle("Contact Tracing Updates");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.getIcons().add(new Image("/icon.png"));
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
@@ -214,6 +221,7 @@ public class GovController {
             stage.setTitle("Analytics");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.getIcons().add(new Image("/icon.png"));
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
@@ -255,6 +263,7 @@ public class GovController {
             stage.setTitle("Show Unassigned Cases");
             stage.setScene(new Scene(root, 600, 600));
             stage.setResizable(false);
+            stage.getIcons().add(new Image("/icon.png"));
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
