@@ -679,7 +679,8 @@ public class Database {
     public int checkNotify(String username) {
         int notify = 0;
         int caseIndex = 0;
-
+        int check = 0;
+        //System.out.println("first = " + notify);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM,dd,yyyy");
         String ndate = "Empty";
 
@@ -687,17 +688,22 @@ public class Database {
             if (cases.get(k).getDateReported() != "Empty") {
                 ndate = cases.get(k).getDateReported();
                 caseIndex = k;
+                check =1;
             }
         }
-        LocalDate localDate = LocalDate.parse(ndate, formatter);
-        if (ChronoUnit.DAYS.between(localDate, LocalDateTime.now()) >= 14) {
-            for (int ctr = 0; ctr < accounts.size(); ctr++) {
-                if (cases.get(caseIndex).getUsername().equalsIgnoreCase(accounts.get(ctr).getUsername())) {
-                    accounts.get(ctr).setNotifyUser(2);
-                    accounts.get(ctr).setNotifyUser(2);
+
+        if(check ==1) {
+            LocalDate localDate = LocalDate.parse(ndate, formatter);
+            if (ChronoUnit.DAYS.between(localDate, LocalDateTime.now()) >= 14) {
+                for (int ctr = 0; ctr < accounts.size(); ctr++) {
+                    if (cases.get(caseIndex).getUsername().equalsIgnoreCase(accounts.get(ctr).getUsername())) {
+                        accounts.get(ctr).setNotifyUser(2);
+                        accounts.get(ctr).setNotifyUser(2);
+                    }
                 }
             }
         }
+
 
         for (int i = 0; i < accounts.size(); i++) {
             if (accounts.get(i).getUsername().equalsIgnoreCase(username)) {
