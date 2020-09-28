@@ -362,7 +362,6 @@ public class GovController {
         alert.setTitle("Number of Positive Cases");
         alert.setContentText("Number of positive cases in the given city & duration: " + str1);
         alert.showAndWait();
-
     }
 
     /**

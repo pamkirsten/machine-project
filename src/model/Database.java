@@ -45,6 +45,9 @@ public class Database {
         openCasesFile();
     }
 
+    /**
+     * Creates a Dummy Account for the User
+     */
     public void createDummy() {
         Government temp = new Government();
         temp.setUsername("Admin2020");
