@@ -150,7 +150,7 @@ public class GovController {
     /**
      * Displays the Create Tracer Menu
      */
-    public void opencreateTracer() {
+    public void opencreateTracer(ActionEvent event) {
         Parent root;
         try {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("view/govCreateTracer.fxml"));

@@ -39,9 +39,18 @@ public class Database {
      * Starts the Program and loads all the files
      */
     public void startProgram() {
+        createDummy();
         openAccountsFile();
         openEstablishmentsFile();
         openCasesFile();
+    }
+
+    public void createDummy() {
+        Government temp = new Government();
+        temp.setUsername("Admin2020");
+        temp.setPassword("@Dm1n0202");
+
+        accounts.add(temp);
     }
 
     /**
@@ -373,50 +382,52 @@ public class Database {
         }
 
         for (int i = 0; i < accounts.size(); i++) {
-            try {
-                FileWriter text = new FileWriter("masterlist.txt", true);
-
-                text.write(accounts.get(i).getUsername());
-                text.write(" ");
-
-
-                if (accounts.get(i) instanceof Government) {
-                    text.write("official");
-                    text.write("\n");
-                } else if (accounts.get(i) instanceof Tracer) {
-                    text.write("tracer");
-                    text.write("\n");
-                } else if (accounts.get(i) instanceof Citizen) {
-                    text.write("citizen");
-                    text.write("\n");
-                }
-
+            if (!accounts.get(i).getUsername().equals("Admin2020")) {
                 try {
-                    String user = "accounts/" + accounts.get(i).getUsername() + ".act";
-                    FileWriter text1 = new FileWriter(user);
+                    FileWriter text = new FileWriter("masterlist.txt", true);
 
-                    text1.write(accounts.get(i).getPassword());
-                    text1.write("\n");
-                    text1.write(accounts.get(i).getFirstName() + "," + accounts.get(i).getMiddleName() + "," + accounts.get(i).getLastName());
-                    text1.write("\n");
-                    text1.write("HOME:" + accounts.get(i).getHomeAdd());
-                    text1.write("\n");
-                    text1.write("CITY:" + accounts.get(i).gethCity());
-                    text1.write("\n");
-                    text1.write("OFFICE:" + accounts.get(i).getWorkAdd());
-                    text1.write("\n");
-                    text1.write("PHONE:" + accounts.get(i).getPhoneNumber());
-                    text1.write("\n");
-                    text1.write("EMAIL:" + accounts.get(i).getEmailAdd());
-                    text1.write("\n");
+                    text.write(accounts.get(i).getUsername());
+                    text.write(" ");
 
-                    text1.close();
+
+                    if (accounts.get(i) instanceof Government) {
+                        text.write("official");
+                        text.write("\n");
+                    } else if (accounts.get(i) instanceof Tracer) {
+                        text.write("tracer");
+                        text.write("\n");
+                    } else if (accounts.get(i) instanceof Citizen) {
+                        text.write("citizen");
+                        text.write("\n");
+                    }
+
+                    try {
+                        String user = "accounts/" + accounts.get(i).getUsername() + ".act";
+                        FileWriter text1 = new FileWriter(user);
+
+                        text1.write(accounts.get(i).getPassword());
+                        text1.write("\n");
+                        text1.write(accounts.get(i).getFirstName() + "," + accounts.get(i).getMiddleName() + "," + accounts.get(i).getLastName());
+                        text1.write("\n");
+                        text1.write("HOME:" + accounts.get(i).getHomeAdd());
+                        text1.write("\n");
+                        text1.write("CITY:" + accounts.get(i).gethCity());
+                        text1.write("\n");
+                        text1.write("OFFICE:" + accounts.get(i).getWorkAdd());
+                        text1.write("\n");
+                        text1.write("PHONE:" + accounts.get(i).getPhoneNumber());
+                        text1.write("\n");
+                        text1.write("EMAIL:" + accounts.get(i).getEmailAdd());
+                        text1.write("\n");
+
+                        text1.close();
+                    } catch (IOException e) {
+                        System.out.println("Error in Creating Account");
+                    }
+                    text.close();
                 } catch (IOException e) {
-                    System.out.println("Error in Creating Account");
+                    System.out.println("Error in writing masterlist.txt");
                 }
-                text.close();
-            } catch (IOException e) {
-                System.out.println("Error in writing masterlist.txt");
             }
         }
     }
