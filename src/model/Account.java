@@ -1,7 +1,7 @@
 package model;
 
 /**
- * The type Account.
+ * The Account Class
  */
 public class Account {
     private String firstName = "Empty";
@@ -26,7 +26,7 @@ public class Account {
     private int CaseNum;
 
     /**
-     * Instantiates a new Account.
+     * Instantiates a new Account
      *
      * @param firstName   the first name
      * @param middleName  the middle name
@@ -34,7 +34,7 @@ public class Account {
      * @param homeAdd     the home add
      * @param workAdd     the work add
      * @param phoneNumber the phone number
-     * @param emailAdd    the email add
+     * @param emailAdd    the email address
      * @param username    the username
      * @param password    the password
      */
@@ -54,14 +54,14 @@ public class Account {
     }
 
     /**
-     * Instantiates a new Account.
+     * Instantiates a new Account
      */
     public Account() {
 
     }
 
     /**
-     * Gets warning code.
+     * Gets warning code
      *
      * @return the warning code
      */
@@ -70,7 +70,7 @@ public class Account {
     }
 
     /**
-     * Sets warning code.
+     * Sets warning code
      *
      * @param warningCode the warning code
      */
@@ -79,7 +79,7 @@ public class Account {
     }
 
     /**
-     * Gets warning date.
+     * Gets warning date
      *
      * @return the warning date
      */
@@ -88,7 +88,7 @@ public class Account {
     }
 
     /**
-     * Sets warning date.
+     * Sets warning date
      *
      * @param warningDate the warning date
      */
@@ -97,25 +97,25 @@ public class Account {
     }
 
     /**
-     * Gets notify user.
+     * Gets notify user value
      *
-     * @return the notify user
+     * @return the notify user value
      */
     public int getNotifyUser() {
         return notifyUser;
     }
 
     /**
-     * Sets notify user.
+     * Sets notify user value
      *
-     * @param notifyUser the notify user
+     * @param notifyUser the notify user value
      */
     public void setNotifyUser(int notifyUser) {
         this.notifyUser = notifyUser;
     }
 
     /**
-     * Gets city.
+     * Gets home city of the user
      *
      * @return the city
      */
@@ -124,9 +124,9 @@ public class Account {
     }
 
     /**
-     * Sets city.
+     * Sets city of the user
      *
-     * @param hCity the h city
+     * @param hCity the home city
      */
     public void sethCity(String hCity) {
         this.hCity = hCity;

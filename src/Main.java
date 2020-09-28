@@ -6,6 +6,9 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.Database;
+import controller.MainController;
+import controller.Login;
+import controller.Register;
 
 public class Main extends Application {
 

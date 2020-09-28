@@ -22,7 +22,7 @@
             <Font name="Arial" size="13.0" />
          </font></Button>
         <Label fx:id="labelcheckUser" layoutX="241.0" layoutY="268.0" text="Username not Checked" />
-        <Button fx:id="btnCreate" layoutX="171.0" layoutY="318.0" mnemonicParsing="false" onAction="#createtracerAcc" prefHeight="27.0" prefWidth="278.0" style="-fx-background-color: #179952#179952; -fx-background-radius: 15;" text="Create Tracer Account" textFill="WHITE">
+        <Button fx:id="btnCreate" layoutX="171.0" layoutY="318.0" mnemonicParsing="false" onAction="#createtracerAcc" prefHeight="27.0" prefWidth="278.0" style="-fx-background-color: #186DE1; -fx-background-radius: 15;" text="Create Tracer Account" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="16.0" />
          </font></Button>

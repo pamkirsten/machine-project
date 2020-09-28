@@ -47,7 +47,7 @@
       <TextField fx:id="workAdd" layoutX="302.0" layoutY="369.0" />
       <TextField fx:id="phoneNum" layoutX="302.0" layoutY="406.0" />
       <TextField fx:id="emailAdd" layoutX="302.0" layoutY="444.0" />
-      <Button layoutX="150.0" layoutY="530.0" mnemonicParsing="false" onAction="#saveUserInfo" prefHeight="27.0" prefWidth="151.0" style="-fx-background-color: #179952; -fx-background-radius: 15;" text="Save" textFill="WHITE">
+      <Button layoutX="150.0" layoutY="530.0" mnemonicParsing="false" onAction="#saveUserInfo" prefHeight="27.0" prefWidth="151.0" style="-fx-background-color: #186DE1; -fx-background-radius: 15;" text="Save" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font></Button>

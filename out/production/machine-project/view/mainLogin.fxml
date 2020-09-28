@@ -22,13 +22,13 @@
          </font></Label>
       <TextField fx:id="usernameInput" layoutX="260.0" layoutY="235.0" prefHeight="27.0" prefWidth="193.0" />
       <PasswordField fx:id="passwordInput" layoutX="259.0" layoutY="280.0" prefHeight="27.0" prefWidth="193.0" />
-      <Button layoutX="171.0" layoutY="333.0" mnemonicParsing="false" onAction="#loginOption" prefHeight="33.0" prefWidth="153.0" style="-fx-background-color: #179952#179952; -fx-background-radius: 15;" text="Login" textFill="#fcfcfc">
+      <Button layoutX="171.0" layoutY="333.0" mnemonicParsing="false" onAction="#loginOption" prefHeight="33.0" prefWidth="153.0" style="-fx-background-color: #186DE1; -fx-background-radius: 15;" text="Login" textFill="#fcfcfc">
          <font>
-            <Font name="Arial" size="13.0" />
+            <Font name="Arial Bold" size="13.0" />
          </font></Button>
-      <Button layoutX="336.0" layoutY="333.0" mnemonicParsing="false" onAction="#mainMenu" prefHeight="33.0" prefWidth="117.0" style="-fx-background-color: #BC1823#BC1823; -fx-background-radius: 15;" text="Cancel" textFill="WHITE">
+      <Button layoutX="336.0" layoutY="333.0" mnemonicParsing="false" onAction="#mainMenu" prefHeight="33.0" prefWidth="135.0" style="-fx-background-color: #F1F1F1; -fx-background-radius: 15;" text="Cancel" textFill="#186de1">
          <font>
-            <Font name="Arial" size="13.0" />
+            <Font name="Arial Bold" size="13.0" />
          </font></Button>
    </children>
 </Pane>
