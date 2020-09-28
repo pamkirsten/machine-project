@@ -44,11 +44,11 @@
          <font>
             <Font name="Arial Italic" size="12.0" />
          </font></Label>
-      <Button fx:id="btnregister" layoutX="120.0" layoutY="418.0" mnemonicParsing="false" onAction="#enterUserInfo" prefHeight="30.0" prefWidth="176.0" style="-fx-background-color: #1FAB5E#1FAB5E; -fx-background-radius: 15;" text="Register" textFill="WHITE">
+      <Button fx:id="btnregister" layoutX="120.0" layoutY="418.0" mnemonicParsing="false" onAction="#enterUserInfo" prefHeight="30.0" prefWidth="214.0" style="-fx-background-color: #186DE1; -fx-background-radius: 15;" text="Register" textFill="WHITE">
          <font>
             <Font name="Arial" size="14.0" />
          </font></Button>
-      <Button layoutX="309.0" layoutY="416.0" mnemonicParsing="false" onAction="#cancel" prefHeight="30.0" prefWidth="188.0" style="-fx-background-color: #C82101#C82101; -fx-background-radius: 15;" text="Cancel" textFill="WHITE">
+      <Button layoutX="342.0" layoutY="416.0" mnemonicParsing="false" onAction="#cancel" prefHeight="30.0" prefWidth="182.0" style="-fx-background-color: #C82101#C82101; -fx-background-radius: 15;" text="Cancel" textFill="WHITE">
          <font>
             <Font name="Arial" size="14.0" />
          </font></Button>

@@ -22,11 +22,11 @@
          </font></Label>
       <TextField fx:id="txtCase" layoutX="330.0" layoutY="430.0" />
       <TextField fx:id="txtTracerUN" layoutX="330.0" layoutY="470.0" />
-      <Button layoutX="115.0" layoutY="519.0" mnemonicParsing="false" onAction="#assignCase" prefHeight="26.0" prefWidth="200.0" style="-fx-background-color: #169D53#169D53; -fx-background-radius: 15;" text="Confirm Assignment" textFill="WHITE">
+      <Button layoutX="115.0" layoutY="519.0" mnemonicParsing="false" onAction="#assignCase" prefHeight="26.0" prefWidth="200.0" style="-fx-background-color: #186DE1; -fx-background-radius: 15;" text="Confirm Assignment" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font></Button>
-      <Button layoutX="167.0" layoutY="154.0" mnemonicParsing="false" onAction="#showUnassigned" prefHeight="16.0" prefWidth="267.0" style="-fx-background-color: #004AAD; -fx-background-radius: 15;" text="Show Unassigned Cases" textFill="WHITE">
+      <Button layoutX="167.0" layoutY="154.0" mnemonicParsing="false" onAction="#showUnassigned" prefHeight="16.0" prefWidth="267.0" style="-fx-background-color: #169D53#169D53; -fx-background-radius: 15;" text="Show Unassigned Cases" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font></Button>
