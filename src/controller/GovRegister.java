@@ -27,27 +27,41 @@ import java.util.regex.Pattern;
  */
 public class GovRegister {
 
+    /** Government Object **/
     private static final Government newgovacc = new Government();
+    /** username of the user **/
     private static String username;
+    /** Database of accounts **/
     private final Database db = new Database();
+
+    /** Username **/
     @FXML
     private TextField txtfieldUsername;
+    /** Check Username Label **/
     @FXML
     private Label labelcheckUser;
+    /** First Name **/
     @FXML
     private TextField firstName;
+    /** Middle Name **/
     @FXML
     private TextField middleName;
+    /** Last Name **/
     @FXML
     private TextField lastName;
+    /** Home Address **/
     @FXML
     private TextField homeAdd;
+    /** Home City Address **/
     @FXML
     private TextField txtCity;
+    /** Work Address **/
     @FXML
     private TextField workAdd;
+    /** Phone Number **/
     @FXML
     private TextField phoneNum;
+    /** Email Address **/
     @FXML
     private TextField emailAdd;
 
@@ -135,7 +149,7 @@ public class GovRegister {
     public int checkUser() {
         if (findspace(txtfieldUsername.getText()) || txtfieldUsername.getText().contains(":") || txtfieldUsername.getText().contains(",")) { // Invalid Username
             labelcheckUser.setText("Username contains invalid char!");
-        } else if (db.checkUsernameEqual(txtfieldUsername.getText())) { // Return 2 if Account Username is Unique
+        } else if (!db.checkUsernameEqual(txtfieldUsername.getText())) { // Return 2 if Account Username is Unique
             labelcheckUser.setText("Username unique!");
             return 2;
         } else if (txtfieldUsername.getText().equals(username)) {

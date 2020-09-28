@@ -25,32 +25,52 @@ import java.util.regex.Pattern;
  */
 public class CitizenController {
 
+    /** username of the citizen **/
     private static String username;
+    /** Database of accounts **/
     private final Database database = new Database();
+    /** Establishments **/
     private final Establishment establishment = new Establishment();
+    /** Cases **/
     private final Case cases = new Case();
+
+    /** Password **/
     @FXML
     private PasswordField regpass1;
+    /** First Name **/
     @FXML
     private TextField firstName;
+    /** Middle Name **/
     @FXML
     private TextField middleName;
+    /** Last Name **/
     @FXML
     private TextField lastName;
+    /** Home Address **/
     @FXML
     private TextField homeAdd;
+    /** Home City Address **/
+    @FXML
+    private TextField txtCity;
+    /** Work Address **/
     @FXML
     private TextField workAdd;
+    /** Phone Number **/
     @FXML
     private TextField phoneNum;
+    /** Email Address **/
     @FXML
     private TextField emailAdd;
+    /** Report Positive Button **/
     @FXML
     private Button reportPositive;
+    /** Date of Report Positive **/
     @FXML
     private DatePicker date;
+    /** Date **/
     @FXML
     private DatePicker dateReported;
+    /** Establishment Code **/
     @FXML
     private TextField code;
 
@@ -145,6 +165,7 @@ public class CitizenController {
                 middleName.getText().contains(":") || middleName.getText().contains(",") ||
                 lastName.getText().contains(":") || lastName.getText().contains(",") ||
                 homeAdd.getText().contains(":") ||
+                txtCity.getText().contains(":") ||
                 workAdd.getText().contains(":") ||
                 findspace(phoneNum.getText()) || phoneNum.getText().contains(":") || phoneNum.getText().contains(",") || (!phoneNum.getText().matches("[0-9]+")) ||
                 findspace(emailAdd.getText()) || emailAdd.getText().contains(":") || emailAdd.getText().contains(",") ||
@@ -178,7 +199,7 @@ public class CitizenController {
 
             Optional<ButtonType> result = alert1.showAndWait();
             if (result.get() == ButtonType.OK) {
-                database.updateAccountsData(username, regpass1.getText(), firstName.getText(), middleName.getText(), lastName.getText(), homeAdd.getText(), workAdd.getText(), phoneNum.getText(), emailAdd.getText());
+                database.updateAccountsData(username, regpass1.getText(), firstName.getText(), middleName.getText(), lastName.getText(), homeAdd.getText(), txtCity.getText(), workAdd.getText(), phoneNum.getText(), emailAdd.getText());
                 close(event);
             }
         }

@@ -3,17 +3,17 @@ package model;
 import java.util.ArrayList;
 
 /**
- * The type Government.
+ * The Government Class
  */
 public class Government extends Citizen {
 
     /**
-     * The Database.
+     * The Database
      */
     public Database database = new Database();
 
     /**
-     * Instantiates a new Government.
+     * Instantiates a new Government Object
      *
      * @param firstname  the firstname
      * @param middlename the middlename
@@ -30,14 +30,14 @@ public class Government extends Citizen {
     }
 
     /**
-     * Instantiates a new Government.
+     * Instantiates a new Government Object
      */
     public Government() {
 
     }
 
     /**
-     * Gets cases.
+     * Gets all the Cases assigned to a Contact Tracer
      *
      * @param tracerName the tracer name
      * @return the cases
@@ -50,17 +50,17 @@ public class Government extends Citizen {
     }
 
     /**
-     * Check if traced boolean.
+     * Check if a case has already been traced
      *
      * @param casenum the casenum
-     * @return the boolean
+     * @return the result
      */
     public boolean checkIfTraced(int casenum) {
         return database.checkTraced(casenum);
     }
 
     /**
-     * Sets traced.
+     * Sets the status of a case to Traced
      *
      * @param casenum the casenum
      */
@@ -69,21 +69,21 @@ public class Government extends Citizen {
     }
 
     /**
-     * Notify users.
+     * Notify every user who has been exposed to a Positive Case
      *
      * @param exposedUsername the exposed username
-     * @param code            the code
-     * @param date            the date
+     * @param code            the establishment code
+     * @param date            the date the user was exposed
      */
     public void notifyUsers(String exposedUsername, String code, String date) {
         database.setNotify(exposedUsername, code, date);
     }
 
     /**
-     * Gets records.
+     * Traces all the users who have been exposed to a positive case
      *
      * @param casenum the casenum
-     * @param xNum    the x num
+     * @param xNum    the number of days before the positive case reported positive
      * @return the records
      */
     public ArrayList<Establishment> getRecords(String casenum, int xNum) {

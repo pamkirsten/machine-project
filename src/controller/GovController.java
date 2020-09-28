@@ -24,33 +24,49 @@ import java.util.ArrayList;
  */
 public class GovController {
 
+    /** username of the user **/
     private static String username;
+    /** Database of Accounts **/
     private final Database db = new Database();
+    /** GovRegister Controller **/
     GovRegister temp = new GovRegister();
+    /** TracerRegister Controller **/
     TracerRegister temp1 = new TracerRegister();
 
+    /** Username to be Terminated **/
     @FXML
     private TextField usernameTerminate;
+    /** City **/
     @FXML
     private TextField fieldCity;
+    /** Start Date **/
     @FXML
     private DatePicker dateStart;
+    /** End Date **/
     @FXML
     private DatePicker dateEnd;
+    /** Start Date **/
     @FXML
     private DatePicker tuStart;
+    /** End Date **/
     @FXML
     private DatePicker tuEnd;
+    /** Case Number **/
     @FXML
     private TextField txtCase;
+    /** Tracer Username **/
     @FXML
     private TextField txtTracerUN;
+    /** Unassigned Cases **/
     @FXML
     private ListView<Integer> listUnassigned;
+    /** Case Numbers **/
     @FXML
     private ListView<Integer> tuNum;
+    /** Tracer Username **/
     @FXML
     private ListView<String> tuUser;
+    /** Case Status **/
     @FXML
     private ListView<String> tuStatus;
 

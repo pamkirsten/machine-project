@@ -26,32 +26,47 @@ import java.util.regex.Pattern;
  */
 public class Register {
 
+    /** Citizen **/
     private static final Citizen citizen = new Citizen();
+    /** Database of accounts **/
     private final Database database = new Database();
+    /** Username Checker Label **/
     @FXML
     private Label labelUserChecker;
+    /** Password Checker Label **/
     @FXML
     private Label labelPasswordChecker;
+    /** Username **/
     @FXML
     private TextField user;
+    /** Password1 **/
     @FXML
     private TextField password1;
+    /** Password2 **/
     @FXML
     private TextField password2;
+    /** First Name **/
     @FXML
     private TextField firstName;
-    @FXML
-    private TextField txtCity;
+    /** Middle Name **/
     @FXML
     private TextField middleName;
+    /** Last Name **/
     @FXML
     private TextField lastName;
+    /** Home Address **/
     @FXML
     private TextField homeAdd;
+    /** Home City Address **/
+    @FXML
+    private TextField txtCity;
+    /** Work Address **/
     @FXML
     private TextField workAdd;
+    /** Phone Number **/
     @FXML
     private TextField phoneAdd;
+    /** Email Address **/
     @FXML
     private TextField Email;
 

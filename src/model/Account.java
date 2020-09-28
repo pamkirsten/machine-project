@@ -4,25 +4,41 @@ package model;
  * The Account Class
  */
 public class Account {
+    /** First Name **/
     private String firstName = "Empty";
+    /** Middle Name **/
     private String middleName = "Empty";
+    /** Last Name **/
     private String lastName = "Empty";
 
+    /** Home Address **/
     private String homeAdd = "Empty";
+    /** Home City Address **/
     private String hCity = "Empty";
+    /** Work Address **/
     private String workAdd = "Empty";
 
+    /** Phone Number **/
     private String phoneNumber = "Empty";
+    /** Email Address **/
     private String emailAdd = "Empty";
 
+    /** Username **/
     private String username = "Empty";
+    /** Password **/
     private String password = "Empty";
+    /** Date Reported **/
     private String dateReported = "Empty";
 
+    /** Notify Value **/
     private int notifyUser = 0;
+    /** Warning Establishment Code **/
     private String warningCode = "Empty";
+    /** Warning Date **/
     private String warningDate = "Empty";
+    /** Positive Value **/
     private boolean isPositive = false;
+    /** Case Number **/
     private int CaseNum;
 
     /**
@@ -124,7 +140,7 @@ public class Account {
     }
 
     /**
-     * Sets city of the user
+     * Sets home city of the user
      *
      * @param hCity the home city
      */
@@ -133,23 +149,23 @@ public class Account {
     }
 
     /**
-     * Is positive boolean.
+     * Checks if the user is Positive
      *
-     * @return the boolean
+     * @return the result
      */
     public boolean isPositive() {
         return isPositive;
     }
 
     /**
-     * Sets positive.
+     * Sets the user's isPositive to true
      */
     public void setPositive() {
         isPositive = true;
     }
 
     /**
-     * Gets date reported.
+     * Returns the date when the user reported positive
      *
      * @return the date reported
      */
@@ -158,7 +174,7 @@ public class Account {
     }
 
     /**
-     * Sets date reported.
+     * Sets the date when the user reported positive
      *
      * @param dateReported the date reported
      */
@@ -167,7 +183,7 @@ public class Account {
     }
 
     /**
-     * Gets first name.
+     * Gets first name
      *
      * @return the first name
      */
@@ -176,7 +192,7 @@ public class Account {
     }
 
     /**
-     * Sets first name.
+     * Sets first name
      *
      * @param firstName the first name
      */
@@ -185,7 +201,7 @@ public class Account {
     }
 
     /**
-     * Gets middle name.
+     * Gets middle name
      *
      * @return the middle name
      */
@@ -194,7 +210,7 @@ public class Account {
     }
 
     /**
-     * Sets middle name.
+     * Sets middle name
      *
      * @param middleName the middle name
      */
@@ -203,7 +219,7 @@ public class Account {
     }
 
     /**
-     * Gets last name.
+     * Gets last name
      *
      * @return the last name
      */
@@ -212,7 +228,7 @@ public class Account {
     }
 
     /**
-     * Sets last name.
+     * Sets last name
      *
      * @param lastName the last name
      */
@@ -221,7 +237,7 @@ public class Account {
     }
 
     /**
-     * Gets home add.
+     * Gets home address
      *
      * @return the home add
      */
@@ -230,7 +246,7 @@ public class Account {
     }
 
     /**
-     * Sets home add.
+     * Sets home address
      *
      * @param homeAdd the home add
      */
@@ -239,7 +255,7 @@ public class Account {
     }
 
     /**
-     * Gets work add.
+     * Gets work address
      *
      * @return the work add
      */
@@ -248,7 +264,7 @@ public class Account {
     }
 
     /**
-     * Sets work add.
+     * Sets work address
      *
      * @param workAdd the work add
      */
@@ -257,7 +273,7 @@ public class Account {
     }
 
     /**
-     * Gets phone number.
+     * Gets phone number
      *
      * @return the phone number
      */
@@ -266,7 +282,7 @@ public class Account {
     }
 
     /**
-     * Sets phone number.
+     * Sets phone number
      *
      * @param phoneNumber the phone number
      */
@@ -275,7 +291,7 @@ public class Account {
     }
 
     /**
-     * Gets email add.
+     * Gets email address
      *
      * @return the email add
      */
@@ -284,7 +300,7 @@ public class Account {
     }
 
     /**
-     * Sets email add.
+     * Sets email address
      *
      * @param emailAdd the email add
      */
@@ -293,7 +309,7 @@ public class Account {
     }
 
     /**
-     * Gets username.
+     * Gets username
      *
      * @return the username
      */
@@ -302,7 +318,7 @@ public class Account {
     }
 
     /**
-     * Sets username.
+     * Sets username
      *
      * @param username the username
      */
@@ -311,7 +327,7 @@ public class Account {
     }
 
     /**
-     * Gets password.
+     * Gets password
      *
      * @return the password
      */
@@ -320,7 +336,7 @@ public class Account {
     }
 
     /**
-     * Sets password.
+     * Sets password
      *
      * @param password the password
      */

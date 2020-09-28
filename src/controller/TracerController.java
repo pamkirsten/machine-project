@@ -24,21 +24,31 @@ import java.util.ArrayList;
  */
 public class TracerController {
 
+    /** Exposed Establishments **/
     private static ArrayList<Establishment> exposed = new ArrayList<>();
+    /** Username **/
     private static String username;
+    /** Government **/
     private final Government government = new Government();
+    /** Case Number **/
     @FXML
     private TextField tsNum;
+    /** Days before Date Reported **/
     @FXML
     private TextField tsX;
+    /** Cases **/
     @FXML
     private ListView<Integer> listCases;
+    /** Usernames **/
     @FXML
     private ListView<String> tsUser;
+    /** Establishment Codes **/
     @FXML
     private ListView<String> tsCode;
+    /** Dates **/
     @FXML
     private ListView<String> tsDate;
+    /** Times **/
     @FXML
     private ListView<String> tsTime;
 

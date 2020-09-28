@@ -14,21 +14,29 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * The type Database.
+ * Database Class
  */
 public class Database {
 
+    /** Accounts **/
     private static final ArrayList<Account> accounts = new ArrayList<>();
-    private static final ArrayList<Government> governments = new ArrayList<>();
+    /** Positive Cases **/
     private static final ArrayList<Case> cases = new ArrayList<>();
-    private static final ArrayList<Citizen> citizens = new ArrayList<>();
-    private static final ArrayList<Tracer> tracers = new ArrayList<>();
+    /** Establishment Visit Records **/
     private static ArrayList<Establishment> establishments = new ArrayList<>();
+    /** Case Number **/
     private static int casenum = cases.size();
+    /** Citizen **/
     private final Citizen citizen = new Citizen();
+    /** Government **/
+    private static final ArrayList<Government> governments = new ArrayList<>();
+    /** Citizen **/
+    private static final ArrayList<Citizen> citizens = new ArrayList<>();
+    /** Contact Tracers **/
+    private static final ArrayList<Tracer> tracers = new ArrayList<>();
 
     /**
-     * Start program.
+     * Starts the Program and loads all the files
      */
     public void startProgram() {
         openAccountsFile();
@@ -37,7 +45,7 @@ public class Database {
     }
 
     /**
-     * Open accounts file.
+     * Opens the masterlist.txt file and stores it in an ArrayList of Account
      */
     public void openAccountsFile() {
         try {
@@ -178,7 +186,7 @@ public class Database {
     }
 
     /**
-     * Open cases file.
+     * Open the positivecases.txt file and stores it in an ArrayList of Cases
      */
     public void openCasesFile() {
         try {
@@ -221,7 +229,7 @@ public class Database {
     }
 
     /**
-     * Open establishments file.
+     * Open the establishmentdata.txt file and stores it in an ArrayList of Establishment
      */
     public void openEstablishmentsFile() {
         try {
@@ -265,9 +273,9 @@ public class Database {
     }
 
     /**
-     * Create account.
+     * Creates an Account object then updates the masterlist.txt
      *
-     * @param temp the temp
+     * @param temp Citizen object
      */
     public void createAccount(Citizen temp) {
         accounts.add(temp);
@@ -275,9 +283,9 @@ public class Database {
     }
 
     /**
-     * Create case.
+     * Creates a Case object then updates the positivecases.txt
      *
-     * @param temp the temp
+     * @param temp Case object
      */
     public void createCase(Case temp) {
         cases.add(temp);
@@ -285,9 +293,9 @@ public class Database {
     }
 
     /**
-     * Create establishment.
+     * Creates an Establishment object then updates the establishmentdata.txt
      *
-     * @param temp the temp
+     * @param temp Establishment object
      */
     public void createEstablishment(Establishment temp) {
         establishments.add(temp);
@@ -295,9 +303,9 @@ public class Database {
     }
 
     /**
-     * Create official.
+     * Creates a Government Official Account
      *
-     * @param temp the temp
+     * @param temp Government object
      */
     public void createOfficial(Government temp) {
         for (int i = 0; i < accounts.size(); i++) {
@@ -325,9 +333,9 @@ public class Database {
     }
 
     /**
-     * Create tracer.
+     * Creates a Contact Tracer Account
      *
-     * @param temp the temp
+     * @param temp Tracer object
      */
     public void createTracer(Tracer temp) {
         for (int i = 0; i < accounts.size(); i++) {
@@ -355,7 +363,7 @@ public class Database {
     }
 
     /**
-     * Update accounts file.
+     * Updates the masterlist.txt file
      */
     public void updateAccountsFile() {
         try {
@@ -414,7 +422,7 @@ public class Database {
     }
 
     /**
-     * Update accounts data.
+     * Updates the Personal Data of the User
      *
      * @param user   the user
      * @param pass   the pass
@@ -422,11 +430,12 @@ public class Database {
      * @param middle the middle
      * @param last   the last
      * @param home   the home
+     * @param hCity  the home city
      * @param work   the work
      * @param phone  the phone
      * @param email  the email
      */
-    public void updateAccountsData(String user, String pass, String first, String middle, String last, String home, String work, String phone, String email) {
+    public void updateAccountsData(String user, String pass, String first, String middle, String last, String home, String hCity, String work, String phone, String email) {
         for (int i = 0; i < accounts.size(); i++) {
             if (accounts.get(i).getUsername().equals(user)) {
                 accounts.get(i).setPassword(pass);
@@ -434,6 +443,7 @@ public class Database {
                 accounts.get(i).setMiddleName(middle);
                 accounts.get(i).setLastName(last);
                 accounts.get(i).setHomeAdd(home);
+                accounts.get(i).sethCity(hCity);
                 accounts.get(i).setWorkAdd(work);
                 accounts.get(i).setPhoneNumber(phone);
                 accounts.get(i).setEmailAdd(email);
@@ -445,7 +455,7 @@ public class Database {
     }
 
     /**
-     * Update cases file.
+     * Updates the positivecases.txt file
      */
     public void updateCasesFile() {
         try {
@@ -479,7 +489,7 @@ public class Database {
     }
 
     /**
-     * Update establishments file.
+     * Update the establishmentdata.txt
      */
     public void updateEstablishmentsFile() {
         arrangeEstablishments();
@@ -543,26 +553,11 @@ public class Database {
     }
 
     /**
-     * Check username boolean.
+     * Checks if the password matches with the username
      *
-     * @param userinput the userinput
-     * @return the boolean
-     */
-    public boolean checkUsername(String userinput) {
-        for (int i = 0; i < accounts.size(); i++) {
-            if (userinput.equals(accounts.get(i).getUsername())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Check password boolean.
-     *
-     * @param user the user
-     * @param pass the pass
-     * @return the boolean
+     * @param user the username
+     * @param pass the password
+     * @return the result
      */
     public boolean checkPassword(String user, String pass) {
         for (int i = 0; i < accounts.size(); i++) {
@@ -574,7 +569,7 @@ public class Database {
     }
 
     /**
-     * Check username equal boolean.
+     * Checks if the username already exists
      *
      * @param userinput the userinput
      * @return the boolean
@@ -589,7 +584,7 @@ public class Database {
     }
 
     /**
-     * Check password equal boolean.
+     * Checks if two input strings are equal
      *
      * @param userinput  the userinput
      * @param userinput1 the userinput 1
@@ -600,10 +595,10 @@ public class Database {
     }
 
     /**
-     * Check role int.
+     * Checks the role of the Account
      *
      * @param username the username
-     * @return the int
+     * @return the result
      */
     public int checkRole(String username) {
         int role = -99;
@@ -628,12 +623,12 @@ public class Database {
     }
 
     /**
-     * Check duration boolean.
+     * Checks if a given date is within the date range of start and end date
      *
      * @param StartDate the start date
      * @param EndDate   the end date
      * @param date      the date
-     * @return the boolean
+     * @return the result
      */
     public boolean checkDuration(DatePicker StartDate, DatePicker EndDate, String date) {
         String startdate = StartDate.getValue().format(DateTimeFormatter.ofPattern("MM,dd,YYYY"));
@@ -648,12 +643,12 @@ public class Database {
     }
 
     /**
-     * Check dur and city int.
+     * Checks the number of cases based on a given Duration and City
      *
      * @param City      the city
      * @param StartDate the start date
      * @param EndDate   the end date
-     * @return the int
+     * @return number of cases
      */
     public int checkDurAndCity(String City, DatePicker StartDate, DatePicker EndDate) {
         int numCases = 0;
@@ -676,16 +671,15 @@ public class Database {
     }
 
     /**
-     * Check notify int.
+     * Checks the value of Notify of the User
      *
      * @param username the username
-     * @return the int
+     * @return the value of notify
      */
-
     public int checkNotify(String username) {
         int notify = 0;
         int caseIndex = 0;
-        //System.out.println("first = " + notify);
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM,dd,yyyy");
         String ndate = "Empty";
 
@@ -714,10 +708,10 @@ public class Database {
     }
 
     /**
-     * Check traced boolean.
+     * Checks if a case has already been traced
      *
      * @param casenum the casenum
-     * @return the boolean
+     * @return the result
      */
     public boolean checkTraced(int casenum) {
         for (int i = 0; i < cases.size(); i++) {
@@ -731,10 +725,10 @@ public class Database {
     }
 
     /**
-     * Check city cases int.
+     * Check the number of cases based on a given City
      *
      * @param City the city
-     * @return the int
+     * @return number of cases
      */
     public int checkCityCases(String City) {
         int numCases = 0;
@@ -753,10 +747,10 @@ public class Database {
     }
 
     /**
-     * Gets positive.
+     * Checks if the user is Positive
      *
      * @param user the user
-     * @return the positive
+     * @return the result
      */
     public boolean getPositive(String user) {
         for (int i = 0; i < accounts.size(); i++) {
@@ -768,7 +762,7 @@ public class Database {
     }
 
     /**
-     * Gets date reported.
+     * Gets the date reported of the user
      *
      * @param user the user
      * @return the date reported
@@ -785,7 +779,7 @@ public class Database {
     }
 
     /**
-     * Gets warning date.
+     * Gets the warning date of the user
      *
      * @param username the username
      * @return the warning date
@@ -803,10 +797,10 @@ public class Database {
     }
 
     /**
-     * Gets warning est.
+     * Gets the warning establishment code of the user
      *
      * @param username the username
-     * @return the warning est
+     * @return the warning establishment code
      */
     public String getWarningEst(String username) {
         String est = "Empty";
@@ -821,7 +815,7 @@ public class Database {
     }
 
     /**
-     * Gets case num.
+     * Assigns a case number to a person who reported positive
      *
      * @return the case num
      */
@@ -831,22 +825,20 @@ public class Database {
     }
 
     /**
-     * Gets case num.
+     * Gets the total number of positive cases
      *
-     * @return total case num
+     * @return total cases
      */
     public int getTotalCases(){
         return cases.size();
     }
 
     /**
-     * Sets positive.
+     * Sets the user's status to Positive
      *
      * @param user the user
      */
     public void setPositive(String user) {
-        //increment();
-
         for (int i = 0; i < accounts.size(); i++) {
             if (accounts.get(i).getUsername().equals(user)) {
                 accounts.get(i).setPositive();
@@ -860,11 +852,11 @@ public class Database {
     }
 
     /**
-     * Sets notify.
+     * Sets the value of Notify of the user
      *
-     * @param exposedName the exposed name
-     * @param code        the code
-     * @param date        the date
+     * @param exposedName the exposed user name
+     * @param code        the establishment code
+     * @param date        the date when they were exposed
      */
     public void setNotify(String exposedName, String code, String date) {
         for (int i = 0; i < accounts.size(); i++) {
@@ -877,9 +869,9 @@ public class Database {
     }
 
     /**
-     * Sets traced.
+     * Sets the Case's status to Traced
      *
-     * @param casenum the casenum
+     * @param casenum the case number
      */
     public void setTraced(String casenum) {
         for (int i = 0; i < cases.size(); i++) {
@@ -890,10 +882,10 @@ public class Database {
     }
 
     /**
-     * Gets cases assigned to tracer.
+     * Gets the Cases assigned to a specific Contact Tracer
      *
-     * @param tracerUN the tracer un
-     * @return the cases assigned to tracer
+     * @param tracerUN the contact tracer username
+     * @return the cases assigned to the contact tracer
      */
     public ArrayList<Case> getCasesAssignedToTracer(String tracerUN) {
         ArrayList<Case> cases = new ArrayList<>();
@@ -910,7 +902,7 @@ public class Database {
     }
 
     /**
-     * Gets unassigned cases.
+     * Gets the Cases who have not been assigned a Contact Tracer
      *
      * @return the unassigned cases
      */
@@ -927,11 +919,11 @@ public class Database {
     }
 
     /**
-     * Gets positive from date range.
+     * Checks the number of cases based on a given Duration
      *
-     * @param start the start
-     * @param end   the end
-     * @return the positive from date range
+     * @param start the start date
+     * @param end   the end date
+     * @return number of cases
      */
     public ArrayList<Case> getPositiveFromDateRange(DatePicker start, DatePicker end) {
         ArrayList<Case> cases = new ArrayList<>();
@@ -951,11 +943,11 @@ public class Database {
     }
 
     /**
-     * Trace accounts array list.
+     * Traces all of the Accounts and check if they have been exposed to a Positive Case
      *
      * @param caseNum the case num
-     * @param xNum    the x num
-     * @return the array list
+     * @param xNum    the number of days before the positive case reported positive
+     * @return the list of all exposed
      */
     public ArrayList<Establishment> traceAccounts(String caseNum, int xNum) {
 
@@ -1007,7 +999,7 @@ public class Database {
     }
 
     /**
-     * Arrange establishments.
+     * Arranges the ArrayList of Establishment
      */
     public void arrangeEstablishments() {
         ArrayList<String> users = new ArrayList<>();
@@ -1039,11 +1031,11 @@ public class Database {
     }
 
     /**
-     * Given duration int.
+     * Checks if a given reported date is within a given start and end date
      *
      * @param StartDate the start date
      * @param EndDate   the end date
-     * @return the int
+     * @return number of cases
      */
     public int givenDuration(DatePicker StartDate, DatePicker EndDate) {
         int numCases = 0;
@@ -1059,17 +1051,17 @@ public class Database {
     }
 
     /**
-     * Increment.
+     * Increments the number of cases
      */
     public void increment() {
         casenum += 1;
     }
 
     /**
-     * Remove account int.
+     * Terminates a Government or Tracer account and turns it into a Citizen account
      *
      * @param username the username
-     * @return the int
+     * @return if deletion is successful or not
      */
     public int removeAccount(String username) {
         int check = 0, role = checkRole(username);
@@ -1104,7 +1096,7 @@ public class Database {
     }
 
     /**
-     * End program.
+     * Ends the Program and updates all the files
      */
     public void endProgram() {
         updateAccountsFile();

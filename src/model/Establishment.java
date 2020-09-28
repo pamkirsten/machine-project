@@ -1,41 +1,45 @@
 package model;
 
 /**
- * The type Establishment.
+ * The Establishment Class
  */
 public class Establishment {
+    /** Username **/
     private String username = "Empty";
+    /** Establishment Code **/
     private String estCode = "Empty";
+    /** Check In Date **/
     private String checkInDate = "Empty";
+    /** Check In Time **/
     private String checkInTime = "Empty";
 
     /**
-     * Instantiates a new Establishment.
+     * Instantiates a new Establishment Class
      */
     public Establishment() {
 
     }
 
     /**
-     * Gets est code.
+     * Gets the Establishment Code
      *
-     * @return the est code
+     * @return the establishment code
      */
     public String getEstCode() {
         return estCode;
     }
 
     /**
-     * Sets est code.
+     * Sets the Establishment Code
      *
-     * @param estCode the est code
+     * @param estCode the establishment code
      */
     public void setEstCode(String estCode) {
         this.estCode = estCode;
     }
 
     /**
-     * Gets check in date.
+     * Gets the Check-In Date
      *
      * @return the check in date
      */
@@ -44,7 +48,7 @@ public class Establishment {
     }
 
     /**
-     * Sets check in date.
+     * Sets the Check-In Date
      *
      * @param checkInDate the check in date
      */
@@ -53,7 +57,7 @@ public class Establishment {
     }
 
     /**
-     * Gets check in time.
+     * Gets Check-In Time
      *
      * @return the check in time
      */
@@ -62,7 +66,7 @@ public class Establishment {
     }
 
     /**
-     * Sets check in time.
+     * Sets the Check-In Date
      *
      * @param checkInTime the check in time
      */
@@ -71,7 +75,7 @@ public class Establishment {
     }
 
     /**
-     * Gets username.
+     * Gets the username of the user
      *
      * @return the username
      */
@@ -80,7 +84,7 @@ public class Establishment {
     }
 
     /**
-     * Sets username.
+     * Sets the username of the user
      *
      * @param username the username
      */

@@ -1,42 +1,47 @@
 package model;
 
 /**
- * The type Case.
+ * The Case Class
  */
 public class Case {
+    /** Username **/
     private String user = "Empty";
+    /** Case Number **/
     private int casenum;
+    /** Date Reported **/
     private String dateReported = "Empty";
+    /** Contact Tracer Username **/
     private String tracerUsername = "000";
+    /** Status **/
     private String status = "P";
 
     /**
-     * Instantiates a new Case.
+     * Instantiates a new Case
      */
     public Case() {
 
     }
 
     /**
-     * Gets casenum.
+     * Gets case number
      *
-     * @return the casenum
+     * @return the case number
      */
     public int getCasenum() {
         return casenum;
     }
 
     /**
-     * Sets casenum.
+     * Sets case number
      *
-     * @param casenum the casenum
+     * @param casenum the case number
      */
     public void setCasenum(int casenum) {
         this.casenum = casenum;
     }
 
     /**
-     * Gets date reported.
+     * Gets date reported
      *
      * @return the date reported
      */
@@ -45,7 +50,7 @@ public class Case {
     }
 
     /**
-     * Sets date reported.
+     * Sets date reported
      *
      * @param date the date
      */
@@ -54,7 +59,7 @@ public class Case {
     }
 
     /**
-     * Gets username.
+     * Gets username
      *
      * @return the username
      */
@@ -63,7 +68,7 @@ public class Case {
     }
 
     /**
-     * Sets username.
+     * Sets username
      *
      * @param user the user
      */
@@ -72,7 +77,7 @@ public class Case {
     }
 
     /**
-     * Gets tracer username.
+     * Gets tracer username
      *
      * @return the tracer username
      */
@@ -81,7 +86,7 @@ public class Case {
     }
 
     /**
-     * Sets tracer username.
+     * Sets tracer username
      *
      * @param tracerUsername the tracer username
      */
@@ -90,7 +95,7 @@ public class Case {
     }
 
     /**
-     * Gets status.
+     * Gets status if the user has been traced or not
      *
      * @return the status
      */
@@ -99,7 +104,7 @@ public class Case {
     }
 
     /**
-     * Sets status.
+     * Sets status if the user has been traced or not
      *
      * @param status the status
      */

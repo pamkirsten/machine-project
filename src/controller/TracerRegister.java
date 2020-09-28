@@ -27,27 +27,40 @@ import java.util.regex.Pattern;
  */
 public class TracerRegister {
 
+    /** Contact Tracer **/
     private static final Tracer tracerdata = new Tracer();
+    /** Username **/
     private static String username;
+    /** Database of accounts **/
     private final Database database = new Database();
+    /** Username **/
     @FXML
     private TextField txtfieldUsername;
+    /** Username Check Label **/
     @FXML
     private Label labelcheckUser;
+    /** First Name **/
     @FXML
     private TextField firstName;
+    /** Middle Name **/
     @FXML
     private TextField middleName;
+    /** Last Name **/
     @FXML
     private TextField lastName;
+    /** Home Address **/
     @FXML
     private TextField homeAdd;
+    /** Home City Address **/
     @FXML
     private TextField txtCity;
+    /** Work Address **/
     @FXML
     private TextField workAdd;
+    /** Phone Number **/
     @FXML
     private TextField phoneNumber;
+    /** Email Address **/
     @FXML
     private TextField emailAdd;
 

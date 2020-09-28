@@ -1,12 +1,12 @@
 package model;
 
 /**
- * The type Citizen.
+ * The Citizen Class
  */
 public class Citizen extends Account {
 
     /**
-     * Instantiates a new Citizen.
+     * Instantiates a new Citizen Class
      *
      * @param firstname  the firstname
      * @param middlename the middlename
@@ -23,7 +23,7 @@ public class Citizen extends Account {
     }
 
     /**
-     * Instantiates a new Citizen.
+     * Instantiates a new Citizen Class
      */
     public Citizen() {
 

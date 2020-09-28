@@ -37,8 +37,10 @@ public class Login {
      * Initializes a Government Controller
      */
     GovController official = new GovController();
+    /** Username **/
     @FXML
     private TextField usernameInput;
+    /** Password **/
     @FXML
     private PasswordField passwordInput;
 
@@ -78,7 +80,7 @@ public class Login {
         int check = -999;
         int notify = -999;
 
-        if (database.checkUsername(usernameInput.getText())) {
+        if (!database.checkUsernameEqual(usernameInput.getText())) {
             if (database.checkPassword(usernameInput.getText(), passwordInput.getText())) {
 
                 close(event);

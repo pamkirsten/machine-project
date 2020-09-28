@@ -1,12 +1,12 @@
 package model;
 
 /**
- * The type Tracer.
+ * The Tracer Class
  */
 public class Tracer extends Citizen {
 
     /**
-     * Instantiates a new Tracer.
+     * Instantiates a new Tracer Object
      *
      * @param firstname  the firstname
      * @param middlename the middlename
@@ -23,7 +23,7 @@ public class Tracer extends Citizen {
     }
 
     /**
-     * Instantiates a new Tracer.
+     * Instantiates a new Tracer Object
      */
     public Tracer() {
 
